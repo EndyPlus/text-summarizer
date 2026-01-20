@@ -1,5 +1,6 @@
 "use client";
 import DashboardHeading from "@/components/DashboardHeading";
+import HistoryListItem from "@/components/HistoryListItem";
 import Image from "next/image";
 
 export default function HistoryPage() {
@@ -58,33 +59,57 @@ export default function HistoryPage() {
           />
         </div>
       </form>
-      {/* <ul>
-        <li className="flex">
-          <div>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis
-              blanditiis obcaecati consequatur. Labore provident doloremque,
-              natus delectus itaque placeat reprehenderit.
-            </p>
-            <ul className="flex">
-              <li>some date</li>
-              <li>WORDS COUNT</li>
-              <li>CHARACTERS COUNT</li>
-            </ul>
-          </div>
-          <div>...</div>
-        </li>
+
+      <ul className="flex flex-col gap-2.5">
+        <HistoryListItem />
+        <HistoryListItem />
+        <HistoryListItem />
+        {/* <HistoryListItem />
+        <HistoryListItem /> */}
       </ul>
-      <div className="flex">
-        <p>Show 1 to 5 out of 15 entries</p>
+
+      <div className="mt-4.5 flex items-center justify-between">
+        <p className="leading-base tracking-base text-black-accent text-sm">
+          Show 1 to 5 out of 15 entries
+        </p>
         <ul className="flex">
-          <li>&lt;</li>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>&gt;</li>
+          <li>
+            <button className="flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5">
+              <Image
+                src="/icon-arrow-left.svg"
+                alt="arrow left icon"
+                width={20}
+                height={20}
+              />
+            </button>
+          </li>
+          <li>
+            <button className="tracking-base text-black-accent flex size-10 cursor-pointer items-center justify-center rounded-xl bg-[#0a0f290a] p-2.5 leading-[150%] font-medium">
+              1
+            </button>
+          </li>
+          <li>
+            <button className="tracking-base text-black-accent flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5 leading-[150%] font-medium">
+              2
+            </button>
+          </li>
+          <li>
+            <button className="tracking-base text-black-accent flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5 leading-[150%] font-medium">
+              3
+            </button>
+          </li>
+          <li>
+            <button className="flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5">
+              <Image
+                src="/icon-arrow-right.svg"
+                alt="arrow right icon"
+                width={20}
+                height={20}
+              />
+            </button>
+          </li>
         </ul>
-      </div> */}
+      </div>
     </div>
   );
 }
