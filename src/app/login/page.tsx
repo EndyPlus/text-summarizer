@@ -2,6 +2,12 @@
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 
+import iconSuccess from "@/src/assets/icons/icon-success.svg";
+import iconError from "@/src/assets/icons/icon-error.svg";
+import iconClose from "@/src/assets/icons/icon-close.svg";
+import iconLogo from "@/src/assets/icons/icon-logo.svg";
+import iconEye from "@/src/assets/icons/icon-eye.svg";
+
 type Message = {
   id: number;
   header: string;
@@ -53,7 +59,7 @@ export default function LoginPage() {
           } tracking-base shadow-info-main rounded-xl`}
         >
           <Image
-            src={`/icon-${message.id === 2 ? "success" : "error"}.svg`}
+            src={message.id === 2 ? iconSuccess : iconError}
             alt="warning icon"
             width={20}
             height={20}
@@ -68,12 +74,7 @@ export default function LoginPage() {
           </div>
           {message.id !== 2 && (
             <button onClick={() => setMessage(null)} className="cursor-pointer">
-              <Image
-                src="/icon-close.svg"
-                alt="close icon"
-                width={20}
-                height={20}
-              />
+              <Image src={iconClose} alt="close icon" width={20} height={20} />
             </button>
           )}
         </div>
@@ -82,7 +83,7 @@ export default function LoginPage() {
       <div className="border-accent-light flex flex-col rounded-2xl border bg-white p-10 text-center">
         <Image
           className="shadow-icon self-center"
-          src="/icon-logo.svg"
+          src={iconLogo}
           alt="logo icon"
           width={60}
           height={60}
@@ -113,7 +114,7 @@ export default function LoginPage() {
               onClick={toggleShowPassword}
             >
               <Image
-                src={"/icon-eye.svg"}
+                src={iconEye}
                 alt="toggle show password icon"
                 width={20}
                 height={20}

@@ -1,5 +1,10 @@
 import Image from "next/image";
 
+import iconCalendar from "@/src/assets/icons/icon-calendar.svg";
+import iconText from "@/src/assets/icons/icon-text.svg";
+import iconLetter from "@/src/assets/icons/icon-letter.svg";
+import iconDots from "@/src/assets/icons/icon-dots.svg";
+
 export default function HistoryListItem() {
   return (
     <li className="border-border flex gap-4 rounded-2xl border bg-white py-5 pr-5.75 pl-5">
@@ -17,7 +22,8 @@ export default function HistoryListItem() {
         <ul className="mt-4 flex gap-2">
           <li className="bg-white-tertiary flex gap-1 rounded-lg px-1.5 py-1">
             <Image
-              src="/icon-calendar.svg"
+              className="h-4 w-4"
+              src={iconCalendar}
               alt="calendar icon"
               width={16}
               height={16}
@@ -28,7 +34,8 @@ export default function HistoryListItem() {
           </li>
           <li className="bg-white-tertiary flex gap-1 rounded-lg px-1.5 py-1">
             <Image
-              src="/icon-text.svg"
+              className="h-4 w-4"
+              src={iconText}
               alt="text icon"
               width={16}
               height={16}
@@ -39,7 +46,8 @@ export default function HistoryListItem() {
           </li>
           <li className="bg-white-tertiary flex gap-1 rounded-lg px-1.5 py-1">
             <Image
-              src="/icon-letter.svg"
+              className="h-4 w-4"
+              src={iconLetter}
               alt="letter icon"
               width={16}
               height={16}
@@ -53,7 +61,7 @@ export default function HistoryListItem() {
       <button className="border-border radius-large shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2">
         <Image
           className="shrink-0"
-          src="/icon-dots.svg"
+          src={iconDots}
           alt="three dots icon"
           width={16}
           height={16}

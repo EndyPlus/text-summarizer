@@ -1,7 +1,13 @@
 "use client";
-import DashboardHeading from "@/components/DashboardHeading";
-import HistoryListItem from "@/components/HistoryListItem";
+import DashboardHeading from "@/src/components/DashboardHeading";
+import HistoryListItem from "@/src/components/HistoryListItem";
 import Image from "next/image";
+
+import iconCalendar from "@/src/assets/icons/icon-calendar.svg";
+import iconArrowDown from "@/src/assets/icons/icon-arrow-down.svg";
+import iconSearch from "@/src/assets/icons/icon-search.svg";
+import iconArrowLeft from "@/src/assets/icons/icon-arrow-left.svg";
+import iconArrowRight from "@/src/assets/icons/icon-arrow-right.svg";
 
 export default function HistoryPage() {
   return (
@@ -17,7 +23,8 @@ export default function HistoryPage() {
             type="button"
           >
             <Image
-              src="/icon-calendar.svg"
+              className="h-4 w-4"
+              src={iconCalendar}
               alt="calendar icon"
               width={16}
               height={16}
@@ -26,7 +33,8 @@ export default function HistoryPage() {
               Last 7 days
             </p>
             <Image
-              src="/icon-arrow-down.svg"
+              className="h-4 w-4"
+              src={iconArrowDown}
               alt="arrow down icon"
               width={16}
               height={16}
@@ -47,7 +55,7 @@ export default function HistoryPage() {
         <div className="relative w-3/7">
           <Image
             className="absolute top-1/2 translate-x-1/2 -translate-y-1/2"
-            src="/icon-search.svg"
+            src={iconSearch}
             alt="search icon"
             width={20}
             height={20}
@@ -76,7 +84,7 @@ export default function HistoryPage() {
           <li>
             <button className="flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5">
               <Image
-                src="/icon-arrow-left.svg"
+                src={iconArrowLeft}
                 alt="arrow left icon"
                 width={20}
                 height={20}
@@ -101,7 +109,7 @@ export default function HistoryPage() {
           <li>
             <button className="flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5">
               <Image
-                src="/icon-arrow-right.svg"
+                src={iconArrowRight}
                 alt="arrow right icon"
                 width={20}
                 height={20}

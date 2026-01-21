@@ -1,6 +1,11 @@
-import CtaButton from "@/components/CtaButton";
-import DashboardHeading from "@/components/DashboardHeading";
+import CtaButton from "@/src/components/CtaButton";
+import DashboardHeading from "@/src/components/DashboardHeading";
 import Image from "next/image";
+
+import iconDocument from "@/src/assets/icons/icon-document.svg";
+import iconCopy from "@/src/assets/icons/icon-copy.svg";
+import iconKeyboard from "@/src/assets/icons/icon-keyboard.svg";
+import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
 
 export default function HomePage() {
   return (
@@ -11,10 +16,10 @@ export default function HomePage() {
       />
       <div className="rounded-large bg-black-secondary mb-5 pt-5.75 pb-3.75">
         <div className="mx-px mb-3.75 flex justify-center gap-2.5 bg-white p-5">
-          <CtaButton src="/icon-keyboard.svg" alt="keyboard icon">
+          <CtaButton src={iconKeyboard} alt="keyboard icon">
             Enter Text
           </CtaButton>
-          <CtaButton src="/icon-clipboard.svg" alt="clipboard icon">
+          <CtaButton src={iconClipboard} alt="clipboard icon">
             Paste Text
           </CtaButton>
         </div>
@@ -39,7 +44,7 @@ export default function HomePage() {
         <div className="shadow-input rounded-large border-border-secondary bg-white-secondary mb-5 flex h-full items-center justify-center border">
           <div className="flex flex-col items-center justify-center">
             <Image
-              src="/icon-document.svg"
+              src={iconDocument}
               alt="document icon"
               width={60}
               height={60}
@@ -62,7 +67,8 @@ export default function HomePage() {
           </ul>
           <button className="leading-base tracking-base rounded-large border-white-tertiary text-black-tertiary flex cursor-pointer gap-1.5 border bg-white px-2.5 py-1.5 text-sm font-medium">
             <Image
-              src="/icon-copy.svg"
+              className="h-4 w-4"
+              src={iconCopy}
               alt="copy icon"
               width={16}
               height={16}

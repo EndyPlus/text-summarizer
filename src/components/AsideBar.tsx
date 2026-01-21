@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import iconLogout from "../assets/icons/icon-logout.svg";
+import iconPlus from "../assets/icons/icon-plus.svg";
+import iconHouse from "../assets/icons/icon-house.svg";
+import iconClock from "../assets/icons/icon-clock.svg";
+
 export default function AsideBar() {
   const pathname = usePathname();
 
@@ -25,7 +30,7 @@ export default function AsideBar() {
           </div>
           <button className="w-5 cursor-pointer">
             <Image
-              src="/icon-logout.svg"
+              src={iconLogout}
               alt="log out button"
               width={20}
               height={20}
@@ -33,7 +38,7 @@ export default function AsideBar() {
           </button>
         </div>
         <button className="bg-white-base shadow-input rounded-large flex w-full cursor-pointer items-center justify-center px-2.5 py-1.5">
-          <Image src="/icon-plus.svg" alt="plus icon" width={16} height={16} />
+          <Image src={iconPlus} alt="plus icon" width={16} height={16} />
           <p className="leading-base tracking-base text-black-secondary ml-1.5 text-sm font-medium">
             Summarize Text
           </p>
@@ -46,12 +51,7 @@ export default function AsideBar() {
               href="/home"
               className={`${pathname === "/home" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
             >
-              <Image
-                src="/icon-house.svg"
-                alt="house icon"
-                width={20}
-                height={20}
-              />
+              <Image src={iconHouse} alt="house icon" width={20} height={20} />
               <p className="leading-base tracking-base ml-2 text-sm font-medium">
                 Home
               </p>
@@ -62,12 +62,7 @@ export default function AsideBar() {
               href="/history"
               className={`${pathname === "/history" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
             >
-              <Image
-                src="/icon-clock.svg"
-                alt="clock icon"
-                width={20}
-                height={20}
-              />
+              <Image src={iconClock} alt="clock icon" width={20} height={20} />
               <p className="leading-base tracking-base mx-2 text-sm font-medium">
                 History
               </p>
