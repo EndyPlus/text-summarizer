@@ -1,7 +1,7 @@
-"use client";
-import DashboardHeading from "@/src/components/DashboardHeading";
-import HistoryListItem from "@/src/components/HistoryListItem";
 import Image from "next/image";
+
+import DashboardHeading from "@/src/components/ui/DashboardHeading";
+import HistoryListItem from "@/src/components/ui/HistoryListItem";
 
 import iconCalendar from "@/src/assets/icons/icon-calendar.svg";
 import iconArrowDown from "@/src/assets/icons/icon-arrow-down.svg";

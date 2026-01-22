@@ -1,10 +1,10 @@
-import AsideBar from "@/src/components/AsideBar";
+import AsideBar from "@/src/components/ui/AsideBar";
 
-export default function DashboardLayout({
-  children,
-}: Readonly<{
+type LayoutProps = Readonly<{
   children: React.ReactNode;
-}>) {
+}>;
+
+export default function DashboardLayout({ children }: LayoutProps) {
   // mx-60 my-10
   return (
     <div className="bg-white-secondary flex h-full items-center justify-center">
