@@ -1,7 +1,7 @@
 import DashboardHeading from "@/src/components/ui/DashboardHeading";
 import HomePageForm from "@/src/components/features/HomePageForm";
 
-import SummarySection from "@/src/components/features/SummarySection";
+import SummarySection from "@/src/components/ui/SummarySection";
 
 export default function HomePage() {
   return (

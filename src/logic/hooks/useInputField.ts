@@ -1,3 +1,4 @@
+import getCounts from "@/src/utils/getCounts";
 import { useRef, useState } from "react";
 
 export default function useInputField() {
@@ -7,10 +8,12 @@ export default function useInputField() {
   const [wordsCount, setWordsCount] = useState(0);
 
   function handleInputText() {
-    const value = textareaRef.current.value.trim();
+    const { charactersCount, wordsCount } = getCounts(
+      textareaRef.current.value,
+    );
 
-    setCharactersCount(value.length);
-    setWordsCount(value.split(" ").filter((v: string) => v.length).length);
+    setCharactersCount(charactersCount);
+    setWordsCount(wordsCount);
   }
 
   async function handlePasteText() {

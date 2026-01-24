@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import iconKeyboard from "@/src/assets/icons/icon-keyboard.svg";
 import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
@@ -8,7 +8,7 @@ import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
 import HomeCtaButton from "@/src/components/ui/HomeCtaButton";
 
 import useInputField from "@/src/logic/hooks/useInputField";
-import handleHomePageFormSubmit from "@/src/logic/handleHomePageFormSubmit";
+import useFormHandler from "@/src/logic/hooks/useFormHandler";
 
 export default function HomePageForm() {
   const [isActiveForm, setIsActiveForm] = useState(false);
@@ -22,7 +22,9 @@ export default function HomePageForm() {
     handleResetValues,
   } = useInputField();
 
-  function handleSubmitForm(e) {
+  const handleHomePageFormSubmit = useFormHandler();
+
+  function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
     handleHomePageFormSubmit(e);
     handleResetValues();
     setIsActiveForm(false);
@@ -58,6 +60,7 @@ export default function HomePageForm() {
         <textarea
           ref={textareaRef}
           onInput={handleInputText}
+          name="formTextarea"
           style={{ display: isActiveForm ? "inline-block" : "none" }}
           className="h-full w-full resize-none px-5 py-2.5 text-sm leading-[150%] text-[#131615] outline-none"
         ></textarea>
