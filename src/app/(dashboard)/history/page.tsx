@@ -9,6 +9,9 @@ import iconSearch from "@/src/assets/icons/icon-search.svg";
 import iconArrowLeft from "@/src/assets/icons/icon-arrow-left.svg";
 import iconArrowRight from "@/src/assets/icons/icon-arrow-right.svg";
 
+import { historySummaries } from "@/src/mock/historySummaries";
+import { HistoryItem } from "@/src/types/historyItemType";
+
 export default function HistoryPage() {
   return (
     <div className="flex w-full flex-col pt-10.25 pr-10.5 pb-11.75 pl-14.5">
@@ -40,17 +43,6 @@ export default function HistoryPage() {
               height={16}
             />
           </button>
-          {/* <ul className="hidden" role="listbox">
-            <li role="option" aria-selected="false">
-              Today
-            </li>
-            <li role="option" aria-selected="false">
-              Yesterday
-            </li>
-            <li role="option" aria-selected="false">
-              Last 7 days
-            </li>
-          </ul> */}
         </div>
         <div className="relative w-3/7">
           <Image
@@ -69,11 +61,11 @@ export default function HistoryPage() {
       </form>
 
       <ul className="flex flex-col gap-2.5">
-        <HistoryListItem />
-        <HistoryListItem />
-        <HistoryListItem />
-        {/* <HistoryListItem />
-        <HistoryListItem /> */}
+        {JSON.parse(historySummaries).map((historyItem: HistoryItem) => {
+          return (
+            <HistoryListItem key={historyItem.id} itemData={historyItem} />
+          );
+        })}
       </ul>
 
       <div className="mt-4.5 flex items-center justify-between">
