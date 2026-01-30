@@ -12,35 +12,17 @@ const prisma = new PrismaClient({
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    name: "Artem",
-    email: "artem@prisma.io",
+    username: "admin",
+    password: "admin", // Пам'ятай: у реальному проекті тут має бути хеш (наприклад, від bcrypt)
+    name: "Artem Pliusnin",
     posts: {
       create: [
         {
-          content: "some summary",
-        },
-        {
-          content: "some summary2",
-        },
-        {
-          content: "some summary3",
-        },
-      ],
-    },
-  },
-  {
-    name: "Vlad",
-    email: "vlad@prisma.io",
-    posts: {
-      create: [
-        {
-          content: "some summary",
-        },
-        {
-          content: "some summary2",
-        },
-        {
-          content: "some summary3",
+          originalText:
+            "Штучний інтелект — це галузь комп'ютерних наук, яка займається створенням інтелектуальних машин, здатних виконувати завдання, що зазвичай потребують людського інтелекту, таких як візуальне сприйняття, розпізнавання мови та прийняття рішень.",
+          summarizedText:
+            "ШІ створює розумні машини для виконання людських завдань: розпізнавання мови та прийняття рішень.",
+          createdAt: new Date(),
         },
       ],
     },
