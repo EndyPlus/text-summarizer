@@ -38,6 +38,17 @@ export default function AsideBarNavigation() {
             </span>
           </Link>
         </li>
+        <li>
+          <Link
+            href="/test-page"
+            className={`${pathname === "/test-page" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
+          >
+            <Image src={iconClock} alt="clock icon" width={20} height={20} />
+            <p className="leading-base tracking-base mx-2 text-sm font-medium">
+              Test Page
+            </p>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -5,6 +5,7 @@ import Image from "next/image";
 import iconCopy from "@/src/assets/icons/icon-copy.svg";
 
 import { useSummary } from "@/src/store/summaryStore";
+
 import useSummarizedText from "@/src/logic/hooks/useSummarizedText";
 
 export default function SummaryPanel() {

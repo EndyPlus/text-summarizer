@@ -5,7 +5,7 @@ import { FormEvent, useState } from "react";
 import iconKeyboard from "@/src/assets/icons/icon-keyboard.svg";
 import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
 
-import HomeCtaButton from "@/src/components/ui/HomeCtaButton";
+import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
 import useInputField from "@/src/logic/hooks/useInputField";
 import useFormHandler from "@/src/logic/hooks/useFormHandler";

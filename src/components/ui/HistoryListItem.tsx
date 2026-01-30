@@ -1,9 +1,10 @@
 import Image from "next/image";
 
+import ListItemOptionsButton from "../buttons/ListItemOptionsButton";
+
 import iconCalendar from "@/src/assets/icons/icon-calendar.svg";
 import iconText from "@/src/assets/icons/icon-text.svg";
 import iconLetter from "@/src/assets/icons/icon-letter.svg";
-import iconDots from "@/src/assets/icons/icon-dots.svg";
 
 import { HistoryItem } from "@/src/types/historyItemType";
 
@@ -59,15 +60,8 @@ export default function HistoryListItem({ itemData }: Props) {
           </li>
         </ul>
       </div>
-      <button className="border-border radius-large shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2">
-        <Image
-          className="shrink-0"
-          src={iconDots}
-          alt="three dots icon"
-          width={16}
-          height={16}
-        />
-      </button>
+
+      <ListItemOptionsButton />
     </li>
   );
 }
