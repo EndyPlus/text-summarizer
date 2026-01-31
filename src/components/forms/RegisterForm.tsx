@@ -6,6 +6,12 @@ import { useState } from "react";
 
 import iconEye from "@/src/assets/icons/icon-eye.svg";
 
+import { signIn } from "next-auth/react";
+import {
+  createUser,
+  findUser,
+} from "@/src/services/serverActions/prismaActions";
+
 export default function RegisterForm() {
   const [passwordInputType, setPasswordInputType] = useState<
     "password" | "text"
@@ -17,13 +23,68 @@ export default function RegisterForm() {
     });
   }
 
+  async function handleSubmitForm(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const { name, username, password, confirmPassword } = Object.fromEntries(
+      formData.entries(),
+    );
+
+    try {
+      const res = await findUser(username);
+
+      if (res) {
+        throw new Error("User is already existing.");
+      }
+
+      if (password !== confirmPassword) {
+        throw new Error("Passwords are not matching.");
+      }
+
+      const newUser = await createUser({
+        name,
+        username,
+        password,
+      });
+
+      if (!newUser) {
+        throw new Error("Failed user registration.");
+      }
+
+      const signInResult = await signIn("credentials", {
+        username: newUser.username,
+        password: newUser.password,
+        redirect: true,
+        callbackUrl: "/home",
+      });
+
+      console.log(signInResult);
+
+      if (!signInResult?.ok) {
+        throw new Error("Failed user authorization.");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
-    <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={handleSubmitForm} className="flex flex-col gap-4">
+      <input
+        className="border-border leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm"
+        name="name"
+        type="text"
+        placeholder="Full name"
+        required
+      />
       <input
         className="border-border leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm"
         name="username"
         type="text"
         placeholder="Username"
+        required
       />
       <div className="relative">
         <input
@@ -31,6 +92,7 @@ export default function RegisterForm() {
           name="password"
           type={passwordInputType}
           placeholder="Password"
+          required
         />
         <button
           type="button"
@@ -51,6 +113,7 @@ export default function RegisterForm() {
         type={passwordInputType}
         name="confirmPassword"
         placeholder="Confirm password"
+        required
       />
 
       <button

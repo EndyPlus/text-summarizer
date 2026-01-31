@@ -1,5 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
+import { findUser } from "@/src/services/serverActions/prismaActions";
 
 export const authOptions = {
   providers: [
@@ -10,17 +11,16 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Тут ваша логіка перевірки (наприклад, запит до зовнішнього API)
-        // Або просто хардкод для тесту:
-        if (
-          // @ts-expect-error no type
+        const user = await findUser(credentials.username);
 
-          credentials.username === "admin" &&
-          // @ts-expect-error no type
+        if (!user) {
+          return null;
+        }
 
-          credentials.password === "admin"
-        ) {
-          return { id: "0", name: "Artem", username: "admin" };
+        const isPasswordCorrect = credentials.password === user.password;
+
+        if (isPasswordCorrect) {
+          return { id: user.id, username: user.username, name: user.name };
         }
         return null;
       },
@@ -36,13 +36,17 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.username = user.username;
       }
       return token;
     },
     // @ts-expect-error no type
 
     async session({ session, token }) {
-      session.user.id = token.id;
+      if (session.user) {
+        session.user.id = token.id;
+        session.user.username = token.username; // тепер він буде в useSession()
+      }
       return session;
     },
   },

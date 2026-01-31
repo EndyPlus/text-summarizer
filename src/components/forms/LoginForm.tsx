@@ -21,7 +21,7 @@ export default function LoginForm() {
     });
   }
 
-  const handleSubmit = async (e) => {
+  async function handleSubmitForm(e) {
     e.preventDefault();
 
     const result = await signIn("credentials", {
@@ -35,14 +35,10 @@ export default function LoginForm() {
     } else {
       router.push("/home");
     }
-  };
+  }
 
   return (
-    <form
-      className="flex flex-col gap-4"
-      // onSubmit={handleSubmitForm}
-      onSubmit={handleSubmit}
-    >
+    <form className="flex flex-col gap-4" onSubmit={handleSubmitForm}>
       <input
         className="border-border leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm"
         type="text"
