@@ -1,4 +1,4 @@
-export default function getCounts(str) {
+export default function getCounts(str: string) {
   const value = str.trim();
 
   const charactersCount: number = value.length;

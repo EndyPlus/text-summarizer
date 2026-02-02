@@ -1,7 +1,6 @@
 export type HistoryItem = {
+  createdAt: Date;
   id: number;
-  summaryDate: string;
-  wordsCount: number;
-  charactersCount: number;
-  summaryText: string;
+  originalText: string;
+  summarizedText: string;
 };

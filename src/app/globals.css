@@ -47,6 +47,16 @@
   --shadow-icon: 0 7px 8px 0 rgba(63, 68, 71, 0.2);
 }
 
+@layer components {
+  .pagination-btn {
+    @apply flex size-10 cursor-pointer items-center justify-center rounded-xl p-2.5;
+  }
+
+  .pagination-btn-number {
+    @apply tracking-base text-black-accent leading-[150%] font-medium;
+  }
+}
+
 html,
 body {
   height: 100dvh;
