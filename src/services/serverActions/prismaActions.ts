@@ -4,6 +4,8 @@ import { ITEMS_PER_PAGE } from "@/src/utils/vars";
 
 import prisma from "../prismaClient/prisma";
 
+import getDateFilter from "@/src/utils/getDateFilter";
+
 export async function findUser(username: string) {
   const user = prisma.user.findUnique({
     where: {
@@ -32,21 +34,38 @@ export async function createUser(data: Data) {
   return newUser;
 }
 
-export async function findPosts(userId: number, currentPage: number = 1) {
-  const posts = await prisma.user.findUnique({
-    where: { id: userId },
-    include: {
-      posts: {
-        take: ITEMS_PER_PAGE,
-        skip: (currentPage - 1) * ITEMS_PER_PAGE,
-        orderBy: {
-          createdAt: "desc",
-        },
+export async function findPosts(
+  userId: number,
+  currentPage: number = 1,
+  searchTerm: string = "",
+  timeOption = "all",
+) {
+  const posts = await prisma.summarizedText.findMany({
+    where: {
+      authorId: userId,
+      summarizedText: {
+        contains: searchTerm,
+        mode: "insensitive",
       },
+      createdAt: getDateFilter(timeOption),
+    },
+    take: ITEMS_PER_PAGE,
+    skip: (currentPage - 1) * ITEMS_PER_PAGE,
+    orderBy: [{ createdAt: "desc" }, { summarizedText: "asc" }],
+  });
+
+  const count = await prisma.summarizedText.count({
+    where: {
+      authorId: userId,
+      summarizedText: {
+        contains: searchTerm,
+        mode: "insensitive",
+      },
+      createdAt: getDateFilter(timeOption),
     },
   });
 
-  return posts;
+  return { posts, count };
 }
 
 export async function findPostsCount(userId: number) {

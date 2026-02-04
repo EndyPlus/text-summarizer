@@ -2,36 +2,31 @@ import { useEffect, useMemo, useState } from "react";
 
 import { ITEMS_PER_PAGE, PAGINATION_ITEMS_COUNT } from "@/src/utils/vars";
 
-import { findPostsCount } from "@/src/services/serverActions/prismaActions";
-import { useSession } from "next-auth/react";
 import { usePaginationStorage } from "@/src/store/paginationStore";
+
+import usePostsList from "./usePostsList";
 
 export default function usePagination() {
   const [selectedBtn, setSelectedBtn] = useState(1);
-  const [itemsCount, setItemsCount] = useState(0);
 
-  // @ts-expect-error store unknown type
+  // @ts-expect-error unknown type
   const setCurrentPage = usePaginationStorage((store) => store.setCurrentPage);
 
-  const session = useSession();
-  // @ts-expect-error does not exist
-  const userId = session.data?.user?.id;
+  const postsData = usePostsList();
+  // @ts-expect-error never type
+  const itemsCount = postsData?.count;
 
   useEffect(() => {
     setCurrentPage(selectedBtn);
   }, [selectedBtn, setCurrentPage]);
 
   useEffect(() => {
-    async function initPostsCount() {
-      const res = await findPostsCount(userId);
-
-      if (!res) return;
-
-      setItemsCount(res);
+    function handleResetPage() {
+      setSelectedBtn(1);
     }
 
-    initPostsCount();
-  }, [userId]);
+    handleResetPage();
+  }, [itemsCount]);
 
   const itemsPerPage = ITEMS_PER_PAGE;
   const paginationBtnsCount = PAGINATION_ITEMS_COUNT;

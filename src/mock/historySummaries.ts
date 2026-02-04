@@ -27,4 +27,18 @@ export const historySummaries = JSON.stringify([
     charactersCount: 612,
     summaryText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id error fuga dicta explicabo tenetur amet laudantium, molestiae corrupti harum veniam nobis, eum, sapiente quisquam in nam beatae magnam doloremque cum? Nesciunt porro illo perferendis aperiam ab, sed hic. Quo incidunt, vel, modi exercitationem aliquid laboriosam doloribus quis odit aspernatur eos suscipit pariatur sit deleniti, est impedit minus illum repudiandae facilis voluptas sunt! Nostrum, sit nulla minima eos voluptates quaerat, laborum quod vero ex porro, adipisci quasi ipsam.`,
   },
+  {
+    id: 3,
+    summaryDate: "January 18, 2026 • 11:54 AM",
+    wordsCount: 98,
+    charactersCount: 612,
+    summaryText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id error fuga dicta explicabo tenetur amet laudantium, molestiae corrupti harum veniam nobis, eum, sapiente quisquam in nam beatae magnam doloremque cum? Nesciunt porro illo perferendis aperiam ab, sed hic. Quo incidunt, vel, modi exercitationem aliquid laboriosam doloribus quis odit aspernatur eos suscipit pariatur sit deleniti, est impedit minus illum repudiandae facilis voluptas sunt! Nostrum, sit nulla minima eos voluptates quaerat, laborum quod vero ex porro, adipisci quasi ipsam.`,
+  },
+  {
+    id: 4,
+    summaryDate: "January 18, 2026 • 11:54 AM",
+    wordsCount: 98,
+    charactersCount: 612,
+    summaryText: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id error fuga dicta explicabo tenetur amet laudantium, molestiae corrupti harum veniam nobis, eum, sapiente quisquam in nam beatae magnam doloremque cum? Nesciunt porro illo perferendis aperiam ab, sed hic. Quo incidunt, vel, modi exercitationem aliquid laboriosam doloribus quis odit aspernatur eos suscipit pariatur sit deleniti, est impedit minus illum repudiandae facilis voluptas sunt! Nostrum, sit nulla minima eos voluptates quaerat, laborum quod vero ex porro, adipisci quasi ipsam.`,
+  },
 ]);
