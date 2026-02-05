@@ -2,13 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-import iconHouse from "@/src/assets/icons/icon-house.svg";
+import PostsCountInfo from "../ui/PostsCountInfo";
+
+import { usePathname } from "next/navigation";
+import { useSummary } from "@/src/store/summaryStore";
+
 import iconClock from "@/src/assets/icons/icon-clock.svg";
+import iconHouse from "@/src/assets/icons/icon-house.svg";
 
 export default function AsideBarNavigation() {
   const pathname = usePathname();
+
+  const { resetTexts } = useSummary();
 
   return (
     <nav>
@@ -24,7 +30,7 @@ export default function AsideBarNavigation() {
             </p>
           </Link>
         </li>
-        <li>
+        <li onClick={resetTexts}>
           <Link
             href="/history"
             className={`${pathname === "/history" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
@@ -33,20 +39,7 @@ export default function AsideBarNavigation() {
             <p className="leading-base tracking-base mx-2 text-sm font-medium">
               History
             </p>
-            <span className="text-small border-border-accent flex h-4 items-center justify-center rounded-sm border bg-[#3368f04d] px-1 leading-[133%] font-medium">
-              15
-            </span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/test-page"
-            className={`${pathname === "/test-page" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
-          >
-            <Image src={iconClock} alt="clock icon" width={20} height={20} />
-            <p className="leading-base tracking-base mx-2 text-sm font-medium">
-              Test Page
-            </p>
+            <PostsCountInfo />
           </Link>
         </li>
       </ul>

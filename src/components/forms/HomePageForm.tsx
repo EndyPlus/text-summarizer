@@ -1,17 +1,22 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-
 import iconKeyboard from "@/src/assets/icons/icon-keyboard.svg";
 import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
 
 import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
+import { useState } from "react";
+
+import { useSummary } from "@/src/store/summaryStore";
+
 import useInputField from "@/src/logic/hooks/useInputField";
-import useFormHandler from "@/src/logic/hooks/useFormHandler";
+import useSummaryForm from "@/src/logic/hooks/useSummaryForm";
 
 export default function HomePageForm() {
   const [isActiveForm, setIsActiveForm] = useState(false);
+
+  // @ts-expect-error not exists on type unknown
+  const { isSummaryLoading } = useSummary();
 
   const {
     textareaRef,
@@ -22,18 +27,20 @@ export default function HomePageForm() {
     handleResetValues,
   } = useInputField();
 
-  const handleHomePageFormSubmit = useFormHandler();
+  const handleHomePageFormSubmit = useSummaryForm();
 
-  function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
-    handleHomePageFormSubmit(e);
-    handleResetValues();
+  // @ts-expect-error e any type
+  function handleUnfocus(e) {
+    if (e.target.value.trim().length !== 0) return;
+
     setIsActiveForm(false);
+    handleResetValues();
   }
 
   return (
     <form
       className="rounded-large bg-black-secondary mb-5 pt-5.75 pb-3.75"
-      onSubmit={handleSubmitForm}
+      onSubmit={handleHomePageFormSubmit}
     >
       <div className="mx-px mb-3.75 flex h-36 items-center justify-center bg-white">
         {!isActiveForm && (
@@ -60,6 +67,7 @@ export default function HomePageForm() {
         <textarea
           ref={textareaRef}
           onInput={handleInputText}
+          onBlur={handleUnfocus}
           name="formTextarea"
           style={{ display: isActiveForm ? "inline-block" : "none" }}
           className="h-full w-full resize-none px-5 py-2.5 text-sm leading-[150%] text-[#131615] outline-none"
@@ -77,7 +85,10 @@ export default function HomePageForm() {
             <span className="font-medium text-white">{charactersCount}</span>
           </li>
         </ul>
-        <button className="bg-black-base leading-base tracking-base rounded-large border-border-accent text-gray-accent cursor-pointer border px-2.5 py-1.5 text-sm font-medium">
+        <button
+          disabled={isSummaryLoading}
+          className={`${isSummaryLoading ? "cursor-not-allowed" : "cursor-pointer"} bg-black-base leading-base tracking-base rounded-large border-border-accent text-gray-accent border px-2.5 py-1.5 text-sm font-medium`}
+        >
           Summarize My Text
         </button>
       </div>
