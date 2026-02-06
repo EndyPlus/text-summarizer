@@ -11,7 +11,7 @@ import iconDoubleArrowRight from "@/src/assets/icons/icon-double-arrow-right.svg
 
 export default function HistoryPaginationPanel() {
   const {
-    selectedBtn,
+    currentPage,
     handleSelectPage,
     pagesIterate,
     infoString,
@@ -58,7 +58,7 @@ export default function HistoryPaginationPanel() {
             <li key={page}>
               <button
                 onClick={() => handleSelectPage(page)}
-                className={`pagination-btn pagination-btn-number ${selectedBtn === page ? "bg-[#0a0f290a]" : ""}`}
+                className={`pagination-btn pagination-btn-number ${currentPage === page ? "bg-[#0a0f290a]" : ""}`}
               >
                 {page}
               </button>
