@@ -66,7 +66,7 @@ export default function HistoryListItem({ itemData }: Props) {
         </ul>
       </div>
 
-      <ListItemOptionsButton />
+      <ListItemOptionsButton itemData={itemData} />
     </li>
   );
 }

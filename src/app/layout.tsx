@@ -24,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <div id="modal"></div>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
