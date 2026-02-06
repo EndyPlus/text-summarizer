@@ -105,3 +105,18 @@ export async function deletePost(postId: number) {
 
   return deletePost;
 }
+
+export async function updatePost(postId: number, postData: PostData) {
+  const updatedPost = await prisma.summarizedText.update({
+    where: {
+      id: postId,
+    },
+    data: {
+      originalText: postData.originalText,
+      summarizedText: postData.summarizedText,
+      authorId: postData.userId,
+    },
+  });
+
+  return updatedPost;
+}

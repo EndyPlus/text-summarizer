@@ -10,11 +10,19 @@ import { useSummary } from "@/src/store/summaryStore";
 
 import iconClock from "@/src/assets/icons/icon-clock.svg";
 import iconHouse from "@/src/assets/icons/icon-house.svg";
+import { usePostInteraction } from "@/src/store/interactedPostStore";
 
 export default function AsideBarNavigation() {
   const pathname = usePathname();
 
   const { resetTexts } = useSummary();
+
+  const { setEditPost } = usePostInteraction();
+
+  function handleResetStates() {
+    resetTexts();
+    setEditPost(null);
+  }
 
   return (
     <nav>
@@ -30,7 +38,7 @@ export default function AsideBarNavigation() {
             </p>
           </Link>
         </li>
-        <li onClick={resetTexts}>
+        <li onClick={handleResetStates}>
           <Link
             href="/history"
             className={`${pathname === "/history" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}

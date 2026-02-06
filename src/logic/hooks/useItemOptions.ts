@@ -12,10 +12,8 @@ export default function useItemOptions(itemData) {
 
   const router = useRouter();
 
-  const setInteractedPost = usePostInteraction(
-    // @ts-expect-error store unknown type
-    (state) => state.setInteractedPost,
-  );
+  // @ts-expect-error unknown type
+  const { setDeletePost, setEditPost } = usePostInteraction();
 
   const session = useSession();
   // @ts-expect-error does not exist
@@ -30,12 +28,17 @@ export default function useItemOptions(itemData) {
 
       if (!deletedPost) throw new Error("Something went wrong.");
 
-      setInteractedPost(itemData.id);
+      setDeletePost(itemData.id);
 
       console.log(deletedPost);
     } catch (err) {
       console.log(err);
     }
+  }
+
+  function handleEditPost() {
+    router.push("/home");
+    setEditPost(itemData.id);
   }
 
   function handleHideConfirm() {
@@ -49,10 +52,6 @@ export default function useItemOptions(itemData) {
   function handleOpenConfirmModal() {
     setIsVisibleConfirm(true);
     setIsVisibleContext(false);
-  }
-
-  function handleEditPost() {
-    router.push("/home");
   }
 
   async function handleCopyPost() {

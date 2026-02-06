@@ -1,6 +1,9 @@
 import { create } from "zustand";
 
 export const usePostInteraction = create((set) => ({
-  interactedPostId: null,
-  setInteractedPost: (postId: number) => set({ interactedPostId: postId }),
+  deletePostId: null,
+  setDeletePost: (postId: number) => set({ deletePostId: postId }),
+
+  editPostId: null,
+  setEditPost: (postId: number) => set({ editPostId: postId }),
 }));

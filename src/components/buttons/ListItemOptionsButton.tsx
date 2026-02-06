@@ -4,60 +4,33 @@ import Image from "next/image";
 
 import iconDots from "@/src/assets/icons/icon-dots.svg";
 
-import { useState } from "react";
-
 import ConfirmDelete from "../modals/ConfirmDelete";
-import { deletePost } from "@/src/services/serverActions/prismaActions";
-
-import { usePostInteraction } from "@/src/store/interactedPostStore";
+import useItemOptions from "@/src/logic/hooks/useItemOptions";
 
 export default function ListItemOptionsButton({ itemData }) {
-  const [isContextVisible, setIsVisibleContext] = useState(false);
-  const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
-
-  const setInteractedPost = usePostInteraction(
-    // @ts-expect-error store unknown type
-    (state) => state.setInteractedPost,
-  );
-
-  // console.log(itemData);
-
-  async function handleDeletePost() {
-    console.log("delete");
-    const deletedPost = await deletePost(itemData.id);
-    setInteractedPost(itemData.id);
-    console.log(deletedPost);
-  }
-
-  function handleOpenConfirmModal() {
-    setIsVisibleConfirm(true);
-    setIsVisibleContext(false);
-  }
-
-  function handleEditPost() {
-    // redirect to edit
-
-    setIsVisibleContext(false);
-  }
-
-  function handleCopyPost() {
-    // copying
-
-    setIsVisibleContext(false);
-  }
+  const {
+    isContextVisible,
+    isVisibleConfirm,
+    handleDeletePost,
+    handleHideConfirm,
+    handleSwitchContext,
+    handleOpenConfirmModal,
+    handleEditPost,
+    handleCopyPost,
+  } = useItemOptions(itemData);
 
   return (
     <>
       {isVisibleConfirm && (
         <ConfirmDelete
-          onClose={() => setIsVisibleConfirm(false)}
+          onClose={handleHideConfirm}
           onDelete={handleDeletePost}
         />
       )}
 
       <div className="relative">
         <button
-          onClick={() => setIsVisibleContext((prevState) => !prevState)}
+          onClick={handleSwitchContext}
           className="border-border radius-large shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2"
         >
           <Image

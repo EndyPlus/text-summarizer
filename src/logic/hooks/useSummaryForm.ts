@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import {
   addPost,
   findPostsCount,
+  updatePost,
 } from "@/src/services/serverActions/prismaActions";
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
 
@@ -12,6 +13,7 @@ import { usePostsCount } from "@/src/store/postsCountStore";
 import { useSummary } from "@/src/store/summaryStore";
 
 import asyncApiCall from "@/src/mock/asyncApiCall";
+import { usePostInteraction } from "@/src/store/interactedPostStore";
 
 export default function useSummaryForm() {
   const {
@@ -19,7 +21,6 @@ export default function useSummaryForm() {
     originalText,
     setOriginalText,
     setSummarizedText,
-    setTexts,
   } = useSummary();
 
   const session = useSession();
@@ -30,6 +31,8 @@ export default function useSummaryForm() {
     // @ts-expect-error type unknown
     (store) => store.setStoredPostsCount,
   );
+
+  const { editPostId } = usePostInteraction();
 
   // @ts-expect-error e any type
   async function handleHomePageFormSubmit(e) {
@@ -48,8 +51,7 @@ export default function useSummaryForm() {
         throw new Error("Log In to use Text Summarizer.");
       }
 
-      console.log(userId);
-      console.log(userText);
+      // console.log(userText);
 
       if (!userText.length) {
         throw new Error("Please enter a text to summarize it.");
@@ -66,7 +68,7 @@ export default function useSummaryForm() {
       // const aiResponse = await getAiResponse(data.formTextarea);
       const aiResponse = await asyncApiCall();
 
-      console.log(aiResponse);
+      // console.log(aiResponse);
 
       if (!aiResponse) {
         throw new Error("AI RESPONSE ERROR.");
@@ -80,19 +82,34 @@ export default function useSummaryForm() {
         userId: userId,
       };
 
-      // @ts-expect-error error type
-      const addPostResult = await addPost(postData);
+      if (editPostId) {
+        console.log("UPDATE POST");
 
-      if (!addPostResult) {
-        throw new Error("Failed to store post in database.");
-      }
+        // @ts-expect-error not parameter
+        const updatePostResult = await updatePost(editPostId, postData);
 
-      console.log(addPostResult);
+        if (!updatePostResult) {
+          throw new Error("Failed to update post.");
+        }
 
-      const postsCount = await findPostsCount(userId);
+        // console.log(updatePostResult);
+      } else {
+        console.log("ADD POST");
 
-      if (postsCount) {
-        setStoredPostsCount(postsCount);
+        // @ts-expect-error not parameter
+        const addPostResult = await addPost(postData);
+
+        if (!addPostResult) {
+          throw new Error("Failed to store post in database.");
+        }
+
+        // console.log(addPostResult);
+
+        const postsCount = await findPostsCount(userId);
+
+        if (postsCount) {
+          setStoredPostsCount(postsCount);
+        }
       }
     } catch (err) {
       console.log(err);

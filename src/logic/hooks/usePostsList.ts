@@ -24,9 +24,9 @@ export default function usePostsList() {
   // @ts-expect-error store unknown type
   const currentDate = useDateFilter((store) => store.currentDate);
 
-  const interactedPostId = usePostInteraction(
+  const deletePostId = usePostInteraction(
     // @ts-expect-error store unknown type
-    (state) => state.interactedPostId,
+    (state) => state.deletePostId,
   );
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function usePostsList() {
     currentPage,
     currentSearchTerm,
     currentDate,
-    interactedPostId,
+    deletePostId,
     setCurrentPage,
   ]);
 
