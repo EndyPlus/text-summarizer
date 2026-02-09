@@ -41,7 +41,10 @@ export default function usePagination() {
 
   const itemFrom = (currentPage - 1) * itemsPerPage + 1;
   const itemTo = Math.min(currentPage * itemsPerPage, itemsCount);
-  const infoString = `Show ${itemFrom} to ${itemTo} out of ${itemsCount} entries`;
+  const infoString =
+    itemsCount > 0
+      ? `Show ${itemFrom} to ${itemTo} out of ${itemsCount} entries`
+      : "";
 
   const isPaginationVisible = pagesCount > 1;
 

@@ -5,6 +5,7 @@ import { usePostInteraction } from "@/src/store/interactedPostStore";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import handleCopyText from "@/src/utils/handleCopyText";
 
 export default function useItemOptions(itemData) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
@@ -26,7 +27,7 @@ export default function useItemOptions(itemData) {
       console.log("delete");
       const deletedPost = await deletePost(itemData.id);
 
-      if (!deletedPost) throw new Error("Something went wrong.");
+      if (!deletedPost) throw new Error("Post deletion went wrong.");
 
       setDeletePost(itemData.id);
 
@@ -55,11 +56,10 @@ export default function useItemOptions(itemData) {
   }
 
   async function handleCopyPost() {
-    try {
-      await navigator.clipboard.writeText(itemData.summarizedText);
+    const copyRes = await handleCopyText(itemData.summarizedText);
+
+    if (copyRes.success) {
       setIsVisibleContext(false);
-    } catch (err) {
-      console.log(err);
     }
   }
 

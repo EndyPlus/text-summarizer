@@ -19,7 +19,3 @@ export default function HistoryList() {
     </ul>
   );
 }
-
-//      {JSON.parse(historySummaries).map((historyItem: HistoryItem) => {
-//        return <HistoryListItem key={historyItem.id} itemData={historyItem} />;
-//      })}
