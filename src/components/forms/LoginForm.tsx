@@ -2,43 +2,24 @@
 
 import Image from "next/image";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
-
 import iconEye from "@/src/assets/icons/icon-eye.svg";
+import SignIn from "@/src/logic/lib/SignIn";
+import useVisiblePassword from "@/src/logic/hooks/useVisiblePassword";
 
 export default function LoginForm() {
-  const router = useRouter();
-
-  const [passwordInputType, setPasswordInputType] = useState<
-    "password" | "text"
-  >("password");
-
-  function toggleShowPassword() {
-    setPasswordInputType((prevType) => {
-      return prevType === "password" ? "text" : "password";
-    });
-  }
+  const { passwordInputType, toggleShowPassword } = useVisiblePassword();
 
   async function handleSubmitForm(e) {
     e.preventDefault();
 
-    const result = await signIn("credentials", {
-      username: e.target.username.value,
-      password: e.target.password.value,
-      redirect: false,
-    });
+    const formData = new FormData(e.target);
+    const credentials = Object.fromEntries(formData.entries());
 
-    if (!result.ok) {
-      return;
-    } else {
-      router.push("/home");
-    }
+    SignIn(credentials);
   }
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmitForm}>
+    <form onSubmit={handleSubmitForm} className="flex flex-col gap-4">
       <input
         className="border-border leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm"
         type="text"
