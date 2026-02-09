@@ -7,13 +7,14 @@ import {
   findPostsCount,
   updatePost,
 } from "@/src/services/serverActions/prismaActions";
+
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
 
-import { usePostsCount } from "@/src/store/postsCountStore";
 import { useSummary } from "@/src/store/summaryStore";
 
 import asyncApiCall from "@/src/mock/asyncApiCall";
 import { usePostInteraction } from "@/src/store/interactedPostStore";
+import { usePostsCountStore } from "@/src/store/postsCountStore";
 
 export default function useSummaryForm() {
   const {
@@ -24,17 +25,14 @@ export default function useSummaryForm() {
   } = useSummary();
 
   const session = useSession();
-  // @ts-expect-error id does not exist in type
   const userId = session.data?.user?.id;
 
-  const setStoredPostsCount = usePostsCount(
-    // @ts-expect-error type unknown
+  const setStoredPostsCount = usePostsCountStore(
     (store) => store.setStoredPostsCount,
   );
 
   const { editPostId } = usePostInteraction();
 
-  // @ts-expect-error e any type
   async function handleHomePageFormSubmit(e) {
     e.preventDefault();
 
@@ -85,7 +83,6 @@ export default function useSummaryForm() {
       if (editPostId) {
         console.log("UPDATE POST");
 
-        // @ts-expect-error not parameter
         const updatePostResult = await updatePost(editPostId, postData);
 
         if (!updatePostResult) {
@@ -96,7 +93,6 @@ export default function useSummaryForm() {
       } else {
         console.log("ADD POST");
 
-        // @ts-expect-error not parameter
         const addPostResult = await addPost(postData);
 
         if (!addPostResult) {
