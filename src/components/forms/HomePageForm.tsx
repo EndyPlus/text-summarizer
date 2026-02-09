@@ -19,7 +19,7 @@ export default function HomePageForm() {
   const { isSummaryLoading } = useSummary();
 
   const {
-    textareaRef,
+    inputRef,
     charactersCount,
     wordsCount,
     handleInputText,
@@ -65,7 +65,8 @@ export default function HomePageForm() {
           </div>
         )}
         <textarea
-          ref={textareaRef}
+          // @ts-expect-error error type
+          ref={inputRef}
           onInput={handleInputText}
           onBlur={handleUnfocus}
           name="formTextarea"

@@ -1,24 +1,28 @@
-import getCounts from "@/src/utils/getCounts";
-import { useEffect, useState } from "react";
+import { useSummary } from "@/src/store/summaryStore";
+import handleCopyText from "@/src/utils/handleCopyText";
+import useCharacterCounts from "./useCharacterCounts";
 
-export default function useSummarizedText(summarizedText) {
-  const [wordsCount, setWordsCount] = useState(0);
-  const [charactersCount, setCharactersCount] = useState(0);
+export default function useSummarizedText() {
+  // @ts-expect-error type unknown
+  const summarizedText = useSummary((store) => store.summarizedText);
 
-  useEffect(() => {
-    const { charactersCount, wordsCount } = getCounts(summarizedText);
+  const { wordsCount, charactersCount } = useCharacterCounts(summarizedText);
 
-    function initCounts() {
-      setWordsCount(wordsCount);
-      setCharactersCount(charactersCount);
+  async function handleCopySummary() {
+    const copyRes = await handleCopyText(summarizedText);
+
+    if (copyRes.success) {
+      console.log("COPIED!");
     }
-
-    initCounts();
-  }, [summarizedText]);
-
-  async function handleCopyText() {
-    console.log("copy");
+    if (copyRes.error) {
+      console.log("ERROR");
+    }
   }
 
-  return { wordsCount, charactersCount, handleCopyText };
+  return {
+    summarizedText,
+    wordsCount,
+    charactersCount,
+    handleCopySummary,
+  };
 }

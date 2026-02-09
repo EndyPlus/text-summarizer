@@ -1,38 +1,35 @@
-import getCounts from "@/src/utils/getCounts";
 import { useRef, useState } from "react";
+import useCharacterCounts from "./useCharacterCounts";
 
 export default function useInputField() {
-  const textareaRef = useRef(null);
+  const inputRef = useRef("");
 
-  const [charactersCount, setCharactersCount] = useState(0);
-  const [wordsCount, setWordsCount] = useState(0);
+  const [text, setText] = useState("");
 
-  function handleInputText() {
-    const { charactersCount, wordsCount } = getCounts(
-      textareaRef.current.value,
-    );
+  const { wordsCount, charactersCount } = useCharacterCounts(text);
 
-    setCharactersCount(charactersCount);
-    setWordsCount(wordsCount);
+  // @ts-expect-error e any type
+  function handleInputText(e) {
+    setText(e.target.value);
   }
 
   async function handlePasteText() {
     const clipText = await navigator.clipboard.readText();
 
-    textareaRef.current.value = clipText;
-    handleInputText();
+    setText(clipText);
+
+    // @ts-expect-error error type
+    inputRef.current.value = clipText;
   }
 
   function handleResetValues() {
-    setCharactersCount(0);
-    setWordsCount(0);
-    textareaRef.current.value = "";
+    setText("");
   }
 
   return {
-    textareaRef,
-    charactersCount,
+    inputRef,
     wordsCount,
+    charactersCount,
     handleInputText,
     handlePasteText,
     handleResetValues,

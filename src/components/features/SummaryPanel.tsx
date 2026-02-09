@@ -4,15 +4,11 @@ import Image from "next/image";
 
 import iconCopy from "@/src/assets/icons/icon-copy.svg";
 
-import { useSummary } from "@/src/store/summaryStore";
-
 import useSummarizedText from "@/src/logic/hooks/useSummarizedText";
 
 export default function SummaryPanel() {
-  const summarizedText = useSummary((store) => store.summarizedText);
-
-  const { wordsCount, charactersCount, handleCopyText } =
-    useSummarizedText(summarizedText);
+  const { wordsCount, charactersCount, handleCopySummary } =
+    useSummarizedText();
 
   return (
     <div className="flex items-center justify-between">
@@ -34,7 +30,7 @@ export default function SummaryPanel() {
           width={16}
           height={16}
         />
-        <p onClick={handleCopyText}>Copy to Clipboard</p>
+        <p onClick={handleCopySummary}>Copy to Clipboard</p>
       </button>
     </div>
   );
