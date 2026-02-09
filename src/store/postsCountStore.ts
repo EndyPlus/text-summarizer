@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const usePostsCount = create((set) => ({
+export const usePostsCountStore = create((set) => ({
   storedPostsCount: 0,
   setStoredPostsCount: (count: number) => set({ storedPostsCount: count }),
 }));
