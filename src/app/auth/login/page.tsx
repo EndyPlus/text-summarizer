@@ -17,7 +17,6 @@ export default function LoginPage() {
           alt="logo icon"
           width={60}
           height={60}
-          priority
         />
         <div className="py-6">
           <h3 className="text-heading tracking-base text-black-base leading-9 font-medium">

@@ -5,40 +5,52 @@ import {
   findUser,
 } from "@/src/services/serverActions/prismaActions";
 
-export async function registerFormAction(_, formData) {
-  const { name, username, password, confirmPassword } = Object.fromEntries(
-    formData.entries(),
-  );
+import getRegisterErrors from "@/src/utils/getRegisterErrors";
 
-  // HERE DATA VALIDATION
+export async function registerFormAction(_, formData) {
+  const userData = Object.fromEntries(formData.entries());
+  const { firstName, lastName, username, password, confirmPassword } = userData;
+
+  const errorsArray = getRegisterErrors(userData);
 
   try {
+    if (errorsArray.length) {
+      console.log("FORM DATA ERRORS");
+      throw new Error();
+    }
+
     const user = await findUser(username);
 
     if (user) {
-      return { error: "User is already existing." };
-    }
-
-    if (password !== confirmPassword) {
-      return { error: "Passwords are not matching." };
+      errorsArray.push("User is already existing.");
+      throw new Error();
     }
 
     const newUser = await createUser({
-      name,
+      name: `${firstName} ${lastName}`,
       username,
       password,
     });
 
     if (!newUser) {
-      return { error: "Failed user registration." };
+      errorsArray.push("Failed user registration.");
+      throw new Error();
     }
 
     return {
-      success: true,
+      errors: null,
       credentials: { username, password },
     };
   } catch (err) {
-    console.log(err);
-    return { error: "Unknown error." };
+    // console.log(err);
+    return {
+      errors: errorsArray,
+      credentials: null,
+      firstName,
+      lastName,
+      username,
+      password,
+      confirmPassword,
+    };
   }
 }

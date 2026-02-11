@@ -6,46 +6,64 @@ import { registerFormAction } from "@/src/services/serverActions/formsActions";
 import { useRouter } from "next/navigation";
 
 export default function useRegistration() {
-  const [signInError, setSignInError] = useState<null | string>(null);
-
-  const handleResetError = () => setSignInError(null);
-
-  const [state, formAction, isPending] = useActionState(registerFormAction, {
-    error: null,
-    success: false,
-  });
-
   const router = useRouter();
+
+  const [signInErrors, setSignInErrors] = useState(null);
+
+  const signInInputErrors = signInErrors?.map((err) => err.inputName);
+
+  const handleResetError = () => setSignInErrors(null);
+
+  const [formState, formAction, isPending] = useActionState(
+    registerFormAction,
+    {
+      errors: null,
+      credentials: null,
+    },
+  );
 
   useEffect(() => {
     async function SignIn(credentials: { username: string; password: string }) {
       const { username, password } = credentials;
 
-      const signInResult = await signIn("credentials", {
-        username,
-        password,
-        redirect: false,
-      });
+      try {
+        const signInResult = await signIn("credentials", {
+          username,
+          password,
+          redirect: false,
+        });
 
-      console.log(signInResult);
+        // console.log(signInResult);
 
-      if (!signInResult?.ok) {
-        console.log("SignIn error.");
-        setSignInError("SignIn error.");
-      } else {
+        if (!signInResult?.ok) {
+          throw new Error(`SignIn error: ${signInResult?.error}`);
+        }
+
+        // console.log("SignIn success.");
+
         router.push("/home");
-        console.log("SignIn success.");
+      } catch (err) {
+        setSignInErrors([err.message]);
       }
     }
 
-    if (state.success && state.credentials) {
-      SignIn(state.credentials);
+    // console.log(formState);
+
+    if (formState?.errors) {
+      setSignInErrors(formState.errors);
     }
 
-    if (state.error) {
-      setSignInError(state.error);
+    if (!formState?.error && formState?.credentials) {
+      SignIn(formState.credentials);
     }
-  }, [state, router]);
+  }, [formState, router]);
 
-  return { signInError, handleResetError, formAction, isPending };
+  return {
+    signInInputErrors,
+    signInErrors,
+    handleResetError,
+    formAction,
+    isPending,
+    formState,
+  };
 }
