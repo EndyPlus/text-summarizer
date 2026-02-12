@@ -6,8 +6,8 @@ import iconEye from "@/src/assets/icons/icon-eye.svg";
 import useVisiblePassword from "@/src/logic/hooks/useVisiblePassword";
 import useLogin from "@/src/logic/hooks/useLogin";
 import handleBlockSpacePress from "@/src/utils/handleBlockSpacePress";
-import AuthError from "../modals/AuthModals/AuthError";
-import AuthSuccess from "../modals/AuthModals/AuthSuccess";
+import AuthError from "../modals/AuthNotify/AuthError";
+import AuthSuccess from "../modals/AuthNotify/AuthSuccess";
 
 export default function LoginForm() {
   const { passwordInputType, toggleShowPassword } = useVisiblePassword();

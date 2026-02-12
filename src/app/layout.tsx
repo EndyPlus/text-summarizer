@@ -26,6 +26,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <AuthProvider>
           <div id="modal"></div>
+          <div id="notification"></div>
           {children}
         </AuthProvider>
       </body>

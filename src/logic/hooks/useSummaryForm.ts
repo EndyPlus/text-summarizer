@@ -15,8 +15,15 @@ import { useSummary } from "@/src/store/summaryStore";
 import asyncApiCall from "@/src/mock/asyncApiCall";
 import { usePostInteraction } from "@/src/store/interactedPostStore";
 import { usePostsCountStore } from "@/src/store/postsCountStore";
+import { useState } from "react";
 
 export default function useSummaryForm() {
+  const [submitError, setSubmitError] = useState<null | string>(null);
+
+  function handleResetError() {
+    setSubmitError(null);
+  }
+
   const {
     setSummaryLoading,
     originalText,
@@ -35,6 +42,8 @@ export default function useSummaryForm() {
 
   async function handleHomePageFormSubmit(e) {
     e.preventDefault();
+
+    handleResetError();
 
     const formData = new FormData(e.target);
 
@@ -109,10 +118,11 @@ export default function useSummaryForm() {
       }
     } catch (err) {
       console.log(err);
+      setSubmitError(err.message);
     } finally {
       setSummaryLoading(false);
     }
   }
 
-  return handleHomePageFormSubmit;
+  return { handleHomePageFormSubmit, submitError, handleResetError };
 }

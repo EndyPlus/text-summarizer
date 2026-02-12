@@ -1,9 +1,9 @@
 import { Fragment } from "react/jsx-runtime";
-import AuthModalWrapper from "./AuthModalWrapper";
+import AuthNotifyWrapper from "./AuthNotifyWrapper";
 
 export default function AuthError({ onClose, heading, errorsList }) {
   return (
-    <AuthModalWrapper onClose={onClose} heading={heading}>
+    <AuthNotifyWrapper onClose={onClose} heading={heading}>
       {errorsList?.map((error) => {
         if (typeof error !== "string") {
           return (
@@ -29,6 +29,6 @@ export default function AuthError({ onClose, heading, errorsList }) {
           );
         }
       })}
-    </AuthModalWrapper>
+    </AuthNotifyWrapper>
   );
 }

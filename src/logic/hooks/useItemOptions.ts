@@ -6,10 +6,14 @@ import { usePostInteraction } from "@/src/store/interactedPostStore";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import handleCopyText from "@/src/utils/handleCopyText";
+import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
 
 export default function useItemOptions(itemData) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
   const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
+
+  const { dashboardNotify, setDashboardNotify, resetDashboardNotify } =
+    useDashboardNotfiyStorage();
 
   const router = useRouter();
 
@@ -31,6 +35,7 @@ export default function useItemOptions(itemData) {
 
       setDeletePost(itemData.id);
 
+      setDashboardNotify("Successfully deleted!");
       console.log(deletedPost);
     } catch (err) {
       console.log(err);
@@ -60,17 +65,20 @@ export default function useItemOptions(itemData) {
 
     if (copyRes.success) {
       setIsVisibleContext(false);
+      setDashboardNotify("Copied to Clipboard!");
     }
   }
 
   return {
     isContextVisible,
     isVisibleConfirm,
+    dashboardNotify,
     handleDeletePost,
     handleHideConfirm,
     handleSwitchContext,
     handleOpenConfirmModal,
     handleEditPost,
     handleCopyPost,
+    resetDashboardNotify,
   };
 }

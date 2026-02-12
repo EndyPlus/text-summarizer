@@ -7,8 +7,8 @@ import iconEye from "@/src/assets/icons/icon-eye.svg";
 import useVisiblePassword from "@/src/logic/hooks/useVisiblePassword";
 import useRegistration from "@/src/logic/hooks/useRegistration";
 import handleBlockSpacePress from "@/src/utils/handleBlockSpacePress";
-import AuthError from "../modals/AuthModals/AuthError";
-import AuthSuccess from "../modals/AuthModals/AuthSuccess";
+import AuthError from "../modals/AuthNotify/AuthError";
+import AuthSuccess from "../modals/AuthNotify/AuthSuccess";
 
 export default function RegisterForm() {
   const { passwordInputType, toggleShowPassword } = useVisiblePassword();

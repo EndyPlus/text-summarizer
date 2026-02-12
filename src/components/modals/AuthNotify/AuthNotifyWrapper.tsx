@@ -3,16 +3,17 @@ import Image from "next/image";
 import iconSuccess from "@/src/assets/icons/icon-success.svg";
 import iconError from "@/src/assets/icons/icon-error.svg";
 import iconClose from "@/src/assets/icons/icon-close.svg";
+import { createPortal } from "react-dom";
 
-export default function AuthModalWrapper({
+export default function AuthNotifyWrapper({
   onClose,
   heading,
   isSuccess = false,
   children,
 }) {
-  return (
+  const notifyEl = (
     <div
-      className={`absolute top-9 left-1/2 flex -translate-x-1/2 items-start gap-3 border p-4 ${
+      className={`fixed top-9 left-1/2 z-999 flex -translate-x-1/2 items-start gap-3 border p-4 ${
         isSuccess
           ? "bg-success-main border-success-accent"
           : "bg-error-main border-error-accent"
@@ -39,4 +40,6 @@ export default function AuthModalWrapper({
       )}
     </div>
   );
+
+  return <>{createPortal(notifyEl, document.getElementById("notification"))}</>;
 }
