@@ -7,11 +7,25 @@ import {
 
 import getRegisterErrors from "@/src/utils/getRegisterErrors";
 
-export async function registerFormAction(_, formData) {
+export async function registerFormAction(formState, formData) {
   const userData = Object.fromEntries(formData.entries());
   const { firstName, lastName, username, password, confirmPassword } = userData;
 
   const errorsArray = getRegisterErrors(userData);
+
+  // prevent spam submitting
+  if (formState.success) {
+    return {
+      success: formState.success,
+      errors: null,
+      credentials: null,
+      firstName,
+      lastName,
+      username,
+      password,
+      confirmPassword,
+    };
+  }
 
   try {
     if (errorsArray.length) {
@@ -38,12 +52,14 @@ export async function registerFormAction(_, formData) {
     }
 
     return {
+      success: true,
       errors: null,
       credentials: { username, password },
     };
   } catch (err) {
     // console.log(err);
     return {
+      success: false,
       errors: errorsArray,
       credentials: null,
       firstName,

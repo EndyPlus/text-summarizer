@@ -1,13 +1,13 @@
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import useAuthRedirect from "./useAuthRedirect";
 
 export default function useLogin() {
   const [loginError, setLoginError] = useState(null);
 
   const handleResetError = () => setLoginError(null);
 
-  const router = useRouter();
+  const { isSuccess, setIsSuccess } = useAuthRedirect();
 
   async function handleSubmitForm(e) {
     e.preventDefault();
@@ -38,12 +38,12 @@ export default function useLogin() {
         }
       }
 
-      router.push("/home");
+      setIsSuccess(true);
     } catch (err) {
       // console.log(err.message);
       setLoginError(err.message);
     }
   }
 
-  return { handleSubmitForm, loginError, handleResetError };
+  return { handleSubmitForm, loginError, isSuccess, handleResetError };
 }

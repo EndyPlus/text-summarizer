@@ -6,20 +6,27 @@ import iconEye from "@/src/assets/icons/icon-eye.svg";
 import useVisiblePassword from "@/src/logic/hooks/useVisiblePassword";
 import useLogin from "@/src/logic/hooks/useLogin";
 import handleBlockSpacePress from "@/src/utils/handleBlockSpacePress";
+import AuthError from "../modals/AuthModals/AuthError";
+import AuthSuccess from "../modals/AuthModals/AuthSuccess";
 
 export default function LoginForm() {
   const { passwordInputType, toggleShowPassword } = useVisiblePassword();
 
-  const { handleSubmitForm, loginError, handleResetError } = useLogin();
+  const { handleSubmitForm, loginError, isSuccess, handleResetError } =
+    useLogin();
 
   return (
     <>
       {loginError && (
-        <div className="absolute top-5">
-          <p>{loginError}</p>
-          <button onClick={handleResetError}>close</button>
-        </div>
+        <AuthError
+          heading="Login Error"
+          onClose={handleResetError}
+          errorsList={[loginError]}
+        />
       )}
+
+      {isSuccess && <AuthSuccess heading={"Login Successful"} />}
+
       <form onSubmit={handleSubmitForm} className="flex flex-col gap-4">
         <input
           className={`${loginError ? "border-red-500" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
@@ -51,10 +58,11 @@ export default function LoginForm() {
           </button>
         </div>
         <button
+          disabled={isSuccess}
           onClick={handleResetError}
           className="bg-black-base shadow-input leading-base tracking-base cursor-pointer rounded-xl px-3 py-2.5 text-sm font-medium text-white"
         >
-          Log in
+          {isSuccess ? "Submitting..." : "Log in"}
         </button>
       </form>
     </>

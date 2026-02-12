@@ -6,8 +6,9 @@ import iconEye from "@/src/assets/icons/icon-eye.svg";
 
 import useVisiblePassword from "@/src/logic/hooks/useVisiblePassword";
 import useRegistration from "@/src/logic/hooks/useRegistration";
-import { Fragment } from "react/jsx-runtime";
 import handleBlockSpacePress from "@/src/utils/handleBlockSpacePress";
+import AuthError from "../modals/AuthModals/AuthError";
+import AuthSuccess from "../modals/AuthModals/AuthSuccess";
 
 export default function RegisterForm() {
   const { passwordInputType, toggleShowPassword } = useVisiblePassword();
@@ -15,39 +16,24 @@ export default function RegisterForm() {
   const {
     signInInputErrors,
     signInErrors,
+    isSuccess,
     handleResetError,
     formAction,
     isPending,
     formState,
   } = useRegistration();
 
-  // console.log(signInErrors);
-  // console.log(signInInputErrors);
-
   return (
     <>
       {signInErrors?.length > 0 && (
-        <div className="absolute top-5">
-          <ul>
-            {signInErrors?.map((error) => {
-              if (typeof error !== "string") {
-                return (
-                  <Fragment key={error.inputName}>
-                    {error.errorsList.map((err) => (
-                      <li key={err}>{err}</li>
-                    ))}
-                  </Fragment>
-                );
-              } else {
-                return <li key={error}>{error}</li>;
-              }
-            })}
-          </ul>
-          <button className="cursor-pointer" onClick={handleResetError}>
-            close
-          </button>
-        </div>
+        <AuthError
+          heading="Registration Error"
+          onClose={handleResetError}
+          errorsList={signInErrors}
+        />
       )}
+
+      {isSuccess && <AuthSuccess heading={"Registration Successful"} />}
 
       <form action={formAction} className="flex flex-col gap-4">
         <div className="flex gap-x-4">
@@ -110,10 +96,10 @@ export default function RegisterForm() {
 
         <button
           onClick={handleResetError}
-          disabled={isPending}
+          disabled={isPending || isSuccess}
           className="bg-black-base shadow-input leading-base tracking-base cursor-pointer rounded-xl px-3 py-2.5 text-sm font-medium text-white"
         >
-          {isPending ? "Submitting..." : "Registrate"}
+          {isPending || isSuccess ? "Submitting..." : "Registrate"}
         </button>
       </form>
     </>
