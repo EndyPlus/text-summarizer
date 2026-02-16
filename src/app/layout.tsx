@@ -8,8 +8,6 @@ const inter = Inter({
   display: "swap",
 });
 
-console.log(inter.className);
-
 export const metadata: Metadata = {
   title: "Text Summarizer",
   description:
