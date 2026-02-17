@@ -5,7 +5,7 @@ import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
 
 import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useSummary } from "@/src/store/summaryStore";
 
@@ -14,10 +14,11 @@ import useSummaryForm from "@/src/logic/hooks/useSummaryForm";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 
 export default function HomePageForm() {
-  const [isActiveForm, setIsActiveForm] = useState(false);
-
   // @ts-expect-error not exists on type unknown
-  const { isSummaryLoading } = useSummary();
+  const { isSummaryLoading, originalText } = useSummary();
+
+  const [isActiveForm, setIsActiveForm] = useState(originalText.length > 0);
+  // const [isActiveForm, setIsActiveForm] = useState(false);
 
   const {
     inputRef,
@@ -26,7 +27,14 @@ export default function HomePageForm() {
     handleInputText,
     handlePasteText,
     handleResetValues,
+    handleFocus,
   } = useInputField();
+
+  useEffect(() => {
+    if (!isActiveForm || originalText.length > 0) return;
+
+    handleFocus();
+  }, [isActiveForm, handleFocus, originalText]);
 
   const { handleHomePageFormSubmit, submitError, handleResetError } =
     useSummaryForm();
@@ -59,7 +67,9 @@ export default function HomePageForm() {
               <HomeCtaButton
                 src={iconKeyboard}
                 alt="keyboard icon"
-                onClick={() => setIsActiveForm(true)}
+                onClick={() => {
+                  setIsActiveForm(true);
+                }}
               >
                 Enter Text
               </HomeCtaButton>
@@ -80,6 +90,7 @@ export default function HomePageForm() {
             ref={inputRef}
             onInput={handleInputText}
             onBlur={handleUnfocus}
+            defaultValue={originalText}
             name="formTextarea"
             style={{ display: isActiveForm ? "inline-block" : "none" }}
             className="h-full w-full resize-none px-5 py-2.5 text-sm leading-[150%] text-[#131615] outline-none"

@@ -25,9 +25,13 @@ export default function useSummaryForm() {
   }
 
   const {
+    // @ts-expect-error type unknown
     setSummaryLoading,
+    // @ts-expect-error type unknown
     originalText,
+    // @ts-expect-error type unknown
     setOriginalText,
+    // @ts-expect-error type unknown
     setSummarizedText,
   } = useSummary();
 
@@ -35,11 +39,16 @@ export default function useSummaryForm() {
   const userId = session.data?.user?.id;
 
   const setStoredPostsCount = usePostsCountStore(
+    // @ts-expect-error type unknown
     (store) => store.setStoredPostsCount,
   );
 
-  const { editPostId } = usePostInteraction();
+  // @ts-expect-error type unknown
+  const { toEditPost } = usePostInteraction();
 
+  // console.log(toEditPost);
+
+  // @ts-expect-error type any
   async function handleHomePageFormSubmit(e) {
     e.preventDefault();
 
@@ -89,10 +98,10 @@ export default function useSummaryForm() {
         userId: userId,
       };
 
-      if (editPostId) {
+      if (toEditPost) {
         console.log("UPDATE POST");
 
-        const updatePostResult = await updatePost(editPostId, postData);
+        const updatePostResult = await updatePost(toEditPost.id, postData);
 
         if (!updatePostResult) {
           throw new Error("Failed to update post.");
@@ -118,6 +127,7 @@ export default function useSummaryForm() {
       }
     } catch (err) {
       console.log(err);
+      // @ts-expect-error type unknown
       setSubmitError(err.message);
     } finally {
       setSummaryLoading(false);

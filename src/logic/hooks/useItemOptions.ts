@@ -7,10 +7,14 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import handleCopyText from "@/src/utils/handleCopyText";
 import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
+import { useSummary } from "@/src/store/summaryStore";
 
 export default function useItemOptions(itemData) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
   const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
+
+  // @ts-expect-error type unknown
+  const { setTexts } = useSummary();
 
   // @ts-expect-error does not exist
   const { setDashboardNotify } = useDashboardNotfiyStorage();
@@ -43,8 +47,9 @@ export default function useItemOptions(itemData) {
   }
 
   function handleEditPost() {
+    setEditPost(itemData);
+    setTexts(itemData.originalText, itemData.summarizedText);
     router.push("/home");
-    setEditPost(itemData.id);
   }
 
   function handleHideConfirm() {

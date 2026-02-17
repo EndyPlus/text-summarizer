@@ -8,6 +8,15 @@ export default function useInputField() {
 
   const { wordsCount, charactersCount } = useCharacterCounts(text);
 
+  // const { toEditPost } = usePostInteraction();
+
+  // useEffect(() => {
+  //   if (!toEditPost) return;
+
+  //   inputRef.current = toEditPost.originalText;
+  //   setText(toEditPost.originalText);
+  // }, [toEditPost]);
+
   // @ts-expect-error e any type
   function handleInputText(e) {
     setText(e.target.value);
@@ -26,6 +35,10 @@ export default function useInputField() {
     setText("");
   }
 
+  function handleFocus() {
+    inputRef.current.focus();
+  }
+
   return {
     inputRef,
     wordsCount,
@@ -33,5 +46,6 @@ export default function useInputField() {
     handleInputText,
     handlePasteText,
     handleResetValues,
+    handleFocus,
   };
 }
