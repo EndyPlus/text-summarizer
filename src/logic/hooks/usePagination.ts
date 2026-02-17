@@ -10,7 +10,7 @@ export default function usePagination() {
   // @ts-expect-error unknown type
   const { currentPage, setCurrentPage } = usePaginationStorage();
 
-  const postsData = usePostsList();
+  const { postsData } = usePostsList();
   // @ts-expect-error never type
   const itemsCount = postsData?.count;
 
@@ -39,14 +39,14 @@ export default function usePagination() {
     return newPages;
   }, [currentPage, pagesCount, paginationBtnsCount]);
 
+  const isPaginationVisible = pagesCount > 1;
+
   const itemFrom = (currentPage - 1) * itemsPerPage + 1;
   const itemTo = Math.min(currentPage * itemsPerPage, itemsCount);
   const infoString =
     itemsCount > 0
       ? `Show ${itemFrom} to ${itemTo} out of ${itemsCount} entries`
       : "";
-
-  const isPaginationVisible = pagesCount > 1;
 
   const isDoubleArrowsVisible = pagesCount > paginationBtnsCount;
 

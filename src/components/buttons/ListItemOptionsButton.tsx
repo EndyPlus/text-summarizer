@@ -6,20 +6,17 @@ import iconDots from "@/src/assets/icons/icon-dots.svg";
 
 import ConfirmDelete from "../modals/ConfirmDelete";
 import useItemOptions from "@/src/logic/hooks/useItemOptions";
-import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 
 export default function ListItemOptionsButton({ itemData }) {
   const {
     isContextVisible,
     isVisibleConfirm,
-    dashboardNotify,
     handleDeletePost,
     handleHideConfirm,
     handleSwitchContext,
     handleOpenConfirmModal,
     handleEditPost,
     handleCopyPost,
-    resetDashboardNotify,
   } = useItemOptions(itemData);
 
   return (
@@ -30,13 +27,7 @@ export default function ListItemOptionsButton({ itemData }) {
           onDelete={handleDeletePost}
         />
       )}
-      {dashboardNotify && (
-        <DashboardNotify
-          onClose={resetDashboardNotify}
-          isSuccess={true}
-          message={dashboardNotify}
-        />
-      )}
+
       <div className="relative">
         <button
           onClick={handleSwitchContext}

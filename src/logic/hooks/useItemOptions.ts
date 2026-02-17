@@ -12,8 +12,8 @@ export default function useItemOptions(itemData) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
   const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
 
-  const { dashboardNotify, setDashboardNotify, resetDashboardNotify } =
-    useDashboardNotfiyStorage();
+  // @ts-expect-error does not exist
+  const { setDashboardNotify } = useDashboardNotfiyStorage();
 
   const router = useRouter();
 
@@ -72,13 +72,11 @@ export default function useItemOptions(itemData) {
   return {
     isContextVisible,
     isVisibleConfirm,
-    dashboardNotify,
     handleDeletePost,
     handleHideConfirm,
     handleSwitchContext,
     handleOpenConfirmModal,
     handleEditPost,
     handleCopyPost,
-    resetDashboardNotify,
   };
 }

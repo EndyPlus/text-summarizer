@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
@@ -8,8 +10,24 @@ import { useSearch } from "@/src/store/searchTermStore";
 import { useDateFilter } from "@/src/store/dateFilterStore";
 import { usePostInteraction } from "@/src/store/interactedPostStore";
 
+type Post = {
+  id: number;
+  originalText: string;
+  summarizedText: string;
+  createdAt: Date;
+  authorId: number;
+};
+
+type PostData = {
+  posts: Post[];
+  count: number;
+};
+
 export default function usePostsList() {
-  const [postsData, setPostsData] = useState(null);
+  const [postsData, setPostsData] = useState<null | PostData>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const postsList = postsData?.posts;
 
   const session = useSession();
   // @ts-expect-error does not exist
@@ -30,6 +48,10 @@ export default function usePostsList() {
   );
 
   useEffect(() => {
+    if (!userId) return;
+
+    setIsLoading(true);
+
     async function initPosts() {
       try {
         const fetchedPostsData = await findPosts(
@@ -45,14 +67,16 @@ export default function usePostsList() {
 
         console.log(fetchedPostsData);
 
+        // change here
         if (!fetchedPostsData.posts.length && currentPage > 1) {
-          setCurrentPage(currentPage - 1);
+          setCurrentPage(1);
         } else {
-          // @ts-expect-error error type
           setPostsData(fetchedPostsData);
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -66,5 +90,5 @@ export default function usePostsList() {
     setCurrentPage,
   ]);
 
-  return postsData;
+  return { postsData, isLoading, postsList };
 }
