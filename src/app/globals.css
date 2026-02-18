@@ -7,6 +7,8 @@
   --color-error-main: #fcedea;
   --color-error-accent: #f2bcb2;
 
+  --color-red-main: #d9281c;
+
   --color-success-main: #ebf7ee;
   --color-success-accent: #b5e1c0;
 
@@ -43,6 +45,10 @@
   --shadow-info-main:
     0 3px 10px -2px rgba(20, 21, 26, 0.02),
     0 10px 16px -3px rgba(20, 21, 26, 0.05);
+  --shadow-context:
+    0 3px 6px -2px rgba(20, 21, 26, 0.05),
+    0 10px 16px -3px rgba(20, 21, 26, 0.08);
+  --shadow-filter: 0 6px 13px 0 rgba(20, 21, 26, 0.07);
   --shadow-input: 0 1px 2px 0 rgba(20, 21, 26, 0.05);
   --shadow-icon: 0 7px 8px 0 rgba(63, 68, 71, 0.2);
 }

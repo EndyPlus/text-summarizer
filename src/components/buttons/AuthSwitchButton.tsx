@@ -11,5 +11,17 @@ export default function AuthSwitchButton({
     redirect(`/auth/${redirectTo}`);
   }
 
-  return <button onClick={handleRedirectTo}>{redirectTo}</button>;
+  const text =
+    redirectTo === "login"
+      ? "Already have an account?"
+      : "Do not have an account yet?";
+
+  return (
+    <button
+      onClick={handleRedirectTo}
+      className="tracking-base text-black-base mt-3.5 cursor-pointer leading-9 font-light"
+    >
+      {text}
+    </button>
+  );
 }

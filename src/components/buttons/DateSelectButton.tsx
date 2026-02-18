@@ -18,7 +18,7 @@ export default function DateSelectButton() {
   return (
     <div className="relative">
       <button
-        className="border-border rounded-large shadow-input flex cursor-pointer gap-1.5 border px-2.5 py-1.5"
+        className="border-border rounded-large shadow-input flex cursor-pointer items-center gap-1.5 border px-2.5 py-1.5"
         type="button"
         onClick={() => setContextVisible((prevState) => !prevState)}
       >
@@ -42,7 +42,7 @@ export default function DateSelectButton() {
       </button>
 
       {contextVisible && (
-        <ul className={`absolute bg-white`}>
+        <ul className="shadow-filter absolute top-4/3 w-max rounded-lg border-[0.75] border-[#dbdbdb] bg-white">
           {Object.values(DATE_OPTIONS).map((btn) => {
             return (
               <li key={btn}>
@@ -52,7 +52,7 @@ export default function DateSelectButton() {
                     setContextVisible(false);
                   }}
                   type="button"
-                  className="w-full cursor-pointer text-start"
+                  className="w-full cursor-pointer border-b-[0.75] border-[#dbdbdb] px-3.75 py-2.25 text-start leading-[150%] text-[#131615]"
                 >
                   {btn}
                 </button>

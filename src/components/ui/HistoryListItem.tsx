@@ -21,7 +21,7 @@ export default function HistoryListItem({ itemData }: Props) {
   const date = getDateString(createdAt);
 
   return (
-    <li className="border-border flex gap-4 rounded-2xl border bg-white py-5 pr-5.75 pl-5">
+    <li className="border-border flex justify-between gap-4 rounded-2xl border bg-white py-5 pr-5.75 pl-5">
       <div>
         <p className="text-black-base leading-base tracking-base line-clamp-2 text-sm">
           {summarizedText}

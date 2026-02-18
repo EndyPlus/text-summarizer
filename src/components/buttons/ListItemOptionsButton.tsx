@@ -3,6 +3,9 @@
 import Image from "next/image";
 
 import iconDots from "@/src/assets/icons/icon-dots.svg";
+import iconCopy from "@/src/assets/icons/icon-copy-dark.svg";
+import iconEdit from "@/src/assets/icons/icon-edit.svg";
+import iconDelete from "@/src/assets/icons/icon-delete.svg";
 
 import ConfirmDelete from "../modals/ConfirmDelete";
 import useItemOptions from "@/src/logic/hooks/useItemOptions";
@@ -43,29 +46,43 @@ export default function ListItemOptionsButton({ itemData }) {
         </button>
 
         {isContextVisible && (
-          <ul className="absolute">
+          <ul className="border-border shadow-context absolute top-1/2 right-0 z-999 flex w-max flex-col gap-y-4 rounded-xl bg-white px-4 py-3">
             <li>
               <button
                 onClick={handleCopyPost}
-                className="w-full cursor-pointer text-start"
+                className="flex cursor-pointer items-center gap-x-2"
               >
-                Copy
+                <Image src={iconCopy} alt="copy icon" width={20} height={20} />
+                <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
+                  Copy to Clipboard
+                </p>
               </button>
             </li>
             <li>
               <button
                 onClick={handleEditPost}
-                className="w-full cursor-pointer text-start"
+                className="flex cursor-pointer items-center gap-x-2"
               >
-                Edit
+                <Image src={iconEdit} alt="edit icon" width={20} height={20} />
+                <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
+                  Edit
+                </p>
               </button>
             </li>
             <li>
               <button
                 onClick={handleOpenConfirmModal}
-                className="w-full cursor-pointer text-start"
+                className="flex cursor-pointer items-center gap-x-2"
               >
-                Delete
+                <Image
+                  src={iconDelete}
+                  alt="delete icon"
+                  width={20}
+                  height={20}
+                />
+                <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
+                  Delete
+                </p>
               </button>
             </li>
           </ul>

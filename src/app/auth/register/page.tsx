@@ -18,10 +18,10 @@ export default function RegisterPage() {
         />
         <div className="py-6">
           <h3 className="text-heading tracking-base text-black-base leading-9 font-medium">
-            Log in to Undetectable AI
+            Sign up for Undetectable AI
           </h3>
           <p className="tracking-base text-black-accent mt-2 leading-4">
-            Enter your username and password to continue
+            Fill the inputs to get started
           </p>
         </div>
 
