@@ -25,7 +25,7 @@ type PostData = {
 
 export default function usePostsList() {
   const [postsData, setPostsData] = useState<null | PostData>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const postsList = postsData?.posts;
 
@@ -50,7 +50,7 @@ export default function usePostsList() {
   useEffect(() => {
     if (!userId) return;
 
-    setIsLoading(true);
+    // setIsLoading(true);
 
     async function initPosts() {
       try {

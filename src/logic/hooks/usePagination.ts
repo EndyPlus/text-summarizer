@@ -11,8 +11,7 @@ export default function usePagination() {
   const { currentPage, setCurrentPage } = usePaginationStorage();
 
   const { postsData } = usePostsList();
-  // @ts-expect-error never type
-  const itemsCount = postsData?.count;
+  const itemsCount: number = postsData?.count ?? 0;
 
   const itemsPerPage = ITEMS_PER_PAGE;
   const paginationBtnsCount = PAGINATION_ITEMS_COUNT;

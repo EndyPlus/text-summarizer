@@ -5,6 +5,7 @@ import HistoryListItem from "@/src/components/ui/HistoryListItem";
 import usePostsList from "@/src/logic/hooks/usePostsList";
 import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
+import HistoryListSkeleton from "../skeletons/HistoryListSkeleton";
 
 export default function HistoryList() {
   const { isLoading, postsList } = usePostsList();
@@ -21,8 +22,11 @@ export default function HistoryList() {
           message={dashboardNotify}
         />
       )}
+
       <ul className="flex h-full flex-col gap-2.5 overflow-y-auto">
-        {isLoading && <p>Loading...</p>}
+        {/* <HistoryListSkeleton /> */}
+        {isLoading && <HistoryListSkeleton />}
+
         {!isLoading && !postsList?.length && <p>EMPTY LIST</p>}
         {!isLoading &&
           postsList &&

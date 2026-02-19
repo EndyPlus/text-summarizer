@@ -34,7 +34,7 @@ export default function ListItemOptionsButton({ itemData }) {
       <div className="relative">
         <button
           onClick={handleSwitchContext}
-          className="border-border radius-large shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2"
+          className="border-border shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2"
         >
           <Image
             className="shrink-0"
