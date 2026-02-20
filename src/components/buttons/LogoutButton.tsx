@@ -12,7 +12,7 @@ export default function LogoutButton() {
   }
 
   return (
-    <button onClick={handleSignOut} className="w-5 cursor-pointer">
+    <button onClick={handleSignOut} className="ml-auto min-w-5 cursor-pointer">
       <Image src={iconLogout} alt="log out button" width={20} height={20} />
     </button>
   );

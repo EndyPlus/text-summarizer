@@ -5,12 +5,13 @@ import Image from "next/image";
 import iconDocument from "@/src/assets/icons/icon-document.svg";
 
 import { useSummary } from "@/src/store/summaryStore";
+import SummarizedTextSkeleton from "../skeletons/SummarizedTextSkeleton";
 
 export default function SummarizedContainer() {
   const { summarizedText, isSummaryLoading } = useSummary();
 
   return (
-    <div className="shadow-input rounded-large border-border-secondary bg-white-secondary mb-5 flex h-full border">
+    <div className="shadow-input rounded-large border-border-secondary bg-white-secondary flex h-full overflow-y-auto border p-5">
       {!summarizedText && !isSummaryLoading && (
         <div className="mx-auto my-auto flex flex-col items-center justify-center">
           <Image
@@ -24,9 +25,11 @@ export default function SummarizedContainer() {
           </p>
         </div>
       )}
-      {isSummaryLoading && <p>LOADING...</p>}
+      {isSummaryLoading && <SummarizedTextSkeleton />}
       {!isSummaryLoading && summarizedText && (
-        <p className="p-5 leading-[150%] text-black">{summarizedText}</p>
+        <p className="leading-[150%] whitespace-pre-wrap text-black">
+          {summarizedText}
+        </p>
       )}
     </div>
   );

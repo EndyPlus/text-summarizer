@@ -26,7 +26,7 @@ export default function SummaryPanel() {
         />
       )}
 
-      <div className="flex items-center justify-between">
+      <div className="mt-5 flex items-center justify-between">
         <ul className="flex gap-2.75">
           <li className="leading-large text-gray-base flex gap-1.5 text-sm">
             <p>Words</p>

@@ -51,6 +51,20 @@
   --shadow-filter: 0 6px 13px 0 rgba(20, 21, 26, 0.07);
   --shadow-input: 0 1px 2px 0 rgba(20, 21, 26, 0.05);
   --shadow-icon: 0 7px 8px 0 rgba(63, 68, 71, 0.2);
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  --animate-skeleton: skeleton-shimmer 2s linear infinite;
 }
 
 @layer components {
@@ -60,6 +74,10 @@
 
   .pagination-btn-number {
     @apply tracking-base text-black-accent leading-[150%] font-medium;
+  }
+
+  .skeleton-element {
+    @apply animate-skeleton bg-[linear-gradient(90deg,#eff1f3_25%,#e2e2e2_50%,#eff1f3_75%)] bg-size-[200%_100%];
   }
 }
 
