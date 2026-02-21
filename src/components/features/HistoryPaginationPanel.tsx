@@ -13,6 +13,7 @@ import PaginationPanelSkeleton from "../skeletons/PaginationPanelSkeleton";
 export default function HistoryPaginationPanel() {
   const {
     currentPage,
+    isLoading,
     handleSelectPage,
     pagesIterate,
     infoString,
@@ -26,9 +27,11 @@ export default function HistoryPaginationPanel() {
 
   return (
     <div className="mt-4.5 flex items-center justify-between">
-      {pagesIterate.length === 0 && <PaginationPanelSkeleton />}
+      {isLoading && <PaginationPanelSkeleton />}
 
-      {pagesIterate.length > 0 && (
+      {!isLoading && pagesIterate.length === 0 && <div className="h-10"></div>}
+
+      {!isLoading && pagesIterate.length > 0 && (
         <>
           <p className="leading-base tracking-base text-black-accent text-sm">
             {/* Show 1 to 5 out of 15 entries */}

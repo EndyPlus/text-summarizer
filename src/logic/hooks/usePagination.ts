@@ -10,7 +10,8 @@ export default function usePagination() {
   // @ts-expect-error unknown type
   const { currentPage, setCurrentPage } = usePaginationStorage();
 
-  const { postsData } = usePostsList();
+  const { isLoading, postsData } = usePostsList();
+
   const itemsCount: number = postsData?.count ?? 0;
 
   const itemsPerPage = ITEMS_PER_PAGE;
@@ -64,6 +65,7 @@ export default function usePagination() {
 
   return {
     currentPage,
+    isLoading,
     handleSelectPage,
     pagesIterate,
     infoString,
