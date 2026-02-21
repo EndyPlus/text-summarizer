@@ -1,6 +1,9 @@
 export const ITEMS_PER_PAGE = 5;
 export const PAGINATION_ITEMS_COUNT = 5;
 
+export const MINIMUM_WORDS_LIMIT = 150;
+export const MAXIMUM_CHARACTERS_LIMIT = 60000;
+
 export const DATE_OPTIONS = {
   today: "Today",
   yesterday: "Yesterday",

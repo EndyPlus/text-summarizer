@@ -12,6 +12,10 @@ import { useSummary } from "@/src/store/summaryStore";
 import useInputField from "@/src/logic/hooks/useInputField";
 import useSummaryForm from "@/src/logic/hooks/useSummaryForm";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
+import {
+  MAXIMUM_CHARACTERS_LIMIT,
+  MINIMUM_WORDS_LIMIT,
+} from "@/src/utils/vars";
 
 export default function HomePageForm() {
   // @ts-expect-error not exists on type unknown
@@ -37,7 +41,7 @@ export default function HomePageForm() {
   }, [isActiveForm, handleFocus, originalText]);
 
   const { handleHomePageFormSubmit, submitError, handleResetError } =
-    useSummaryForm();
+    useSummaryForm({ wordsCount, charactersCount });
 
   // @ts-expect-error e any type
   function handleUnfocus(e) {
@@ -101,12 +105,21 @@ export default function HomePageForm() {
           <ul className="flex gap-2.75">
             <li className="leading-large flex gap-1.5 text-sm">
               <p className="text-gray-base">Words</p>
-              <span className="font-medium text-white">{wordsCount}</span>
+              <span
+                className={`${wordsCount < MINIMUM_WORDS_LIMIT && wordsCount > 0 ? "text-error-accent" : "text-white"} font-medium`}
+              >
+                {wordsCount}
+              </span>
             </li>
             <li className="leading-large flex gap-1.5 text-sm">
               <p className="text-gray-base">Characters</p>
-              <span className="font-medium text-white">{charactersCount}</span>
+              <span
+                className={`${charactersCount > MAXIMUM_CHARACTERS_LIMIT ? "text-error-accent" : "text-white"} font-medium`}
+              >
+                {charactersCount}
+              </span>
             </li>
+            <li className="leading-large text-sm">error</li>
           </ul>
           <button
             disabled={isSummaryLoading}

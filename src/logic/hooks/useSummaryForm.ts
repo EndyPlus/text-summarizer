@@ -16,8 +16,12 @@ import asyncApiCall from "@/src/mock/asyncApiCall";
 import { usePostInteraction } from "@/src/store/interactedPostStore";
 import { usePostsCountStore } from "@/src/store/postsCountStore";
 import { useState } from "react";
+import {
+  MAXIMUM_CHARACTERS_LIMIT,
+  MINIMUM_WORDS_LIMIT,
+} from "@/src/utils/vars";
 
-export default function useSummaryForm() {
+export default function useSummaryForm({ wordsCount, charactersCount }) {
   const [submitError, setSubmitError] = useState<null | string>(null);
 
   function handleResetError() {
@@ -71,6 +75,14 @@ export default function useSummaryForm() {
 
       if (!userText.length) {
         throw new Error("Please enter a text to summarize it.");
+      }
+
+      if (wordsCount < MINIMUM_WORDS_LIMIT) {
+        throw new Error("Text must be at least 150 words long.");
+      }
+
+      if (charactersCount > MAXIMUM_CHARACTERS_LIMIT) {
+        throw new Error("Reached the maximum characters limit.");
       }
 
       setOriginalText(userText);

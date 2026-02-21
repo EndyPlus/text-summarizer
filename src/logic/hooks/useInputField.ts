@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useCharacterCounts from "./useCharacterCounts";
+import { usePostInteraction } from "@/src/store/interactedPostStore";
 
 export default function useInputField() {
   const inputRef = useRef("");
@@ -8,14 +9,18 @@ export default function useInputField() {
 
   const { wordsCount, charactersCount } = useCharacterCounts(text);
 
-  // const { toEditPost } = usePostInteraction();
+  // @ts-expect-error type unknown
+  const { toEditPost } = usePostInteraction();
 
-  // useEffect(() => {
-  //   if (!toEditPost) return;
+  useEffect(() => {
+    function initEditText() {
+      if (toEditPost) {
+        setText(toEditPost.originalText);
+      }
+    }
 
-  //   inputRef.current = toEditPost.originalText;
-  //   setText(toEditPost.originalText);
-  // }, [toEditPost]);
+    initEditText();
+  }, [toEditPost]);
 
   // @ts-expect-error e any type
   function handleInputText(e) {
