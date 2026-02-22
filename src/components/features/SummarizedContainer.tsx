@@ -1,11 +1,11 @@
 "use client";
 
-import { useSummary } from "@/src/store/summaryStore";
+import { useSummaryStorage } from "@/src/store/summaryStore";
 import SummarizedTextSkeleton from "../skeletons/SummarizedTextSkeleton";
 import { IconDocument } from "../ui/Icons";
 
 export default function SummarizedContainer() {
-  const { summarizedText, isSummaryLoading } = useSummary();
+  const { summarizedText, isSummaryLoading } = useSummaryStorage();
 
   return (
     <div className="shadow-input rounded-large border-border-secondary bg-white-secondary flex h-full overflow-y-auto border p-5">

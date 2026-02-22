@@ -5,17 +5,18 @@ import Link from "next/link";
 import PostsCountInfo from "../ui/PostsCountInfo";
 
 import { usePathname } from "next/navigation";
-import { useSummary } from "@/src/store/summaryStore";
 
-import { usePostInteraction } from "@/src/store/interactedPostStore";
+import { useSummaryStorage } from "@/src/store/summaryStore";
+import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
+
 import { IconClock, IconHouse } from "../ui/Icons";
 
 export default function AsideBarNavigation() {
   const pathname = usePathname();
 
-  const { resetTexts } = useSummary();
+  const { resetTexts } = useSummaryStorage();
 
-  const { setEditPost } = usePostInteraction();
+  const { setEditPost } = usePostInteractionStorage();
 
   function handleResetStates() {
     resetTexts();

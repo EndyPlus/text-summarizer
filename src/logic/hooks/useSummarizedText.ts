@@ -1,11 +1,10 @@
-import { useSummary } from "@/src/store/summaryStore";
+import { useSummaryStorage } from "@/src/store/summaryStore";
 import handleCopyText from "@/src/utils/handleCopyText";
 import useCharacterCounts from "./useCharacterCounts";
 import { useState } from "react";
 
 export default function useSummarizedText() {
-  // @ts-expect-error type unknown
-  const summarizedText = useSummary((store) => store.summarizedText);
+  const summarizedText = useSummaryStorage((store) => store.summarizedText);
 
   const { wordsCount, charactersCount } = useCharacterCounts(summarizedText);
   const [isNotified, setIsNotified] = useState(false);

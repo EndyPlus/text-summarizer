@@ -1,11 +1,12 @@
-import { useSearch } from "@/src/store/searchTermStore";
 import { useRef } from "react";
+import { useSearchStorage } from "@/src/store/searchTermStore";
 
 export default function useSearchForm() {
   const timeoutRef = useRef(null);
 
-  // @ts-expect-error unknown type
-  const setCurrentSearchTerm = useSearch((state) => state.setCurrentSearchTerm);
+  const setCurrentSearchTerm = useSearchStorage(
+    (state) => state.setCurrentSearchTerm,
+  );
 
   // @ts-expect-error e any
   function handleSearchInput(e) {

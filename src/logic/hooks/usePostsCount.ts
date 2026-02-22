@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { usePostInteraction } from "@/src/store/interactedPostStore";
 import { findPostsCount } from "@/src/services/serverActions/prismaActions";
-import { usePostsCountStore } from "@/src/store/postsCountStore";
+import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
+import { usePostsCountStorage } from "@/src/store/postsCountStore";
 
 export default function usePostsCount() {
   const [postsCount, setPostsCount] = useState(0);
 
-  const storedPostsCount = usePostsCountStore(
+  const storedPostsCount = usePostsCountStorage(
     (store) => store.storedPostsCount,
   );
 
@@ -15,7 +15,7 @@ export default function usePostsCount() {
 
   const userId = session.data?.user?.id;
 
-  const deletePostId = usePostInteraction((state) => state.deletePostId);
+  const deletePostId = usePostInteractionStorage((state) => state.deletePostId);
 
   useEffect(() => {
     async function initPostsCount() {

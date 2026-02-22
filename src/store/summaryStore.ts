@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useSummary = create((set, get) => ({
+export const useSummaryStorage = create((set, get) => ({
   isSummaryLoading: false,
   setSummaryLoading: (bool: boolean) => set({ isSummaryLoading: bool }),
 

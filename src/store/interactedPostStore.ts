@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const usePostInteraction = create((set) => ({
+export const usePostInteractionStorage = create((set) => ({
   deletePostId: null,
   setDeletePost: (postId: number) => set({ deletePostId: postId }),
 

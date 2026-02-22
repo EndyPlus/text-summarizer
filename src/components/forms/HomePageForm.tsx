@@ -4,7 +4,7 @@ import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
 import { useEffect, useState } from "react";
 
-import { useSummary } from "@/src/store/summaryStore";
+import { useSummaryStorage } from "@/src/store/summaryStore";
 
 import useInputField from "@/src/logic/hooks/useInputField";
 import useSummaryForm from "@/src/logic/hooks/useSummaryForm";
@@ -15,8 +15,7 @@ import {
 } from "@/src/utils/vars";
 
 export default function HomePageForm() {
-  // @ts-expect-error not exists on type unknown
-  const { isSummaryLoading, originalText } = useSummary();
+  const { isSummaryLoading, originalText } = useSummaryStorage();
 
   const [isActiveForm, setIsActiveForm] = useState(originalText.length > 0);
 

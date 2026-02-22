@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 import {
@@ -10,12 +11,11 @@ import {
 
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
 
-import { useSummary } from "@/src/store/summaryStore";
-
 import asyncApiCall from "@/src/mock/asyncApiCall";
-import { usePostInteraction } from "@/src/store/interactedPostStore";
-import { usePostsCountStore } from "@/src/store/postsCountStore";
-import { useState } from "react";
+
+import { useSummaryStorage } from "@/src/store/summaryStore";
+import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
+import { usePostsCountStorage } from "@/src/store/postsCountStore";
 import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
@@ -37,18 +37,17 @@ export default function useSummaryForm({ wordsCount, charactersCount }) {
     setOriginalText,
     // @ts-expect-error type unknown
     setSummarizedText,
-  } = useSummary();
+  } = useSummaryStorage();
 
   const session = useSession();
   const userId = session.data?.user?.id;
 
-  const setStoredPostsCount = usePostsCountStore(
+  const setStoredPostsCount = usePostsCountStorage(
     // @ts-expect-error type unknown
     (store) => store.setStoredPostsCount,
   );
 
-  // @ts-expect-error type unknown
-  const { toEditPost } = usePostInteraction();
+  const { toEditPost } = usePostInteractionStorage();
 
   // console.log(toEditPost);
 

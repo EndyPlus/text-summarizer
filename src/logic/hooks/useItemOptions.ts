@@ -1,31 +1,27 @@
 import { useState } from "react";
 import { deletePost } from "@/src/services/serverActions/prismaActions";
 
-import { usePostInteraction } from "@/src/store/interactedPostStore";
+import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
+import { useSummaryStorage } from "@/src/store/summaryStore";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import handleCopyText from "@/src/utils/handleCopyText";
 import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
-import { useSummary } from "@/src/store/summaryStore";
 
 export default function useItemOptions(itemData) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
   const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
 
-  // @ts-expect-error type unknown
-  const { setTexts } = useSummary();
-
-  // @ts-expect-error does not exist
-  const { setDashboardNotify } = useDashboardNotfiyStorage();
-
   const router = useRouter();
 
-  // @ts-expect-error unknown type
-  const { setDeletePost, setEditPost } = usePostInteraction();
+  const { setTexts } = useSummaryStorage();
+
+  const { setDashboardNotify } = useDashboardNotfiyStorage();
+
+  const { setDeletePost, setEditPost } = usePostInteractionStorage();
 
   const session = useSession();
-  // @ts-expect-error does not exist
   const userId = session.data?.user?.id;
 
   async function handleDeletePost() {

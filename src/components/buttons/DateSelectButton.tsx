@@ -3,14 +3,13 @@
 import { useState } from "react";
 
 import { DATE_OPTIONS } from "@/src/utils/vars";
-import { useDateFilter } from "@/src/store/dateFilterStore";
+import { useDateFilterStorage } from "@/src/store/dateFilterStore";
 import { IconArrowDown, IconCalendar } from "../ui/Icons";
 
 export default function DateSelectButton() {
   const [contextVisible, setContextVisible] = useState(false);
 
-  // @ts-expect-error type unknown
-  const { currentDate, setCurrentDate } = useDateFilter();
+  const { currentDate, setCurrentDate } = useDateFilterStorage();
 
   return (
     <div className="relative">

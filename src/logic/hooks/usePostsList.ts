@@ -6,9 +6,9 @@ import { useSession } from "next-auth/react";
 import { findPosts } from "@/src/services/serverActions/prismaActions";
 
 import { usePaginationStorage } from "@/src/store/paginationStore";
-import { useSearch } from "@/src/store/searchTermStore";
-import { useDateFilter } from "@/src/store/dateFilterStore";
-import { usePostInteraction } from "@/src/store/interactedPostStore";
+import { useSearchStorage } from "@/src/store/searchTermStore";
+import { useDateFilterStorage } from "@/src/store/dateFilterStore";
+import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
 
 type Post = {
   id: number;
@@ -33,19 +33,15 @@ export default function usePostsList() {
   // @ts-expect-error does not exist
   const userId = session.data?.user?.id;
 
-  // @ts-expect-error store unknown type
   const { currentPage, setCurrentPage } = usePaginationStorage();
 
-  // @ts-expect-error store unknown type
-  const currentSearchTerm = useSearch((store) => store.currentSearchTerm);
-
-  // @ts-expect-error store unknown type
-  const currentDate = useDateFilter((store) => store.currentDate);
-
-  const deletePostId = usePostInteraction(
-    // @ts-expect-error store unknown type
-    (state) => state.deletePostId,
+  const currentSearchTerm = useSearchStorage(
+    (store) => store.currentSearchTerm,
   );
+
+  const currentDate = useDateFilterStorage((store) => store.currentDate);
+
+  const deletePostId = usePostInteractionStorage((state) => state.deletePostId);
 
   useEffect(() => {
     if (!userId) return;
