@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 
-import Image from "next/image";
-
-import iconCalendar from "@/src/assets/icons/icon-calendar.svg";
-import iconArrowDown from "@/src/assets/icons/icon-arrow-down.svg";
 import { DATE_OPTIONS } from "@/src/utils/vars";
 import { useDateFilter } from "@/src/store/dateFilterStore";
+import { IconArrowDown, IconCalendar } from "../ui/Icons";
 
 export default function DateSelectButton() {
   const [contextVisible, setContextVisible] = useState(false);
@@ -22,23 +19,13 @@ export default function DateSelectButton() {
         type="button"
         onClick={() => setContextVisible((prevState) => !prevState)}
       >
-        <Image
-          className="h-4 w-4"
-          src={iconCalendar}
-          alt="calendar icon"
-          width={16}
-          height={16}
-        />
+        <IconCalendar size={16} />
+
         <p className="leading-base tracking-base text-black-base text-sm font-medium">
           {currentDate}
         </p>
-        <Image
-          className="h-4 w-4"
-          src={iconArrowDown}
-          alt="arrow down icon"
-          width={16}
-          height={16}
-        />
+
+        <IconArrowDown size={16} />
       </button>
 
       {contextVisible && (

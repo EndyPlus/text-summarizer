@@ -1,19 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
-
-import iconLogo from "@/src/assets/icons/icon-logo.svg";
+import { IconLogo } from "../components/ui/Icons";
 
 export default function NotFound() {
   return (
     <div className="bg-main-light flex h-full items-center justify-center">
       <div className="border-accent-light flex flex-col rounded-2xl border bg-white px-15 py-10 text-center">
-        <Image
-          className="shadow-icon self-center"
-          src={iconLogo}
-          alt="logo icon"
-          width={60}
-          height={60}
-        />
+        <IconLogo size={60} className="shadow-icon self-center" />
         <div className="my-8">
           <h3 className="text-heading tracking-base text-black-base leading-9 font-medium">
             404 - Page Not Found

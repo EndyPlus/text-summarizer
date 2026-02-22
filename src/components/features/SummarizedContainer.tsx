@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
-
-import iconDocument from "@/src/assets/icons/icon-document.svg";
-
 import { useSummary } from "@/src/store/summaryStore";
 import SummarizedTextSkeleton from "../skeletons/SummarizedTextSkeleton";
+import { IconDocument } from "../ui/Icons";
 
 export default function SummarizedContainer() {
   const { summarizedText, isSummaryLoading } = useSummary();
@@ -14,12 +11,7 @@ export default function SummarizedContainer() {
     <div className="shadow-input rounded-large border-border-secondary bg-white-secondary flex h-full overflow-y-auto border p-5">
       {!summarizedText && !isSummaryLoading && (
         <div className="mx-auto my-auto flex flex-col items-center justify-center">
-          <Image
-            src={iconDocument}
-            alt="document icon"
-            width={60}
-            height={60}
-          />
+          <IconDocument size={60} />
           <p className="tracking-base text-black-accent leading-small mt-2.5 text-lg">
             Your summarized text will appear here
           </p>

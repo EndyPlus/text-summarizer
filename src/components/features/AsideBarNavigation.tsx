@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 import PostsCountInfo from "../ui/PostsCountInfo";
@@ -8,9 +7,8 @@ import PostsCountInfo from "../ui/PostsCountInfo";
 import { usePathname } from "next/navigation";
 import { useSummary } from "@/src/store/summaryStore";
 
-import iconClock from "@/src/assets/icons/icon-clock.svg";
-import iconHouse from "@/src/assets/icons/icon-house.svg";
 import { usePostInteraction } from "@/src/store/interactedPostStore";
+import { IconClock, IconHouse } from "../ui/Icons";
 
 export default function AsideBarNavigation() {
   const pathname = usePathname();
@@ -32,7 +30,7 @@ export default function AsideBarNavigation() {
             href="/home"
             className={`${pathname === "/home" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
           >
-            <Image src={iconHouse} alt="house icon" width={20} height={20} />
+            <IconHouse />
             <p className="leading-base tracking-base ml-2 text-sm font-medium">
               Home
             </p>
@@ -43,7 +41,8 @@ export default function AsideBarNavigation() {
             href="/history"
             className={`${pathname === "/history" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
           >
-            <Image src={iconClock} alt="clock icon" width={20} height={20} />
+            <IconClock />
+
             <p className="leading-base tracking-base mx-2 text-sm font-medium">
               History
             </p>

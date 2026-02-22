@@ -1,14 +1,11 @@
 "use client";
 
-import Image from "next/image";
-
-import iconEye from "@/src/assets/icons/icon-eye.svg";
-
 import useVisiblePassword from "@/src/logic/hooks/useVisiblePassword";
 import useRegistration from "@/src/logic/hooks/useRegistration";
 import handleBlockSpacePress from "@/src/utils/handleBlockSpacePress";
 import AuthError from "../modals/AuthNotify/AuthError";
 import AuthSuccess from "../modals/AuthNotify/AuthSuccess";
+import { IconEye } from "../ui/Icons";
 
 export default function RegisterForm() {
   const { passwordInputType, toggleShowPassword } = useVisiblePassword();
@@ -76,13 +73,7 @@ export default function RegisterForm() {
             className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
             onClick={toggleShowPassword}
           >
-            <Image
-              src={iconEye}
-              alt="toggle show password icon"
-              width={20}
-              height={20}
-              draggable={false}
-            />
+            <IconEye />
           </button>
         </div>
         <input

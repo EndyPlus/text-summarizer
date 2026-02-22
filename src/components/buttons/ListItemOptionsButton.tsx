@@ -1,14 +1,8 @@
 "use client";
 
-import Image from "next/image";
-
-import iconDots from "@/src/assets/icons/icon-dots.svg";
-import iconCopy from "@/src/assets/icons/icon-copy-dark.svg";
-import iconEdit from "@/src/assets/icons/icon-edit.svg";
-import iconDelete from "@/src/assets/icons/icon-delete.svg";
-
 import ConfirmDelete from "../modals/ConfirmDelete";
 import useItemOptions from "@/src/logic/hooks/useItemOptions";
+import { IconCopy, IconDelete, IconDots, IconEdit } from "../ui/Icons";
 
 export default function ListItemOptionsButton({ itemData }) {
   const {
@@ -36,13 +30,7 @@ export default function ListItemOptionsButton({ itemData }) {
           onClick={handleSwitchContext}
           className="border-border shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2"
         >
-          <Image
-            className="shrink-0"
-            src={iconDots}
-            alt="three dots icon"
-            width={16}
-            height={16}
-          />
+          <IconDots size={16} className="shrink-0" />
         </button>
 
         {isContextVisible && (
@@ -52,7 +40,7 @@ export default function ListItemOptionsButton({ itemData }) {
                 onClick={handleCopyPost}
                 className="flex cursor-pointer items-center gap-x-2"
               >
-                <Image src={iconCopy} alt="copy icon" width={20} height={20} />
+                <IconCopy />
                 <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
                   Copy to Clipboard
                 </p>
@@ -63,7 +51,7 @@ export default function ListItemOptionsButton({ itemData }) {
                 onClick={handleEditPost}
                 className="flex cursor-pointer items-center gap-x-2"
               >
-                <Image src={iconEdit} alt="edit icon" width={20} height={20} />
+                <IconEdit />
                 <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
                   Edit
                 </p>
@@ -74,12 +62,7 @@ export default function ListItemOptionsButton({ itemData }) {
                 onClick={handleOpenConfirmModal}
                 className="flex cursor-pointer items-center gap-x-2"
               >
-                <Image
-                  src={iconDelete}
-                  alt="delete icon"
-                  width={20}
-                  height={20}
-                />
+                <IconDelete />
                 <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
                   Delete
                 </p>

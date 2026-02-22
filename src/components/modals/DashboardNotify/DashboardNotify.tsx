@@ -1,9 +1,5 @@
-import Image from "next/image";
-
-import iconSuccess from "@/src/assets/icons/icon-success.svg";
-import iconError from "@/src/assets/icons/icon-error.svg";
-import iconClose from "@/src/assets/icons/icon-close.svg";
 import { createPortal } from "react-dom";
+import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
 
 type Props = {
   onClose: () => void;
@@ -24,19 +20,15 @@ export default function DashboardNotify({
           : "bg-error-main border-error-accent"
       } tracking-base shadow-info-main rounded-xl`}
     >
-      <Image
-        src={isSuccess ? iconSuccess : iconError}
-        alt="warning icon"
-        width={20}
-        height={20}
-      />
+      {isSuccess ? <IconSuccess /> : <IconError />}
+
       <div>
         <p className="black-accent leading-base text-sm whitespace-pre-line">
           {message}
         </p>
       </div>
       <button className="cursor-pointer" onClick={onClose}>
-        <Image src={iconClose} alt="close icon" width={20} height={20} />
+        <IconClose />
       </button>
     </div>
   );

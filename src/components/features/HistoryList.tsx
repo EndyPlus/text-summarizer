@@ -7,9 +7,8 @@ import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import HistoryListSkeleton from "../skeletons/HistoryListSkeleton";
 
-import iconTest from "@/src/assets/icons/icon-copy.svg";
-import Image from "next/image";
 import Link from "next/link";
+import { IconCopy } from "../ui/Icons";
 
 export default function HistoryList() {
   const { isLoading, postsList } = usePostsList();
@@ -32,7 +31,7 @@ export default function HistoryList() {
 
         {!isLoading && !postsList?.length && (
           <div className="gapy-4 m-auto flex flex-col items-center text-center">
-            <Image src={iconTest} alt="icon" width={40} height={40} />
+            <IconCopy size={40} />
             <h3 className="text-heading tracking-base text-black-base leading-9 font-medium">
               Empty List
             </h3>

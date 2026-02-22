@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
-
-import iconCopy from "@/src/assets/icons/icon-copy.svg";
-
 import useSummarizedText from "@/src/logic/hooks/useSummarizedText";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
+import { IconCopy } from "../ui/Icons";
 
 export default function SummaryPanel() {
   const {
@@ -38,13 +35,7 @@ export default function SummaryPanel() {
           </li>
         </ul>
         <button className="leading-base tracking-base rounded-large border-white-tertiary text-black-tertiary flex cursor-pointer gap-1.5 border bg-white px-2.5 py-1.5 text-sm font-medium">
-          <Image
-            className="h-4 w-4"
-            src={iconCopy}
-            alt="copy icon"
-            width={16}
-            height={16}
-          />
+          <IconCopy size={16} />
           <p onClick={handleCopySummary}>Copy to Clipboard</p>
         </button>
       </div>

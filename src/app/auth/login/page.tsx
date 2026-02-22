@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 import LoginForm from "@/src/components/forms/LoginForm";
 
-import iconLogo from "@/src/assets/icons/icon-logo.svg";
 import AuthSwitchButton from "@/src/components/buttons/AuthSwitchButton";
+import { IconLogo } from "@/src/components/ui/Icons";
 
 export default function LoginPage() {
   return (
@@ -11,13 +9,7 @@ export default function LoginPage() {
       {/* INFO WINDOW HERE*/}
 
       <div className="border-accent-light flex flex-col rounded-2xl border bg-white p-10 text-center">
-        <Image
-          className="shadow-icon self-center"
-          src={iconLogo}
-          alt="logo icon"
-          width={60}
-          height={60}
-        />
+        <IconLogo className="shadow-icon self-center" size={60} />
         <div className="py-6">
           <h3 className="text-heading tracking-base text-black-base leading-9 font-medium">
             Log in to Undetectable AI

@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
-
 import usePagination from "@/src/logic/hooks/usePagination";
 
-import iconArrowLeft from "@/src/assets/icons/icon-arrow-left.svg";
-import iconDoubleArrowLeft from "@/src/assets/icons/icon-double-arrow-left.svg";
-import iconArrowRight from "@/src/assets/icons/icon-arrow-right.svg";
-import iconDoubleArrowRight from "@/src/assets/icons/icon-double-arrow-right.svg";
 import PaginationPanelSkeleton from "../skeletons/PaginationPanelSkeleton";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconDoubleArrowLeft,
+  IconDoubleArrowRight,
+} from "../ui/Icons";
 
 export default function HistoryPaginationPanel() {
   const {
@@ -43,23 +43,13 @@ export default function HistoryPaginationPanel() {
               {isDoubleArrowsVisible && (
                 <li>
                   <button onClick={handleToBegin} className="pagination-btn">
-                    <Image
-                      src={iconDoubleArrowLeft}
-                      alt="double arrow left icon"
-                      width={20}
-                      height={20}
-                    />
+                    <IconDoubleArrowLeft />
                   </button>
                 </li>
               )}
               <li>
                 <button onClick={handleDecrement} className="pagination-btn">
-                  <Image
-                    src={iconArrowLeft}
-                    alt="arrow left icon"
-                    width={20}
-                    height={20}
-                  />
+                  <IconArrowLeft />
                 </button>
               </li>
 
@@ -75,23 +65,13 @@ export default function HistoryPaginationPanel() {
               ))}
               <li>
                 <button onClick={handleIncrement} className="pagination-btn">
-                  <Image
-                    src={iconArrowRight}
-                    alt="arrow right icon"
-                    width={20}
-                    height={20}
-                  />
+                  <IconArrowRight />
                 </button>
               </li>
               {isDoubleArrowsVisible && (
                 <li>
                   <button onClick={handleToEnd} className="pagination-btn">
-                    <Image
-                      src={iconDoubleArrowRight}
-                      alt="double arrow right icon"
-                      width={20}
-                      height={20}
-                    />
+                    <IconDoubleArrowRight />
                   </button>
                 </li>
               )}

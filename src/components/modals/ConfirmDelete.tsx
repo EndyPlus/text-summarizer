@@ -1,7 +1,5 @@
-import Image from "next/image";
+import { IconClose } from "../ui/Icons";
 import ModalWrapper from "./ModalWrapper";
-
-import iconClose from "@/src/assets/icons/icon-close.svg";
 
 export default function ConfirmDelete({ onClose, onDelete }) {
   async function handleDelete() {
@@ -16,7 +14,7 @@ export default function ConfirmDelete({ onClose, onDelete }) {
           onClick={onClose}
           className="absolute top-4 right-4 cursor-pointer rounded-full bg-[rgba(10,15,41,0.04)] p-1.25"
         >
-          <Image src={iconClose} alt="close icon" width={14} height={14} />
+          <IconClose size={14} />
         </button>
         <div className="mb-6">
           <h4 className="leading-base tracking-base text-black-base text-lg font-medium">

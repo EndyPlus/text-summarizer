@@ -1,8 +1,5 @@
 "use client";
 
-import iconKeyboard from "@/src/assets/icons/icon-keyboard.svg";
-import iconClipboard from "@/src/assets/icons/icon-clipboard.svg";
-
 import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
 import { useEffect, useState } from "react";
@@ -22,7 +19,6 @@ export default function HomePageForm() {
   const { isSummaryLoading, originalText } = useSummary();
 
   const [isActiveForm, setIsActiveForm] = useState(originalText.length > 0);
-  // const [isActiveForm, setIsActiveForm] = useState(false);
 
   const {
     inputRef,
@@ -69,8 +65,7 @@ export default function HomePageForm() {
           {!isActiveForm && (
             <div className="flex gap-2.5">
               <HomeCtaButton
-                src={iconKeyboard}
-                alt="keyboard icon"
+                type="handwrite"
                 onClick={() => {
                   setIsActiveForm(true);
                 }}
@@ -78,8 +73,7 @@ export default function HomePageForm() {
                 Enter Text
               </HomeCtaButton>
               <HomeCtaButton
-                src={iconClipboard}
-                alt="clipboard icon"
+                type="paste"
                 onClick={() => {
                   handlePasteText();
                   setIsActiveForm(true);
