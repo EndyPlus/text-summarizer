@@ -4,6 +4,7 @@ import {
   createUser,
   findUser,
 } from "@/src/services/serverActions/prismaActions";
+import getFormattedCredentials from "@/src/utils/getFormattedCredentials";
 
 import getRegisterErrors from "@/src/utils/getRegisterErrors";
 
@@ -33,7 +34,15 @@ export async function registerFormAction(formState, formData) {
       throw new Error();
     }
 
-    const user = await findUser(username);
+    const { formattedUsername, hashedPassword, formattedName } =
+      await getFormattedCredentials({
+        username,
+        password,
+        firstName,
+        lastName,
+      });
+
+    const user = await findUser(formattedUsername);
 
     if (user) {
       errorsArray.push("User is already existing.");
@@ -41,9 +50,9 @@ export async function registerFormAction(formState, formData) {
     }
 
     const newUser = await createUser({
-      name: `${firstName} ${lastName}`,
-      username,
-      password,
+      name: formattedName,
+      username: formattedUsername,
+      password: hashedPassword,
     });
 
     if (!newUser) {
