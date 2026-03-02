@@ -1,15 +1,9 @@
-type Data = {
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
-};
+import { ErrorsData, InputError } from "../types/types";
 
-export default function getRegisterErrors(data: Data) {
+export default function getRegisterErrors(data: ErrorsData) {
   const { firstName, lastName, username, password, confirmPassword } = data;
 
-  const errors = [];
+  const errors: InputError[] = [];
 
   const firstNameErrors = [];
   const lastNameErrors = [];

@@ -1,7 +1,15 @@
 import { create } from "zustand";
 
-export const useDashboardNotfiyStorage = create((set) => ({
-  dashboardNotify: "",
-  setDashboardNotify: (msg: string) => set({ dashboardNotify: msg }),
-  resetDashboardNotify: () => set({ dashboardNotify: "" }),
-}));
+interface DashboardNotifyState {
+  dashboardNotify: string;
+  setDashboardNotify: (msg: string) => void;
+  resetDashboardNotify: () => void;
+}
+
+export const useDashboardNotifyStorage = create<DashboardNotifyState>()(
+  (set) => ({
+    dashboardNotify: "",
+    setDashboardNotify: (msg) => set({ dashboardNotify: msg }),
+    resetDashboardNotify: () => set({ dashboardNotify: "" }),
+  }),
+);

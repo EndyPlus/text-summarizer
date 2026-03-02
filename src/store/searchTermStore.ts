@@ -1,6 +1,11 @@
 import { create } from "zustand";
 
-export const useSearchStorage = create((set) => ({
+interface SearchStore {
+  currentSearchTerm: string;
+  setCurrentSearchTerm: (term: string) => void;
+}
+
+export const useSearchStorage = create<SearchStore>()((set) => ({
   currentSearchTerm: "",
-  setCurrentSearchTerm: (term: string) => set({ currentSearchTerm: term }),
+  setCurrentSearchTerm: (term) => set({ currentSearchTerm: term }),
 }));

@@ -1,13 +1,14 @@
 import { createPortal } from "react-dom";
 import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
+import { ModalProps } from "@/src/types/types";
 
 export default function AuthNotifyWrapper({
   onClose,
   heading,
   isSuccess = false,
   children,
-}) {
-  const notifyEl = (
+}: ModalProps) {
+  const notifyLayout = (
     <div
       className={`fixed top-9 left-1/2 z-999 flex -translate-x-1/2 items-start gap-3 border p-4 ${
         isSuccess
@@ -32,5 +33,9 @@ export default function AuthNotifyWrapper({
     </div>
   );
 
-  return <>{createPortal(notifyEl, document.getElementById("notification"))}</>;
+  const notifyModal = document.getElementById("notification");
+
+  if (!notifyModal) return;
+
+  return createPortal(notifyLayout, notifyModal);
 }

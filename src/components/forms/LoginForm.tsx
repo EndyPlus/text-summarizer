@@ -19,7 +19,7 @@ export default function LoginForm() {
         <AuthError
           heading="Login Error"
           onClose={handleResetError}
-          errorsList={[loginError]}
+          errors={[loginError]}
         />
       )}
 

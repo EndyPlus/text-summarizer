@@ -22,11 +22,11 @@ export default function RegisterForm() {
 
   return (
     <>
-      {signInErrors?.length > 0 && (
+      {signInErrors && signInErrors.length > 0 && (
         <AuthError
           heading="Registration Error"
           onClose={handleResetError}
-          errorsList={signInErrors}
+          errors={signInErrors}
         />
       )}
 

@@ -5,11 +5,9 @@ import { redirect } from "next/navigation";
 import AsideBar from "@/src/components/ui/AsideBar";
 import AuthGuard from "@/src/components/features/AuthGuard";
 
-type LayoutProps = Readonly<{
-  children: React.ReactNode;
-}>;
+import { PropsLayout } from "@/src/types/types";
 
-export default async function DashboardLayout({ children }: LayoutProps) {
+export default async function DashboardLayout({ children }: PropsLayout) {
   const session = await getServerSession(authOptions);
 
   if (!session) {

@@ -7,7 +7,6 @@ import { usePaginationStorage } from "@/src/store/paginationStore";
 import usePostsList from "./usePostsList";
 
 export default function usePagination() {
-  // @ts-expect-error unknown type
   const { currentPage, setCurrentPage } = usePaginationStorage();
 
   const { isLoading, postsData } = usePostsList();

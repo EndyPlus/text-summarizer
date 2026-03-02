@@ -4,12 +4,22 @@ import {
   createUser,
   findUser,
 } from "@/src/services/serverActions/prismaActions";
+import {
+  RegisterActionFormData,
+  RegisterFormActionState,
+} from "@/src/types/types";
 import getFormattedCredentials from "@/src/utils/getFormattedCredentials";
 
 import getRegisterErrors from "@/src/utils/getRegisterErrors";
 
-export async function registerFormAction(formState, formData) {
-  const userData = Object.fromEntries(formData.entries());
+export async function registerFormAction(
+  formState: RegisterFormActionState,
+  formData: FormData,
+) {
+  const userData = Object.fromEntries(
+    formData.entries(),
+  ) as RegisterActionFormData;
+
   const { firstName, lastName, username, password, confirmPassword } = userData;
 
   const errorsArray = getRegisterErrors(userData);
@@ -45,7 +55,10 @@ export async function registerFormAction(formState, formData) {
     const user = await findUser(formattedUsername);
 
     if (user) {
-      errorsArray.push("User is already existing.");
+      errorsArray.push({
+        inputName: null,
+        errorsList: ["User is already existing."],
+      });
       throw new Error();
     }
 
@@ -56,7 +69,10 @@ export async function registerFormAction(formState, formData) {
     });
 
     if (!newUser) {
-      errorsArray.push("Failed user registration.");
+      errorsArray.push({
+        inputName: null,
+        errorsList: ["Failed user registration."],
+      });
       throw new Error();
     }
 
@@ -65,8 +81,8 @@ export async function registerFormAction(formState, formData) {
       errors: null,
       credentials: { username, password },
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
-    // console.log(err);
     return {
       success: false,
       errors: errorsArray,

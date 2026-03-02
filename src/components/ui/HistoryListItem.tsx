@@ -1,16 +1,11 @@
 import ListItemOptionsButton from "../buttons/ListItemOptionsButton";
 
-import { HistoryItem } from "@/src/types/historyItemType";
-
 import getCounts from "@/src/utils/getCounts";
 import getDateString from "@/src/utils/getDateString";
 import { IconCalendar, IconLetter, IconText } from "./Icons";
+import { ItemDataProps } from "@/src/types/types";
 
-type Props = {
-  itemData: HistoryItem;
-};
-
-export default function HistoryListItem({ itemData }: Props) {
+export default function HistoryListItem({ itemData }: ItemDataProps) {
   const { summarizedText, createdAt } = itemData;
   const { charactersCount, wordsCount } = getCounts(summarizedText);
   const date = getDateString(createdAt);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "../components/features/AuthProvider";
+import { PropsLayout } from "../types/types";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,11 +15,7 @@ export const metadata: Metadata = {
     "A simple Text Summarizer application that leverages OpenAI APIs for summarizing user-provided content.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: PropsLayout) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>

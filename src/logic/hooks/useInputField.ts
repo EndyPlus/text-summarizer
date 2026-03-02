@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import useCharacterCounts from "./useCharacterCounts";
 import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
 
 export default function useInputField() {
-  const inputRef = useRef("");
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [text, setText] = useState("");
 
@@ -21,8 +21,7 @@ export default function useInputField() {
     initEditText();
   }, [toEditPost]);
 
-  // @ts-expect-error e any type
-  function handleInputText(e) {
+  function handleInputText(e: ChangeEvent<HTMLTextAreaElement>) {
     setText(e.target.value);
   }
 
@@ -31,8 +30,9 @@ export default function useInputField() {
 
     setText(clipText);
 
-    // @ts-expect-error error type
-    inputRef.current.value = clipText;
+    if (inputRef.current) {
+      inputRef.current.value = clipText;
+    }
   }
 
   function handleResetValues() {
@@ -40,7 +40,7 @@ export default function useInputField() {
   }
 
   function handleFocus() {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }
 
   return {

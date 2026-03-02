@@ -3,8 +3,9 @@
 import ConfirmDelete from "../modals/ConfirmDelete";
 import useItemOptions from "@/src/logic/hooks/useItemOptions";
 import { IconCopy, IconDelete, IconDots, IconEdit } from "../ui/Icons";
+import { ItemDataProps } from "@/src/types/types";
 
-export default function ListItemOptionsButton({ itemData }) {
+export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
   const {
     isContextVisible,
     isVisibleConfirm,

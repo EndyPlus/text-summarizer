@@ -1,19 +1,23 @@
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import useAuthRedirect from "./useAuthRedirect";
+import getErrorMessage from "@/src/utils/getErrorMessage";
 
 export default function useLogin() {
-  const [loginError, setLoginError] = useState(null);
+  const [loginError, setLoginError] = useState<null | string>(null);
 
   const handleResetError = () => setLoginError(null);
 
   const { isSuccess, setIsSuccess } = useAuthRedirect();
 
-  async function handleSubmitForm(e) {
+  async function handleSubmitForm(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const credentials = Object.fromEntries(formData.entries());
+    const credentials = Object.fromEntries(formData.entries()) as Record<
+      "username" | "password",
+      string
+    >;
 
     const { username, password } = credentials;
 
@@ -40,8 +44,7 @@ export default function useLogin() {
 
       setIsSuccess(true);
     } catch (err) {
-      // console.log(err.message);
-      setLoginError(err.message);
+      setLoginError(getErrorMessage(err));
     }
   }
 

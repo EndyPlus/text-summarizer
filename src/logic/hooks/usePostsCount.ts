@@ -13,7 +13,7 @@ export default function usePostsCount() {
 
   const session = useSession();
 
-  const userId = session.data?.user?.id;
+  const userId = Number(session.data?.user.id);
 
   const deletePostId = usePostInteractionStorage((state) => state.deletePostId);
 

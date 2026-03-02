@@ -1,6 +1,11 @@
 import { create } from "zustand";
 
-export const usePaginationStorage = create((set) => ({
+interface PaginationStore {
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+}
+
+export const usePaginationStorage = create<PaginationStore>()((set) => ({
   currentPage: 1,
-  setCurrentPage: (page: number) => set({ currentPage: page }),
+  setCurrentPage: (page) => set({ currentPage: page }),
 }));

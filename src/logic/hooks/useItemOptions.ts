@@ -7,9 +7,10 @@ import { useSummaryStorage } from "@/src/store/summaryStore";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import handleCopyText from "@/src/utils/handleCopyText";
-import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
+import { useDashboardNotifyStorage } from "@/src/store/dashboardNotifyStore";
+import { Post } from "@/src/types/types";
 
-export default function useItemOptions(itemData) {
+export default function useItemOptions(itemData: Post) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
   const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
 
@@ -17,7 +18,7 @@ export default function useItemOptions(itemData) {
 
   const { setTexts } = useSummaryStorage();
 
-  const { setDashboardNotify } = useDashboardNotfiyStorage();
+  const { setDashboardNotify } = useDashboardNotifyStorage();
 
   const { setDeletePost, setEditPost } = usePostInteractionStorage();
 

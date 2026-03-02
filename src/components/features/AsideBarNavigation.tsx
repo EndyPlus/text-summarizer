@@ -16,11 +16,13 @@ export default function AsideBarNavigation() {
 
   const { resetTexts } = useSummaryStorage();
 
-  const { setEditPost } = usePostInteractionStorage();
+  const resetEditPost = usePostInteractionStorage(
+    (state) => state.resetEditPost,
+  );
 
   function handleResetStates() {
     resetTexts();
-    setEditPost(null);
+    resetEditPost();
   }
 
   return (

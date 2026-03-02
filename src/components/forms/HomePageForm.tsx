@@ -2,7 +2,7 @@
 
 import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { useSummaryStorage } from "@/src/store/summaryStore";
 
@@ -38,8 +38,7 @@ export default function HomePageForm() {
   const { handleHomePageFormSubmit, submitError, handleResetError } =
     useSummaryForm({ wordsCount, charactersCount });
 
-  // @ts-expect-error e any type
-  function handleUnfocus(e) {
+  function handleUnfocus(e: ChangeEvent<HTMLTextAreaElement>) {
     if (e.target.value.trim().length !== 0) return;
 
     setIsActiveForm(false);
@@ -83,7 +82,6 @@ export default function HomePageForm() {
             </div>
           )}
           <textarea
-            // @ts-expect-error error type
             ref={inputRef}
             onInput={handleInputText}
             onBlur={handleUnfocus}

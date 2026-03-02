@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import {
@@ -20,8 +20,17 @@ import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
 } from "@/src/utils/vars";
+import getErrorMessage from "@/src/utils/getErrorMessage";
 
-export default function useSummaryForm({ wordsCount, charactersCount }) {
+interface Counts {
+  wordsCount: number;
+  charactersCount: number;
+}
+
+export default function useSummaryForm({
+  wordsCount,
+  charactersCount,
+}: Counts) {
   const [submitError, setSubmitError] = useState<null | string>(null);
 
   function handleResetError() {
@@ -29,30 +38,24 @@ export default function useSummaryForm({ wordsCount, charactersCount }) {
   }
 
   const {
-    // @ts-expect-error type unknown
     setSummaryLoading,
-    // @ts-expect-error type unknown
     originalText,
-    // @ts-expect-error type unknown
     setOriginalText,
-    // @ts-expect-error type unknown
     setSummarizedText,
   } = useSummaryStorage();
 
   const session = useSession();
-  const userId = session.data?.user?.id;
+  const userId = Number(session.data?.user?.id);
 
   const setStoredPostsCount = usePostsCountStorage(
-    // @ts-expect-error type unknown
     (store) => store.setStoredPostsCount,
   );
 
-  const { toEditPost } = usePostInteractionStorage();
+  const toEditPost = usePostInteractionStorage((store) => store.toEditPost);
 
   // console.log(toEditPost);
 
-  // @ts-expect-error type any
-  async function handleHomePageFormSubmit(e) {
+  async function handleHomePageFormSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
 
     handleResetError();
@@ -92,7 +95,7 @@ export default function useSummaryForm({ wordsCount, charactersCount }) {
 
       setSummarizedText("");
 
-      // const aiResponse = await getAiResponse(data.formTextarea);
+      // const aiResponse = await getAiResponse(userText);
       const aiResponse = await asyncApiCall();
 
       // console.log(aiResponse);
@@ -138,8 +141,7 @@ export default function useSummaryForm({ wordsCount, charactersCount }) {
       }
     } catch (err) {
       console.log(err);
-      // @ts-expect-error type unknown
-      setSubmitError(err.message);
+      setSubmitError(getErrorMessage(err));
     } finally {
       setSummaryLoading(false);
     }

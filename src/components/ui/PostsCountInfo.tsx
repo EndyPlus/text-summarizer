@@ -3,7 +3,7 @@
 import usePostsCount from "@/src/logic/hooks/usePostsCount";
 
 export default function PostsCountInfo() {
-  const postsCount: number = usePostsCount();
+  const postsCount = usePostsCount();
 
   return (
     <>

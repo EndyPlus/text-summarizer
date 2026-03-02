@@ -1,7 +1,12 @@
 import { IconClose } from "../ui/Icons";
 import ModalWrapper from "./ModalWrapper";
 
-export default function ConfirmDelete({ onClose, onDelete }) {
+interface Props {
+  onClose: () => void;
+  onDelete: () => Promise<void>;
+}
+
+export default function ConfirmDelete({ onClose, onDelete }: Props) {
   async function handleDelete() {
     await onDelete();
     onClose();

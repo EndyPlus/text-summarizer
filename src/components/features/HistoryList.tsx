@@ -3,7 +3,7 @@
 import HistoryListItem from "@/src/components/ui/HistoryListItem";
 
 import usePostsList from "@/src/logic/hooks/usePostsList";
-import { useDashboardNotfiyStorage } from "@/src/store/dashboardNotifyStore";
+import { useDashboardNotifyStorage } from "@/src/store/dashboardNotifyStore";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import HistoryListSkeleton from "../skeletons/HistoryListSkeleton";
 
@@ -13,8 +13,7 @@ import { IconCopy } from "../ui/Icons";
 export default function HistoryList() {
   const { isLoading, postsList } = usePostsList();
 
-  // @ts-expect-error does not exist
-  const { dashboardNotify, resetDashboardNotify } = useDashboardNotfiyStorage();
+  const { dashboardNotify, resetDashboardNotify } = useDashboardNotifyStorage();
 
   return (
     <>

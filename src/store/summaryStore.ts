@@ -1,16 +1,31 @@
 import { create } from "zustand";
 
-export const useSummaryStorage = create((set, get) => ({
+interface SummaryStore {
+  isSummaryLoading: boolean;
+  setSummaryLoading: (bool: boolean) => void;
+
+  originalText: string;
+  summarizedText: string;
+
+  setOriginalText: (text: string) => void;
+  setSummarizedText: (text: string) => void;
+
+  setTexts: (original: string, summary: string) => void;
+
+  resetTexts: () => void;
+}
+
+export const useSummaryStorage = create<SummaryStore>()((set, get) => ({
   isSummaryLoading: false,
-  setSummaryLoading: (bool: boolean) => set({ isSummaryLoading: bool }),
+  setSummaryLoading: (bool) => set({ isSummaryLoading: bool }),
 
   originalText: "",
   summarizedText: "",
 
-  setOriginalText: (text: string) => set({ originalText: text }),
-  setSummarizedText: (text: string) => set({ summarizedText: text }),
+  setOriginalText: (text) => set({ originalText: text }),
+  setSummarizedText: (text) => set({ summarizedText: text }),
 
-  setTexts: (original: string, summary: string) => {
+  setTexts: (original, summary) => {
     get().setOriginalText(original);
     get().setSummarizedText(summary);
   },

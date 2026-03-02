@@ -1,18 +1,13 @@
 import { createPortal } from "react-dom";
 import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
-
-type Props = {
-  onClose: () => void;
-  message: string;
-  isSuccess: boolean;
-};
+import { DashboardNotifyProps } from "@/src/types/types";
 
 export default function DashboardNotify({
   onClose,
   message,
   isSuccess = true,
-}: Props) {
-  const notifyEl = (
+}: DashboardNotifyProps) {
+  const notifyLayout = (
     <div
       className={`absolute top-9 left-1/2 flex -translate-x-1/2 items-start gap-3 border p-4 ${
         isSuccess
@@ -33,5 +28,9 @@ export default function DashboardNotify({
     </div>
   );
 
-  return createPortal(notifyEl, document.getElementById("notification"));
+  const notifyModal = document.getElementById("notification");
+
+  if (!notifyModal) return;
+
+  return createPortal(notifyLayout, notifyModal);
 }

@@ -5,11 +5,13 @@ import { useActionState } from "react";
 import { registerFormAction } from "@/src/services/serverActions/formsActions";
 import { useRouter } from "next/navigation";
 import useAuthRedirect from "./useAuthRedirect";
+import { InputError, RegisterFormActionState } from "@/src/types/types";
+import getErrorMessage from "@/src/utils/getErrorMessage";
 
 export default function useRegistration() {
   const router = useRouter();
 
-  const [signInErrors, setSignInErrors] = useState(null);
+  const [signInErrors, setSignInErrors] = useState<null | InputError[]>(null);
 
   const { isSuccess, setIsSuccess } = useAuthRedirect();
 
@@ -17,9 +19,15 @@ export default function useRegistration() {
 
   const handleResetError = () => setSignInErrors(null);
 
+  const initialState: RegisterFormActionState = {
+    success: isSuccess,
+    errors: null,
+    credentials: null,
+  };
+
   const [formState, formAction, isPending] = useActionState(
     registerFormAction,
-    { success: isSuccess, errors: null, credentials: null },
+    initialState,
   );
 
   useEffect(() => {
@@ -33,21 +41,20 @@ export default function useRegistration() {
           redirect: false,
         });
 
-        // console.log(signInResult);
-
         if (!signInResult?.ok) {
-          throw new Error(`SignIn error: ${signInResult?.error}`);
+          throw new Error(`Authentication error: ${signInResult?.error}`);
         }
-
-        // console.log("SignIn success.");
 
         setIsSuccess(true);
       } catch (err) {
-        setSignInErrors([err.message]);
+        setSignInErrors([
+          {
+            inputName: null,
+            errorsList: [getErrorMessage(err)],
+          },
+        ]);
       }
     }
-
-    // console.log(formState);
 
     if (!formState?.success && formState?.errors) {
       setSignInErrors(formState.errors);

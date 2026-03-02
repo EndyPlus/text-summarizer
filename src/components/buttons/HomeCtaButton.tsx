@@ -1,10 +1,12 @@
+import { ReactNode } from "react";
 import { IconClipboard, IconKeyboard } from "../ui/Icons";
 
 type Props = {
   type: string;
   onClick: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 };
+
 export default function HomeCtaButton({ type, children, onClick }: Props) {
   return (
     <button

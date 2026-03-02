@@ -1,9 +1,9 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import { findUser } from "@/src/services/serverActions/prismaActions";
 import bcrypt from "bcryptjs";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -12,11 +12,15 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) {
+          throw new Error("Missing credentials");
+        }
+
         const formattedUsername = credentials?.username.toLowerCase();
 
         const user = await findUser(formattedUsername);
 
-        if (!user) {
+        if (!user || !user.password) {
           return null;
         }
 
@@ -29,7 +33,11 @@ export const authOptions = {
           return null;
         }
 
-        return { id: user.id, username: user.username, name: user.name };
+        return {
+          id: user.id.toString(),
+          username: user.username,
+          name: user.name,
+        };
       },
     }),
   ],

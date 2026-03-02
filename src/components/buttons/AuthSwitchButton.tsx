@@ -2,11 +2,11 @@
 
 import { redirect } from "next/navigation";
 
-export default function AuthSwitchButton({
-  redirectTo,
-}: {
+interface Props {
   redirectTo: string;
-}) {
+}
+
+export default function AuthSwitchButton({ redirectTo }: Props) {
   function handleRedirectTo() {
     redirect(`/auth/${redirectTo}`);
   }

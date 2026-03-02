@@ -1,3 +1,5 @@
+import getRandomNumber from "../utils/getRandomNumber";
+
 const text1 =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, atque iste quae at exercitationem voluptas expedita? Quia cupiditate tenetur et voluptates impedit placeat maiores doloremque ipsum inventore totam nemo accusamus soluta quod nesciunt tempora consequatur, sapiente recusandae consequuntur. Eius, nostrum dolores deleniti nisi sequi animi sapiente nihil architecto debitis porro.";
 const text2 =
@@ -12,10 +14,10 @@ const text5 =
 const getRandomText = () => {
   const textsArr = [text1, text2, text3, text4, text5];
 
-  return textsArr[Math.floor(Math.random() * textsArr.length)];
+  return textsArr[getRandomNumber(0, textsArr.length - 1)];
 };
 
-export default async function asyncApiCall() {
+export default async function asyncApiCall(): Promise<string> {
   return new Promise((resolve) =>
     setTimeout(() => {
       resolve(getRandomText());
