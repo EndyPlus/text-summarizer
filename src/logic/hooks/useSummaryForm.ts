@@ -21,6 +21,7 @@ import {
   MINIMUM_WORDS_LIMIT,
 } from "@/src/utils/vars";
 import getErrorMessage from "@/src/utils/getErrorMessage";
+import { useShallow } from "zustand/shallow";
 
 interface Counts {
   wordsCount: number;
@@ -42,7 +43,14 @@ export default function useSummaryForm({
     originalText,
     setOriginalText,
     setSummarizedText,
-  } = useSummaryStorage();
+  } = useSummaryStorage(
+    useShallow((state) => ({
+      setSummaryLoading: state.setSummaryLoading,
+      originalText: state.originalText,
+      setOriginalText: state.setOriginalText,
+      setSummarizedText: state.setSummarizedText,
+    })),
+  );
 
   const session = useSession();
   const userId = Number(session.data?.user?.id);

@@ -5,9 +5,15 @@ import { ITEMS_PER_PAGE, PAGINATION_ITEMS_COUNT } from "@/src/utils/vars";
 import { usePaginationStorage } from "@/src/store/paginationStore";
 
 import usePostsList from "./usePostsList";
+import { useShallow } from "zustand/shallow";
 
 export default function usePagination() {
-  const { currentPage, setCurrentPage } = usePaginationStorage();
+  const { currentPage, setCurrentPage } = usePaginationStorage(
+    useShallow((state) => ({
+      currentPage: state.currentPage,
+      setCurrentPage: state.setCurrentPage,
+    })),
+  );
 
   const { isLoading, postsData } = usePostsList();
 

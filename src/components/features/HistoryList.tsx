@@ -9,11 +9,17 @@ import HistoryListSkeleton from "../skeletons/HistoryListSkeleton";
 
 import Link from "next/link";
 import { IconCopy } from "../ui/Icons";
+import { useShallow } from "zustand/shallow";
 
 export default function HistoryList() {
   const { isLoading, postsList } = usePostsList();
 
-  const { dashboardNotify, resetDashboardNotify } = useDashboardNotifyStorage();
+  const { dashboardNotify, resetDashboardNotify } = useDashboardNotifyStorage(
+    useShallow((store) => ({
+      dashboardNotify: store.dashboardNotify,
+      resetDashboardNotify: store.resetDashboardNotify,
+    })),
+  );
 
   return (
     <>

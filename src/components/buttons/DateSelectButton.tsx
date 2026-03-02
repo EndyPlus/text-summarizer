@@ -5,11 +5,17 @@ import { useState } from "react";
 import { DATE_OPTIONS } from "@/src/utils/vars";
 import { useDateFilterStorage } from "@/src/store/dateFilterStore";
 import { IconArrowDown, IconCalendar } from "../ui/Icons";
+import { useShallow } from "zustand/shallow";
 
 export default function DateSelectButton() {
   const [contextVisible, setContextVisible] = useState(false);
 
-  const { currentDate, setCurrentDate } = useDateFilterStorage();
+  const { currentDate, setCurrentDate } = useDateFilterStorage(
+    useShallow((state) => ({
+      currentDate: state.currentDate,
+      setCurrentDate: state.setCurrentDate,
+    })),
+  );
 
   return (
     <div className="relative">

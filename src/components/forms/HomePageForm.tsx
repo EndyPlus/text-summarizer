@@ -13,9 +13,15 @@ import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
 } from "@/src/utils/vars";
+import { useShallow } from "zustand/shallow";
 
 export default function HomePageForm() {
-  const { isSummaryLoading, originalText } = useSummaryStorage();
+  const { isSummaryLoading, originalText } = useSummaryStorage(
+    useShallow((state) => ({
+      isSummaryLoading: state.isSummaryLoading,
+      originalText: state.originalText,
+    })),
+  );
 
   const [isActiveForm, setIsActiveForm] = useState(originalText.length > 0);
 

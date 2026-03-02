@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import handleCopyText from "@/src/utils/handleCopyText";
 import { useDashboardNotifyStorage } from "@/src/store/dashboardNotifyStore";
 import { Post } from "@/src/types/types";
+import { useShallow } from "zustand/shallow";
 
 export default function useItemOptions(itemData: Post) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
@@ -16,11 +17,18 @@ export default function useItemOptions(itemData: Post) {
 
   const router = useRouter();
 
-  const { setTexts } = useSummaryStorage();
+  const setTexts = useSummaryStorage((state) => state.setTexts);
 
-  const { setDashboardNotify } = useDashboardNotifyStorage();
+  const setDashboardNotify = useDashboardNotifyStorage(
+    (state) => state.setDashboardNotify,
+  );
 
-  const { setDeletePost, setEditPost } = usePostInteractionStorage();
+  const { setDeletePost, setEditPost } = usePostInteractionStorage(
+    useShallow((state) => ({
+      setDeletePost: state.setDeletePost,
+      setEditPost: state.setEditPost,
+    })),
+  );
 
   const session = useSession();
   const userId = session.data?.user?.id;

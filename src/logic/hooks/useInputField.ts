@@ -9,7 +9,7 @@ export default function useInputField() {
 
   const { wordsCount, charactersCount } = useCharacterCounts(text);
 
-  const { toEditPost } = usePostInteractionStorage();
+  const toEditPost = usePostInteractionStorage((state) => state.toEditPost);
 
   useEffect(() => {
     function initEditText() {

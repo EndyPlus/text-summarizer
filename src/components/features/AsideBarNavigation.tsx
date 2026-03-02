@@ -14,7 +14,7 @@ import { IconClock, IconHouse } from "../ui/Icons";
 export default function AsideBarNavigation() {
   const pathname = usePathname();
 
-  const { resetTexts } = useSummaryStorage();
+  const resetTexts = useSummaryStorage((state) => state.resetTexts);
 
   const resetEditPost = usePostInteractionStorage(
     (state) => state.resetEditPost,
