@@ -9,30 +9,18 @@ export default function AuthError({
 }: AuthErrorNotifyProps) {
   return (
     <AuthNotifyWrapper isSuccess={false} onClose={onClose} heading={heading}>
-      {errors?.map((error) => {
-        if (typeof error !== "string") {
-          return (
-            <Fragment key={error.inputName}>
-              {error.errorsList.map((err) => (
-                <li
-                  key={err}
-                  className="black-accent leading-base text-sm whitespace-pre-line"
-                >
-                  {err}
-                </li>
-              ))}
-            </Fragment>
-          );
-        }
-        return (
-          <li
-            key={error}
-            className="black-accent leading-base text-sm whitespace-pre-line"
-          >
-            {error}
-          </li>
-        );
-      })}
+      {errors?.map((error) => (
+        <Fragment key={error.inputName}>
+          {error.errorsList.map((err) => (
+            <li
+              key={err}
+              className="black-accent leading-base text-sm whitespace-pre-line"
+            >
+              {err}
+            </li>
+          ))}
+        </Fragment>
+      ))}
     </AuthNotifyWrapper>
   );
 }

@@ -2,11 +2,12 @@ import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
 import useAuthRedirect from "./useAuthRedirect";
 import getErrorMessage from "@/src/utils/getErrorMessage";
+import { InputError } from "@/src/types/types";
 
 export default function useLogin() {
-  const [loginError, setLoginError] = useState<null | string>(null);
+  const [loginErrors, setLoginErrors] = useState<null | InputError[]>(null);
 
-  const handleResetError = () => setLoginError(null);
+  const handleResetError = () => setLoginErrors(null);
 
   const { isSuccess, setIsSuccess } = useAuthRedirect();
 
@@ -44,9 +45,13 @@ export default function useLogin() {
 
       setIsSuccess(true);
     } catch (err) {
-      setLoginError(getErrorMessage(err));
+      const loginError = {
+        inputName: null,
+        errorsList: [getErrorMessage(err)],
+      };
+      setLoginErrors([loginError]);
     }
   }
 
-  return { handleSubmitForm, loginError, isSuccess, handleResetError };
+  return { handleSubmitForm, loginErrors, isSuccess, handleResetError };
 }

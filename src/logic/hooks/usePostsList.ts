@@ -15,6 +15,7 @@ import { useShallow } from "zustand/shallow";
 export default function usePostsList() {
   const [postsData, setPostsData] = useState<null | PostsData>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const postsList = postsData?.posts;
 
@@ -37,9 +38,7 @@ export default function usePostsList() {
   const deletePostId = usePostInteractionStorage((state) => state.deletePostId);
 
   useEffect(() => {
-    if (!userId) return;
-
-    // setIsLoading(true);
+    setIsError(false);
 
     async function initPosts() {
       try {
@@ -63,10 +62,13 @@ export default function usePostsList() {
         }
       } catch (err) {
         console.log(err);
+        setIsError(true);
       } finally {
         setIsLoading(false);
       }
     }
+
+    if (!userId) return;
 
     initPosts();
   }, [
@@ -78,5 +80,5 @@ export default function usePostsList() {
     setCurrentPage,
   ]);
 
-  return { postsData, isLoading, postsList };
+  return { isLoading, isError, postsList, postsData };
 }

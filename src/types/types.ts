@@ -74,7 +74,7 @@ export type AuthErrorNotifyProps = Omit<
   ModalProps,
   "isSuccess" | "children"
 > & {
-  errors: null | (string | InputError)[];
+  errors: null | InputError[];
 };
 
 // errors

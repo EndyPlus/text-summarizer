@@ -10,16 +10,16 @@ import { IconEye } from "../ui/Icons";
 export default function LoginForm() {
   const { passwordInputType, toggleShowPassword } = useVisiblePassword();
 
-  const { handleSubmitForm, loginError, isSuccess, handleResetError } =
+  const { handleSubmitForm, loginErrors, isSuccess, handleResetError } =
     useLogin();
 
   return (
     <>
-      {loginError && (
+      {loginErrors && (
         <AuthError
           heading="Login Error"
           onClose={handleResetError}
-          errors={[loginError]}
+          errors={loginErrors}
         />
       )}
 
@@ -27,7 +27,7 @@ export default function LoginForm() {
 
       <form onSubmit={handleSubmitForm} className="flex flex-col gap-4">
         <input
-          className={`${loginError ? "border-red-main" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
+          className={`${loginErrors ? "border-red-main" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
           type="text"
           name="username"
           placeholder="Username"
@@ -35,7 +35,7 @@ export default function LoginForm() {
         />
         <div className="relative">
           <input
-            className={`${loginError ? "border-red-main" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base w-full rounded-xl border py-2.5 pr-9 pl-3 text-sm`}
+            className={`${loginErrors ? "border-red-main" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base w-full rounded-xl border py-2.5 pr-9 pl-3 text-sm`}
             type={passwordInputType}
             name="password"
             placeholder="Password"

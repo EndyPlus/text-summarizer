@@ -10,6 +10,7 @@ import handleCopyText from "@/src/utils/handleCopyText";
 import { useDashboardNotifyStorage } from "@/src/store/dashboardNotifyStore";
 import { Post } from "@/src/types/types";
 import { useShallow } from "zustand/shallow";
+import getErrorMessage from "@/src/utils/getErrorMessage";
 
 export default function useItemOptions(itemData: Post) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
@@ -19,8 +20,11 @@ export default function useItemOptions(itemData: Post) {
 
   const setTexts = useSummaryStorage((state) => state.setTexts);
 
-  const setDashboardNotify = useDashboardNotifyStorage(
-    (state) => state.setDashboardNotify,
+  const { setDashboardNotify, setDashboardError } = useDashboardNotifyStorage(
+    useShallow((state) => ({
+      setDashboardNotify: state.setDashboardNotify,
+      setDashboardError: state.setDashboardError,
+    })),
   );
 
   const { setDeletePost, setEditPost } = usePostInteractionStorage(
@@ -38,16 +42,20 @@ export default function useItemOptions(itemData: Post) {
       if (!userId) throw new Error("Please, Log In to interact with post.");
 
       console.log("delete");
+
       const deletedPost = await deletePost(itemData.id);
+
+      console.log(deletedPost);
 
       if (!deletedPost) throw new Error("Post deletion went wrong.");
 
       setDeletePost(itemData.id);
 
       setDashboardNotify("Successfully deleted!");
-      console.log(deletedPost);
+      setDashboardError(false);
     } catch (err) {
-      console.log(err);
+      setDashboardNotify(getErrorMessage(err));
+      setDashboardError(true);
     }
   }
 

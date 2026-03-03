@@ -1,12 +1,23 @@
 import { createPortal } from "react-dom";
 import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
 import { DashboardNotifyProps } from "@/src/types/types";
+import { useEffect } from "react";
 
 export default function DashboardNotify({
   onClose,
   message,
   isSuccess = true,
 }: DashboardNotifyProps) {
+  useEffect(() => {
+    const notifyTimeout = setTimeout(() => {
+      onClose();
+    }, 2000);
+
+    return () => {
+      clearTimeout(notifyTimeout);
+    };
+  }, [onClose]);
+
   const notifyLayout = (
     <div
       className={`absolute top-9 left-1/2 flex -translate-x-1/2 items-start gap-3 border p-4 ${
