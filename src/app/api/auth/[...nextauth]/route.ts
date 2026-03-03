@@ -18,15 +18,23 @@ export const authOptions: AuthOptions = {
 
         const formattedUsername = credentials?.username.toLowerCase();
 
-        const user = await findUser(formattedUsername);
+        const {
+          success: isUserFound,
+          error: userError,
+          data: userData,
+        } = await findUser(formattedUsername);
 
-        if (!user || !user.password) {
+        if (!isUserFound) {
+          throw new Error(userError);
+        }
+
+        if (!userData || !userData.password) {
           return null;
         }
 
         const isPasswordCorrect = await bcrypt.compare(
           credentials.password,
-          user.password,
+          userData.password,
         );
 
         if (!isPasswordCorrect) {
@@ -34,9 +42,9 @@ export const authOptions: AuthOptions = {
         }
 
         return {
-          id: user.id.toString(),
-          username: user.username,
-          name: user.name,
+          id: userData.id.toString(),
+          username: userData.username,
+          name: userData.name,
         };
       },
     }),

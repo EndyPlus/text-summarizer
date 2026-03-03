@@ -123,23 +123,31 @@ export default function useSummaryForm({
       if (toEditPost) {
         console.log("UPDATE POST");
 
-        const updatePostResult = await updatePost(toEditPost.id, postData);
+        const {
+          success: isUpdateSuccess,
+          error: updateError,
+          data: updatedPost,
+        } = await updatePost(toEditPost.id, postData);
 
-        if (!updatePostResult) {
-          throw new Error("Failed to update post.");
+        if (!isUpdateSuccess) {
+          throw new Error(updateError);
         }
 
-        // console.log(updatePostResult);
+        console.log(updatedPost);
       } else {
         console.log("ADD POST");
 
-        const addPostResult = await addPost(postData);
+        const {
+          success: isNewPostSuccess,
+          error: newPostError,
+          data: newPostData,
+        } = await addPost(postData);
 
-        if (!addPostResult) {
-          throw new Error("Failed to store post in database.");
+        if (!isNewPostSuccess) {
+          throw new Error(newPostError);
         }
 
-        // console.log(addPostResult);
+        console.log(newPostData);
 
         const postsCount = await findPostsCount(userId);
 

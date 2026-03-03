@@ -25,12 +25,22 @@ export interface ItemDataProps {
   itemData: Post;
 }
 
+export type PostData = Pick<Post, "originalText" | "summarizedText"> & {
+  userId: number;
+};
+
 // user data
 
 export interface UserInfoData {
   name: string;
   username: string;
   pfp: string;
+}
+
+export interface UserCreateData {
+  name: string;
+  username: string;
+  password: string;
 }
 
 // register

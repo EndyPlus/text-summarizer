@@ -52,9 +52,9 @@ export async function registerFormAction(
         lastName,
       });
 
-    const user = await findUser(formattedUsername);
+    const { data: existingUser } = await findUser(formattedUsername);
 
-    if (user) {
+    if (existingUser) {
       errorsArray.push({
         inputName: null,
         errorsList: ["User is already existing."],
@@ -62,16 +62,17 @@ export async function registerFormAction(
       throw new Error();
     }
 
-    const newUser = await createUser({
-      name: formattedName,
-      username: formattedUsername,
-      password: hashedPassword,
-    });
+    const { success: isRegisterSuccess, error: isRegisterError } =
+      await createUser({
+        name: formattedName,
+        username: formattedUsername,
+        password: hashedPassword,
+      });
 
-    if (!newUser) {
+    if (!isRegisterSuccess) {
       errorsArray.push({
         inputName: null,
-        errorsList: ["Failed user registration."],
+        errorsList: [isRegisterError || "Failed user registration."],
       });
       throw new Error();
     }
@@ -81,8 +82,7 @@ export async function registerFormAction(
       errors: null,
       credentials: { username, password },
     };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (err) {
+  } catch {
     return {
       success: false,
       errors: errorsArray,
