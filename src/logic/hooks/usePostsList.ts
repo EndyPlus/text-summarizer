@@ -53,7 +53,7 @@ export default function usePostsList() {
           throw new Error(error || "Failed to fetch a posts data.");
         }
 
-        // console.log(fetchedPostsData);
+        // console.log(data);
 
         if (!data.posts.length && currentPage > 1) {
           setCurrentPage(1);

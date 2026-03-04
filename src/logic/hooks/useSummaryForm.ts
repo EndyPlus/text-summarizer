@@ -11,7 +11,7 @@ import {
 
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
 
-import asyncApiCall from "@/src/mock/asyncApiCall";
+import mockAiResponse from "@/src/mock/mockAiResponse";
 
 import { useSummaryStorage } from "@/src/store/summaryStore";
 import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
@@ -103,13 +103,24 @@ export default function useSummaryForm({
 
       setSummarizedText("");
 
-      // const aiResponse = await getAiResponse(userText);
-      const aiResponse = await asyncApiCall();
+      // AI RESPONSE
+      // const {
+      //   success: isResponseSuccess,
+      //   error: aiError,
+      //   data: aiResponse,
+      // } = await getAiResponse(userText);
 
-      // console.log(aiResponse);
+      // MOCK RESPONSE
+      const {
+        success: isResponseSuccess,
+        error: aiError,
+        data: aiResponse,
+      } = await mockAiResponse();
 
-      if (!aiResponse) {
-        throw new Error("AI RESPONSE ERROR.");
+      console.log(aiResponse);
+
+      if (!isResponseSuccess || !aiResponse) {
+        throw new Error(aiError || "Generation error.");
       }
 
       setSummarizedText(aiResponse);
@@ -156,7 +167,8 @@ export default function useSummaryForm({
         }
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
+
       setSubmitError(getErrorMessage(err));
     } finally {
       setSummaryLoading(false);

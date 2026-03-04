@@ -1,5 +1,7 @@
 import { PrismaClient, Prisma } from "@/generated/prisma/client";
+import { mockPosts } from "@/src/mock/mockDBPosts";
 import { PrismaPg } from "@prisma/adapter-pg";
+import bcrypt from "bcryptjs";
 import "dotenv/config";
 
 const adapter = new PrismaPg({
@@ -13,18 +15,10 @@ const prisma = new PrismaClient({
 const userData: Prisma.UserCreateInput[] = [
   {
     username: "admin",
-    password: "admin", // Пам'ятай: у реальному проекті тут має бути хеш (наприклад, від bcrypt)
-    name: "Artem Pliusnin",
+    password: await bcrypt.hash("admin", 10),
+    name: "John Doe",
     posts: {
-      create: [
-        {
-          originalText:
-            "Штучний інтелект — це галузь комп'ютерних наук, яка займається створенням інтелектуальних машин, здатних виконувати завдання, що зазвичай потребують людського інтелекту, таких як візуальне сприйняття, розпізнавання мови та прийняття рішень.",
-          summarizedText:
-            "ШІ створює розумні машини для виконання людських завдань: розпізнавання мови та прийняття рішень.",
-          createdAt: new Date(),
-        },
-      ],
+      create: mockPosts,
     },
   },
 ];

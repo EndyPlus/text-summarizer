@@ -17,10 +17,16 @@ const getRandomText = () => {
   return textsArr[getRandomNumber(0, textsArr.length - 1)];
 };
 
-export default async function asyncApiCall(): Promise<string> {
+const responseObject = {
+  success: true,
+  error: undefined,
+  data: getRandomText(),
+};
+
+export default async function mockAiResponse(): Promise<typeof responseObject> {
   return new Promise((resolve) =>
     setTimeout(() => {
-      resolve(getRandomText());
+      resolve(responseObject);
     }, 1500),
   );
 }
