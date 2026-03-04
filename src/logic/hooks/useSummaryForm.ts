@@ -160,9 +160,10 @@ export default function useSummaryForm({
 
         console.log(newPostData);
 
-        const postsCount = await findPostsCount(userId);
+        const { success: isPostsCountSuccess, data: postsCount } =
+          await findPostsCount(userId);
 
-        if (postsCount) {
+        if (isPostsCountSuccess && typeof postsCount === "number") {
           setStoredPostsCount(postsCount);
         }
       }

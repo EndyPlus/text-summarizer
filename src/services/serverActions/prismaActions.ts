@@ -9,9 +9,11 @@ import getErrorMessage from "@/src/utils/getErrorMessage";
 import { PostData, UserCreateData } from "@/src/types/types";
 
 export async function findUser(username: string) {
-  if (!username) return { success: false, error: "Username is missing." };
-
   try {
+    if (!username) {
+      throw new Error("Username is missing.");
+    }
+
     const user = await prisma.user.findUnique({
       where: {
         username,
@@ -29,13 +31,13 @@ export async function findUser(username: string) {
 }
 
 export async function createUser(data: UserCreateData) {
-  const { name, username, password } = data;
-
-  if (!name || !username || !password) {
-    return { success: false, error: "Missing required register data." };
-  }
-
   try {
+    const { name, username, password } = data;
+
+    if (!name || !username || !password) {
+      throw new Error("Missing required register data.");
+    }
+
     const newUser = await prisma.user.create({
       data: {
         name,
@@ -91,26 +93,32 @@ export async function findPosts(
 }
 
 export async function findPostsCount(userId: number) {
-  const count = await prisma.summarizedText.count({
-    where: {
-      authorId: userId,
-    },
-  });
+  try {
+    if (isNaN(userId)) throw new Error("Invalid user id.");
 
-  return count;
+    const count = await prisma.summarizedText.count({
+      where: {
+        authorId: userId,
+      },
+    });
+
+    if (typeof count !== "number")
+      throw new Error("Failed to fetch posts count.");
+
+    return { success: true, data: count };
+  } catch (err) {
+    return { success: false, error: getErrorMessage(err) };
+  }
 }
 
 export async function addPost(postData: PostData) {
-  const { originalText, summarizedText, userId } = postData;
-
-  if (!originalText || !summarizedText || !userId) {
-    return {
-      success: false,
-      error: "Required data for post creation is missing.",
-    };
-  }
-
   try {
+    const { originalText, summarizedText, userId } = postData;
+
+    if (!originalText || !summarizedText || !userId) {
+      throw new Error("Required data for post creation is missing.");
+    }
+
     const newPost = await prisma.summarizedText.create({
       data: {
         originalText,
@@ -130,14 +138,11 @@ export async function addPost(postData: PostData) {
 }
 
 export async function deletePost(postId: number) {
-  if (typeof postId !== "number" || isNaN(postId)) {
-    return {
-      success: false,
-      error: "Post id is missing or it has a wrong format.",
-    };
-  }
-
   try {
+    if (typeof postId !== "number" || isNaN(postId)) {
+      throw new Error("Post id is missing or it has a wrong format.");
+    }
+
     const deletePost = await prisma.summarizedText.delete({
       where: {
         id: postId,
@@ -155,17 +160,17 @@ export async function deletePost(postId: number) {
 }
 
 export async function updatePost(postId: number, postData: PostData) {
-  if (isNaN(postId)) {
-    return { success: false, error: "Wrong post id format." };
-  }
-
-  const { originalText, summarizedText, userId } = postData;
-
-  if (!originalText || !summarizedText || !userId) {
-    return { success: false, error: "Missing required data for post update." };
-  }
-
   try {
+    if (isNaN(postId)) {
+      throw new Error("Wrong post id format.");
+    }
+
+    const { originalText, summarizedText, userId } = postData;
+
+    if (!originalText || !summarizedText || !userId) {
+      throw new Error("Missing required data for post update.");
+    }
+
     const updatedPost = await prisma.summarizedText.update({
       where: {
         id: postId,
