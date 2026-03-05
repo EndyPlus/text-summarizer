@@ -20,10 +20,12 @@ export default function usePostsCount() {
   useEffect(() => {
     async function initPostsCount() {
       try {
-        const { success, error, data: count } = await findPostsCount(userId);
-        if (!success) throw new Error(error);
+        const postCountResponse = await findPostsCount(userId);
+        if (!postCountResponse.success) {
+          throw new Error(postCountResponse.error);
+        }
 
-        setPostsCount(count!);
+        setPostsCount(postCountResponse.data);
       } catch {
         return;
       }

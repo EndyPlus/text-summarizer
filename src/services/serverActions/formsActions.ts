@@ -52,9 +52,9 @@ export async function registerFormAction(
         lastName,
       });
 
-    const { data: existingUser } = await findUser(formattedUsername);
+    const findUserResponse = await findUser(formattedUsername);
 
-    if (existingUser) {
+    if (findUserResponse.success) {
       errorsArray.push({
         inputName: null,
         errorsList: ["User is already existing."],
@@ -62,17 +62,16 @@ export async function registerFormAction(
       throw new Error();
     }
 
-    const { success: isRegisterSuccess, error: isRegisterError } =
-      await createUser({
-        name: formattedName,
-        username: formattedUsername,
-        password: hashedPassword,
-      });
+    const registerResult = await createUser({
+      name: formattedName,
+      username: formattedUsername,
+      password: hashedPassword,
+    });
 
-    if (!isRegisterSuccess) {
+    if (!registerResult.success) {
       errorsArray.push({
         inputName: null,
-        errorsList: [isRegisterError || "Failed user registration."],
+        errorsList: [registerResult.error],
       });
       throw new Error();
     }

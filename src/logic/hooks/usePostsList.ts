@@ -42,23 +42,23 @@ export default function usePostsList() {
 
     async function initPosts() {
       try {
-        const { success, error, data } = await findPosts(
+        const postsResponse = await findPosts(
           userId,
           currentPage,
           currentSearchTerm,
           currentDate,
         );
 
-        if (!success || !data) {
-          throw new Error(error || "Failed to fetch a posts data.");
+        if (!postsResponse.success) {
+          throw new Error(postsResponse.error);
         }
 
-        // console.log(data);
+        // console.log(postsResponse.data);
 
-        if (!data.posts.length && currentPage > 1) {
+        if (!postsResponse.data.posts.length && currentPage > 1) {
           setCurrentPage(1);
         } else {
-          setPostsData(data);
+          setPostsData(postsResponse.data);
         }
       } catch (err) {
         console.log(err);

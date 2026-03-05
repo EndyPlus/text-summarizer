@@ -6,9 +6,10 @@ import prisma from "../prismaClient/prisma";
 
 import getDateFilter from "@/src/utils/getDateFilter";
 import getErrorMessage from "@/src/utils/getErrorMessage";
-import { PostData, UserCreateData } from "@/src/types/types";
+import { ActionData, PostData, UserCreateData } from "@/src/types/types";
+import { SummarizedText, User } from "@/generated/prisma/client";
 
-export async function findUser(username: string) {
+export async function findUser(username: string): Promise<ActionData<User>> {
   try {
     if (!username) {
       throw new Error("Username is missing.");
@@ -30,7 +31,9 @@ export async function findUser(username: string) {
   }
 }
 
-export async function createUser(data: UserCreateData) {
+export async function createUser(
+  data: UserCreateData,
+): Promise<ActionData<User>> {
   try {
     const { name, username, password } = data;
 
@@ -59,7 +62,12 @@ export async function findPosts(
   currentPage: number = 1,
   searchTerm: string = "",
   timeOption = "all",
-) {
+): Promise<
+  ActionData<{
+    posts: SummarizedText[];
+    count: number;
+  }>
+> {
   try {
     const posts = await prisma.summarizedText.findMany({
       where: {
@@ -92,7 +100,9 @@ export async function findPosts(
   }
 }
 
-export async function findPostsCount(userId: number) {
+export async function findPostsCount(
+  userId: number,
+): Promise<ActionData<number>> {
   try {
     if (isNaN(userId)) throw new Error("Invalid user id.");
 
@@ -111,7 +121,9 @@ export async function findPostsCount(userId: number) {
   }
 }
 
-export async function addPost(postData: PostData) {
+export async function addPost(
+  postData: PostData,
+): Promise<ActionData<SummarizedText>> {
   try {
     const { originalText, summarizedText, userId } = postData;
 
@@ -137,7 +149,9 @@ export async function addPost(postData: PostData) {
   }
 }
 
-export async function deletePost(postId: number) {
+export async function deletePost(
+  postId: number,
+): Promise<ActionData<SummarizedText>> {
   try {
     if (typeof postId !== "number" || isNaN(postId)) {
       throw new Error("Post id is missing or it has a wrong format.");
@@ -159,7 +173,10 @@ export async function deletePost(postId: number) {
   }
 }
 
-export async function updatePost(postId: number, postData: PostData) {
+export async function updatePost(
+  postId: number,
+  postData: PostData,
+): Promise<ActionData<SummarizedText>> {
   try {
     if (isNaN(postId)) {
       throw new Error("Wrong post id format.");

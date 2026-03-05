@@ -43,17 +43,13 @@ export default function useItemOptions(itemData: Post) {
 
       console.log("delete");
 
-      const {
-        success: isDeletingSuccess,
-        error: deletedPostError,
-        data: deletedPost,
-      } = await deletePost(itemData.id);
+      const deletePostResponse = await deletePost(itemData.id);
 
-      if (!isDeletingSuccess) {
-        throw new Error(deletedPostError);
+      if (!deletePostResponse.success) {
+        throw new Error(deletePostResponse.error);
       }
 
-      console.log(deletedPost);
+      console.log(deletePostResponse.data);
 
       setDeletePost(itemData.id);
 

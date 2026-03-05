@@ -29,6 +29,18 @@ export type PostData = Pick<Post, "originalText" | "summarizedText"> & {
   userId: number;
 };
 
+// action return type
+
+export type ActionData<T> =
+  | {
+      success: true;
+      data: T;
+    }
+  | {
+      success: false;
+      error: string;
+    };
+
 // user data
 
 export interface UserInfoData {

@@ -134,37 +134,28 @@ export default function useSummaryForm({
       if (toEditPost) {
         console.log("UPDATE POST");
 
-        const {
-          success: isUpdateSuccess,
-          error: updateError,
-          data: updatedPost,
-        } = await updatePost(toEditPost.id, postData);
+        const updatePostResponse = await updatePost(toEditPost.id, postData);
 
-        if (!isUpdateSuccess) {
-          throw new Error(updateError);
+        if (!updatePostResponse.success) {
+          throw new Error(updatePostResponse.error);
         }
 
-        console.log(updatedPost);
+        console.log(updatePostResponse.data);
       } else {
         console.log("ADD POST");
 
-        const {
-          success: isNewPostSuccess,
-          error: newPostError,
-          data: newPostData,
-        } = await addPost(postData);
+        const addPostResponse = await addPost(postData);
 
-        if (!isNewPostSuccess) {
-          throw new Error(newPostError);
+        if (!addPostResponse.success) {
+          throw new Error(addPostResponse.error);
         }
 
-        console.log(newPostData);
+        console.log(addPostResponse.data);
 
-        const { success: isPostsCountSuccess, data: postsCount } =
-          await findPostsCount(userId);
+        const postCountResponse = await findPostsCount(userId);
 
-        if (isPostsCountSuccess && typeof postsCount === "number") {
-          setStoredPostsCount(postsCount);
+        if (postCountResponse.success) {
+          setStoredPostsCount(postCountResponse.data);
         }
       }
     } catch (err) {

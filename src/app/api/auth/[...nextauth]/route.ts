@@ -18,15 +18,13 @@ export const authOptions: AuthOptions = {
 
         const formattedUsername = credentials?.username.toLowerCase();
 
-        const {
-          success: isUserFound,
-          error: userError,
-          data: userData,
-        } = await findUser(formattedUsername);
+        const findUserResponse = await findUser(formattedUsername);
 
-        if (!isUserFound) {
-          throw new Error(userError);
+        if (!findUserResponse.success) {
+          throw new Error(findUserResponse.error);
         }
+
+        const userData = findUserResponse.data;
 
         if (!userData || !userData.password) {
           return null;
