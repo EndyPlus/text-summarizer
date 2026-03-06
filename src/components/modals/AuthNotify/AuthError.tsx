@@ -2,6 +2,7 @@ import { Fragment } from "react/jsx-runtime";
 import AuthNotifyWrapper from "./AuthNotifyWrapper";
 import { AuthErrorNotifyProps } from "@/src/types/types";
 import { useEffect } from "react";
+import { AUTH_ERROR_NOTIFY_TIME } from "@/src/utils/vars";
 
 export default function AuthError({
   onClose,
@@ -11,7 +12,7 @@ export default function AuthError({
   useEffect(() => {
     const errorNotifyTimeout = setTimeout(() => {
       onClose();
-    }, 5000);
+    }, AUTH_ERROR_NOTIFY_TIME);
 
     return () => clearInterval(errorNotifyTimeout);
   }, [onClose]);

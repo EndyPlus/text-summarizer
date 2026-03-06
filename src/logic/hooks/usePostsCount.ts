@@ -31,6 +31,8 @@ export default function usePostsCount() {
       }
     }
 
+    if (isNaN(userId)) return;
+
     initPostsCount();
   }, [userId, storedPostsCount, deletePostId]);
 

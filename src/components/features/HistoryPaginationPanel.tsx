@@ -29,53 +29,66 @@ export default function HistoryPaginationPanel() {
     <div className="mt-4.5 flex items-center justify-between">
       {isLoading && <PaginationPanelSkeleton />}
 
-      {!isLoading && pagesIterate.length === 0 && <div className="h-10"></div>}
-
-      {!isLoading && pagesIterate.length > 0 && (
+      {!isLoading && (
         <>
-          <p className="leading-base tracking-base text-black-accent text-sm">
-            {/* Show 1 to 5 out of 15 entries */}
-            {infoString}
-          </p>
+          {pagesIterate.length === 0 && <div className="h-10"></div>}
 
-          {isPaginationVisible && (
-            <ul className="flex">
-              {isDoubleArrowsVisible && (
-                <li>
-                  <button onClick={handleToBegin} className="pagination-btn">
-                    <IconDoubleArrowLeft />
-                  </button>
-                </li>
-              )}
-              <li>
-                <button onClick={handleDecrement} className="pagination-btn">
-                  <IconArrowLeft />
-                </button>
-              </li>
+          {pagesIterate.length > 0 && (
+            <>
+              <p className="leading-base tracking-base text-black-accent text-sm">
+                {/* Show 1 to 5 out of 15 entries */}
+                {infoString}
+              </p>
 
-              {pagesIterate.map((page) => (
-                <li key={page}>
-                  <button
-                    onClick={() => handleSelectPage(page)}
-                    className={`pagination-btn pagination-btn-number ${currentPage === page ? "bg-[#0a0f290a]" : ""}`}
-                  >
-                    {page}
-                  </button>
-                </li>
-              ))}
-              <li>
-                <button onClick={handleIncrement} className="pagination-btn">
-                  <IconArrowRight />
-                </button>
-              </li>
-              {isDoubleArrowsVisible && (
-                <li>
-                  <button onClick={handleToEnd} className="pagination-btn">
-                    <IconDoubleArrowRight />
-                  </button>
-                </li>
+              {isPaginationVisible && (
+                <ul className="flex">
+                  {isDoubleArrowsVisible && (
+                    <li>
+                      <button
+                        onClick={handleToBegin}
+                        className="pagination-btn"
+                      >
+                        <IconDoubleArrowLeft />
+                      </button>
+                    </li>
+                  )}
+                  <li>
+                    <button
+                      onClick={handleDecrement}
+                      className="pagination-btn"
+                    >
+                      <IconArrowLeft />
+                    </button>
+                  </li>
+
+                  {pagesIterate.map((page) => (
+                    <li key={page}>
+                      <button
+                        onClick={() => handleSelectPage(page)}
+                        className={`pagination-btn pagination-btn-number ${currentPage === page ? "bg-[#0a0f290a]" : ""}`}
+                      >
+                        {page}
+                      </button>
+                    </li>
+                  ))}
+                  <li>
+                    <button
+                      onClick={handleIncrement}
+                      className="pagination-btn"
+                    >
+                      <IconArrowRight />
+                    </button>
+                  </li>
+                  {isDoubleArrowsVisible && (
+                    <li>
+                      <button onClick={handleToEnd} className="pagination-btn">
+                        <IconDoubleArrowRight />
+                      </button>
+                    </li>
+                  )}
+                </ul>
               )}
-            </ul>
+            </>
           )}
         </>
       )}

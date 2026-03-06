@@ -60,15 +60,14 @@ export default function usePostsList() {
         } else {
           setPostsData(postsResponse.data);
         }
-      } catch (err) {
-        console.log(err);
+      } catch {
         setIsError(true);
       } finally {
         setIsLoading(false);
       }
     }
 
-    if (!userId) return;
+    if (isNaN(userId)) return;
 
     initPosts();
   }, [

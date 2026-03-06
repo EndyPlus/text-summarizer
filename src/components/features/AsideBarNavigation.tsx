@@ -4,26 +4,11 @@ import Link from "next/link";
 
 import PostsCountInfo from "../ui/PostsCountInfo";
 
-import { usePathname } from "next/navigation";
-
-import { useSummaryStorage } from "@/src/store/summaryStore";
-import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
-
 import { IconClock, IconHouse } from "../ui/Icons";
+import useAsideBarNavigation from "@/src/logic/hooks/useAsideBarNavigation";
 
 export default function AsideBarNavigation() {
-  const pathname = usePathname();
-
-  const resetTexts = useSummaryStorage((state) => state.resetTexts);
-
-  const resetEditPost = usePostInteractionStorage(
-    (state) => state.resetEditPost,
-  );
-
-  function handleResetStates() {
-    resetTexts();
-    resetEditPost();
-  }
+  const { pathname, handleResetStates } = useAsideBarNavigation();
 
   return (
     <nav>

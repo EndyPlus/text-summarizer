@@ -1,4 +1,4 @@
-import SummarizedContainer from "../features/SummarizedContainer";
+import SummarizedContainer from "./SummarizedContainer";
 import SummaryPanel from "../features/SummaryPanel";
 
 export default function SummarySection() {

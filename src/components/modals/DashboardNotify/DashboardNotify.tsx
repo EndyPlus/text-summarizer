@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
 import { DashboardNotifyProps } from "@/src/types/types";
 import { useEffect } from "react";
+import { DASHBOARD_NOTIFY_TIME } from "@/src/utils/vars";
 
 export default function DashboardNotify({
   onClose,
@@ -11,7 +12,7 @@ export default function DashboardNotify({
   useEffect(() => {
     const notifyTimeout = setTimeout(() => {
       onClose();
-    }, 2000);
+    }, DASHBOARD_NOTIFY_TIME);
 
     return () => {
       clearTimeout(notifyTimeout);

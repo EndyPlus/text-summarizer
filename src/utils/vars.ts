@@ -4,6 +4,9 @@ export const PAGINATION_ITEMS_COUNT = 5;
 export const MINIMUM_WORDS_LIMIT = 150;
 export const MAXIMUM_CHARACTERS_LIMIT = 60000;
 
+export const AUTH_ERROR_NOTIFY_TIME = 5000;
+export const DASHBOARD_NOTIFY_TIME = 2000;
+
 export const DATE_OPTIONS = {
   today: "Today",
   yesterday: "Yesterday",

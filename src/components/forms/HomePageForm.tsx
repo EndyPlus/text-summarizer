@@ -2,54 +2,29 @@
 
 import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
 
-import { ChangeEvent, useEffect, useState } from "react";
-
-import { useSummaryStorage } from "@/src/store/summaryStore";
-
-import useInputField from "@/src/logic/hooks/useInputField";
-import useSummaryForm from "@/src/logic/hooks/useSummaryForm";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
 } from "@/src/utils/vars";
-import { useShallow } from "zustand/shallow";
+import useHomePage from "@/src/logic/hooks/useHomePage";
 
 export default function HomePageForm() {
-  const { isSummaryLoading, originalText } = useSummaryStorage(
-    useShallow((state) => ({
-      isSummaryLoading: state.isSummaryLoading,
-      originalText: state.originalText,
-    })),
-  );
-
-  const [isActiveForm, setIsActiveForm] = useState(originalText.length > 0);
-
   const {
-    inputRef,
-    charactersCount,
+    isSummaryLoading,
+    isActiveForm,
+    setIsActiveForm,
     wordsCount,
+    charactersCount,
+    originalText,
+    inputRef,
     handleInputText,
     handlePasteText,
-    handleResetValues,
-    handleFocus,
-  } = useInputField();
-
-  useEffect(() => {
-    if (!isActiveForm || originalText.length > 0) return;
-
-    handleFocus();
-  }, [isActiveForm, handleFocus, originalText]);
-
-  const { handleHomePageFormSubmit, submitError, handleResetError } =
-    useSummaryForm({ wordsCount, charactersCount });
-
-  function handleUnfocus(e: ChangeEvent<HTMLTextAreaElement>) {
-    if (e.target.value.trim().length !== 0) return;
-
-    setIsActiveForm(false);
-    handleResetValues();
-  }
+    handleHomePageFormSubmit,
+    submitError,
+    handleResetError,
+    handleUnfocus,
+  } = useHomePage();
 
   return (
     <>

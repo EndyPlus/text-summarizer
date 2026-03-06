@@ -2,7 +2,7 @@
 
 import { useSummaryStorage } from "@/src/store/summaryStore";
 import SummarizedTextSkeleton from "../skeletons/SummarizedTextSkeleton";
-import { IconDocument } from "../ui/Icons";
+import { IconDocument } from "./Icons";
 import { useShallow } from "zustand/shallow";
 
 export default function SummarizedContainer() {
