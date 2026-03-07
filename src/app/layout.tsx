@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsLayout) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} max-h-dvh antialiased`}>
         <AuthProvider>
           <div id="modal"></div>
           <div id="notification"></div>

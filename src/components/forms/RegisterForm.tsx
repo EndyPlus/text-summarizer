@@ -32,8 +32,11 @@ export default function RegisterForm() {
 
       {isSuccess && <AuthSuccess heading={"Registration Successful"} />}
 
-      <form action={formAction} className="flex flex-col gap-4">
-        <div className="flex gap-x-4">
+      <form
+        action={formAction}
+        className="flex w-[70vw] flex-col gap-3.5 sm:w-auto sm:gap-4"
+      >
+        <div className="flex flex-col sm:flex-row sm:gap-x-4">
           <input
             className={`${signInInputErrors?.includes("firstName") ? "border-red-500" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
             name="firstName"

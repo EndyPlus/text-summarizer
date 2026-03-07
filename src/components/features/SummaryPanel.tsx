@@ -23,8 +23,8 @@ export default function SummaryPanel() {
         />
       )}
 
-      <div className="mt-5 flex items-center justify-between">
-        <ul className="flex gap-2.75">
+      <div className="xs:mt-5 xs:flex-row mt-2.5 flex flex-col items-center justify-between gap-y-2">
+        <ul className="xs:justify-stretch xs:w-auto flex w-full justify-around gap-2.75">
           <li className="leading-large text-gray-base flex gap-1.5 text-sm">
             <p>Words</p>
             <span className="font-medium">{wordsCount}</span>

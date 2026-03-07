@@ -2,10 +2,11 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-import AsideBar from "@/src/components/ui/AsideBar";
 import AuthGuard from "@/src/components/features/AuthGuard";
 
 import { PropsLayout } from "@/src/types/types";
+import AsideBarDesktop from "@/src/components/ui/AsideBarDesktop";
+import AsideBarTablet from "@/src/components/features/AsideBarTablet";
 
 export default async function DashboardLayout({ children }: PropsLayout) {
   const session = await getServerSession(authOptions);
@@ -16,11 +17,13 @@ export default async function DashboardLayout({ children }: PropsLayout) {
 
   // mx-60 my-10
   return (
-    <div className="bg-white-secondary flex h-full items-center justify-center">
+    <div className="bg-white-secondary flex h-full">
       <AuthGuard />
       {/* Dashboard Container */}
-      <div className="border-accent-light flex h-[90dvh] w-[80vw] overflow-hidden rounded-2xl border bg-white">
-        <AsideBar />
+      <div className="border-accent-light xmd:flex-row xmd:h-[90dvh] m-auto mt-5 flex w-[95vw] flex-col overflow-hidden rounded-2xl border bg-white lg:w-[90vw] xl:w-[80vw]">
+        <AsideBarDesktop />
+        <AsideBarTablet />
+
         {children}
       </div>
     </div>

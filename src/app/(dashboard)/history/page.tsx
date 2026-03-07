@@ -5,7 +5,7 @@ import HistoryPaginationPanel from "@/src/components/features/HistoryPaginationP
 
 export default function HistoryPage() {
   return (
-    <div className="flex w-full flex-col pt-10.25 pr-10.5 pb-11.75 pl-14.5">
+    <div className="page-container">
       <DashboardHeading
         heading="History"
         text="View previously summarized texts"
@@ -13,9 +13,11 @@ export default function HistoryPage() {
 
       <HistorySearchForm />
 
-      <HistoryList />
+      <div className="flex flex-col-reverse overflow-y-auto sm:flex-col">
+        <HistoryList />
 
-      <HistoryPaginationPanel />
+        <HistoryPaginationPanel />
+      </div>
     </div>
   );
 }

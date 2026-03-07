@@ -10,16 +10,18 @@ export default function HistoryListSkeleton() {
         >
           <div className="flex grow flex-col">
             <SkeletonElement className="mb-1 h-4 w-[95%] rounded-full"></SkeletonElement>
+            <SkeletonElement className="mb-1 h-4 w-[97%] rounded-full sm:hidden"></SkeletonElement>
+            <SkeletonElement className="mb-1 h-4 w-[93%] rounded-full sm:hidden"></SkeletonElement>
             <SkeletonElement className="h-4 w-[95%] rounded-full"></SkeletonElement>
 
-            <ul className="mt-4 flex gap-2">
+            <ul className="mt-4 flex flex-col items-start gap-2 sm:flex-row">
               <SkeletonElement className="h-8 w-40 rounded-lg"></SkeletonElement>
               <SkeletonElement className="h-8 w-20 rounded-lg"></SkeletonElement>
               <SkeletonElement className="h-8 w-30 rounded-lg"></SkeletonElement>
             </ul>
           </div>
 
-          <SkeletonElement className="rounded-large h-8 w-8"></SkeletonElement>
+          <SkeletonElement className="xs:rounded-large xs:h-8 xs:w-8 h-6 w-6 rounded-lg"></SkeletonElement>
         </li>
       ))}
     </>

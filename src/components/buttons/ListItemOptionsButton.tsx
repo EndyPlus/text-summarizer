@@ -29,7 +29,7 @@ export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
       <div className="relative">
         <button
           onClick={handleSwitchContext}
-          className="border-border shadow-input rounded-large flex h-8 w-8 cursor-pointer items-center justify-center border bg-white p-2"
+          className="border-border shadow-input xs:rounded-large xs:h-8 xs:w-8 flex h-6 w-6 cursor-pointer items-center justify-center rounded-lg border bg-white p-2"
         >
           <IconDots size={16} className="shrink-0" />
         </button>

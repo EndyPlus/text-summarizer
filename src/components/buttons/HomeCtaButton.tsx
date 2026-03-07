@@ -12,7 +12,7 @@ export default function HomeCtaButton({ type, children, onClick }: Props) {
     <button
       type="button"
       onClick={onClick}
-      className="border-border rounded-large flex cursor-pointer flex-col items-center justify-center border px-7.5 py-4.5"
+      className="border-border rounded-large xs:px-7.5 xs:py-4.5 flex cursor-pointer flex-col items-center justify-center border px-4 py-2.5"
     >
       {type === "handwrite" ? (
         <IconKeyboard size={24} />

@@ -5,7 +5,7 @@ type Props = {
 
 export default function DashboardHeading({ heading, text }: Props) {
   return (
-    <div className="mb-5">
+    <div className="xmd:text-start xs:mb-5 mb-2.5 text-center">
       <h3 className="text-heading leading-base tracking-base text-black-base mb-1 font-semibold">
         {heading}
       </h3>

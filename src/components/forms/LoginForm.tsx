@@ -25,7 +25,10 @@ export default function LoginForm() {
 
       {isSuccess && <AuthSuccess heading={"Login Successful"} />}
 
-      <form onSubmit={handleSubmitForm} className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmitForm}
+        className="flex flex-col gap-3.5 sm:gap-4"
+      >
         <input
           className={`${loginErrors ? "border-red-main" : "border-border"} leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
           type="text"

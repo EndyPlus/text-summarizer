@@ -11,10 +11,10 @@ export default function HistorySearchForm() {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="mb-5 flex items-center justify-between"
+      className="xs:flex-row xs:items-center mb-5 flex flex-col items-start justify-between gap-y-2.5"
     >
       <DateSelectButton />
-      <div className="relative w-3/7">
+      <div className="xs:w-3/7 relative w-2/3">
         <IconSearch className="absolute top-1/2 translate-x-1/2 -translate-y-1/2" />
         <input
           className="border-border leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-large w-full border py-1.5 pr-2 pl-8.5 text-sm"

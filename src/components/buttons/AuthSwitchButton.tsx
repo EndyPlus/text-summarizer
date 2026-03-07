@@ -19,7 +19,7 @@ export default function AuthSwitchButton({ redirectTo }: Props) {
   return (
     <button
       onClick={handleRedirectTo}
-      className="tracking-base text-black-base mt-3.5 cursor-pointer leading-9 font-light"
+      className="tracking-base text-black-base mt-2.5 cursor-pointer text-sm leading-9 font-light sm:mt-3.5 sm:text-base"
     >
       {text}
     </button>

@@ -12,7 +12,7 @@ export default function AsideBarNavigation() {
 
   return (
     <nav>
-      <ul className="mx-2.5 flex flex-col gap-2 text-sm text-white">
+      <ul className="mx-2.5 flex h-full flex-col gap-2 text-sm text-white">
         <li>
           <Link
             href="/home"
