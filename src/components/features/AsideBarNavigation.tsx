@@ -7,13 +7,17 @@ import PostsCountInfo from "../ui/PostsCountInfo";
 import { IconClock, IconHouse } from "../ui/Icons";
 import useAsideBarNavigation from "@/src/logic/hooks/useAsideBarNavigation";
 
-export default function AsideBarNavigation() {
+interface Props {
+  onClick: () => void;
+}
+
+export default function AsideBarNavigation({ onClick = () => {} }: Props) {
   const { pathname, handleResetStates } = useAsideBarNavigation();
 
   return (
     <nav>
       <ul className="mx-2.5 flex h-full flex-col gap-2 text-sm text-white">
-        <li>
+        <li onClick={onClick}>
           <Link
             href="/home"
             className={`${pathname === "/home" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
@@ -24,7 +28,12 @@ export default function AsideBarNavigation() {
             </p>
           </Link>
         </li>
-        <li onClick={handleResetStates}>
+        <li
+          onClick={() => {
+            handleResetStates();
+            onClick();
+          }}
+        >
           <Link
             href="/history"
             className={`${pathname === "/history" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}

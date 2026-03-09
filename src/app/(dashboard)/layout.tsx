@@ -15,12 +15,11 @@ export default async function DashboardLayout({ children }: PropsLayout) {
     redirect("/auth/login");
   }
 
-  // mx-60 my-10
   return (
     <div className="bg-white-secondary flex h-full">
       <AuthGuard />
       {/* Dashboard Container */}
-      <div className="border-accent-light xmd:flex-row xmd:h-[90dvh] m-auto mt-5 flex w-[95vw] flex-col overflow-hidden rounded-2xl border bg-white lg:w-[90vw] xl:w-[80vw]">
+      <div className="border-accent-light xmd:flex-row xmd:h-[90dvh] mx-auto my-5 flex w-[95vw] flex-col overflow-hidden rounded-2xl border bg-white lg:w-[90vw] xl:w-[80vw]">
         <AsideBarDesktop />
         <AsideBarTablet />
 

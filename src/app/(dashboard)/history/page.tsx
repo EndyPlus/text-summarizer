@@ -13,7 +13,7 @@ export default function HistoryPage() {
 
       <HistorySearchForm />
 
-      <div className="flex flex-col-reverse overflow-y-auto sm:flex-col">
+      <div className="flex h-full flex-col-reverse overflow-y-auto sm:flex-col">
         <HistoryList />
 
         <HistoryPaginationPanel />

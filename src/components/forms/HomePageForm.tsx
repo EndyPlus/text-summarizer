@@ -24,6 +24,7 @@ export default function HomePageForm() {
     submitError,
     handleResetError,
     handleUnfocus,
+    isTouchScreen,
   } = useHomePage();
 
   return (
@@ -41,7 +42,7 @@ export default function HomePageForm() {
         onSubmit={handleHomePageFormSubmit}
       >
         <div className="mx-px mb-3.75 flex h-36 items-center justify-center bg-white">
-          {!isActiveForm && (
+          {!isActiveForm && !isTouchScreen && (
             <div className="flex gap-2.5">
               <HomeCtaButton
                 type="handwrite"
@@ -62,15 +63,16 @@ export default function HomePageForm() {
               </HomeCtaButton>
             </div>
           )}
-          <textarea
-            ref={inputRef}
-            onInput={handleInputText}
-            onBlur={handleUnfocus}
-            defaultValue={originalText}
-            name="formTextarea"
-            style={{ display: isActiveForm ? "inline-block" : "none" }}
-            className="xs:px-5 xs:py-2.5 h-full w-full resize-none px-2.5 py-2 text-sm leading-[150%] text-[#131615] outline-none"
-          ></textarea>
+          {(isActiveForm || isTouchScreen) && (
+            <textarea
+              ref={inputRef}
+              onInput={handleInputText}
+              onBlur={handleUnfocus}
+              defaultValue={originalText}
+              name="formTextarea"
+              className="xs:px-5 xs:py-2.5 inline-block h-full w-full resize-none px-2.5 py-2 text-sm leading-[150%] text-[#131615] outline-none"
+            ></textarea>
+          )}
         </div>
 
         <div className="xs:flex-row xs:items-center mx-5 flex flex-col justify-between gap-y-2">

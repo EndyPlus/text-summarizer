@@ -27,11 +27,25 @@ export default function useHomePage() {
 
   const [isActiveForm, setIsActiveForm] = useState(originalText.length > 0);
 
+  const [isTouchScreen, setIsTouchScreen] = useState(true);
+
   useEffect(() => {
     if (!isActiveForm || originalText.length > 0) return;
 
     handleFocus();
   }, [isActiveForm, handleFocus, originalText]);
+
+  useEffect(() => {
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+    function initDesktop() {
+      setIsTouchScreen(false);
+    }
+
+    if (!isTouch) {
+      initDesktop();
+    }
+  }, []);
 
   const { handleHomePageFormSubmit, submitError, handleResetError } =
     useSummaryForm({ wordsCount, charactersCount });
@@ -57,5 +71,6 @@ export default function useHomePage() {
     submitError,
     handleResetError,
     handleUnfocus,
+    isTouchScreen,
   };
 }

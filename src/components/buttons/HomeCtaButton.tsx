@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { IconClipboard, IconKeyboard } from "../ui/Icons";
 
 type Props = {
-  type: string;
+  type: "handwrite" | "paste";
   onClick: () => void;
   children: ReactNode;
 };

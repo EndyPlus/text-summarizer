@@ -8,7 +8,7 @@ export default function UserInfo() {
   const { userData, isLoading } = useUserInfo();
 
   return (
-    <div className="mb-4 flex items-center">
+    <div className="xmd:mb-4 flex items-center">
       {isLoading && <UserInfoSkeleton />}
       {!isLoading && (
         <>

@@ -34,7 +34,7 @@ export default function DateSelectButton() {
       </button>
 
       {contextVisible && (
-        <ul className="shadow-filter absolute top-4/3 w-max rounded-lg border-[0.75] border-[#dbdbdb] bg-white">
+        <ul className="shadow-filter absolute top-4/3 z-888 w-max rounded-lg border-[0.75] border-[#dbdbdb] bg-white">
           {Object.values(DATE_OPTIONS).map((btn) => {
             return (
               <li key={btn}>

@@ -34,9 +34,12 @@ export default function SummaryPanel() {
             <span className="font-medium">{charactersCount}</span>
           </li>
         </ul>
-        <button className="leading-base tracking-base rounded-large border-white-tertiary text-black-tertiary flex cursor-pointer gap-1.5 border bg-white px-2.5 py-1.5 text-sm font-medium">
+        <button
+          onClick={handleCopySummary}
+          className="leading-base tracking-base rounded-large border-white-tertiary text-black-tertiary flex cursor-pointer gap-1.5 border bg-white px-2.5 py-1.5 text-sm font-medium"
+        >
           <IconCopy size={16} />
-          <p onClick={handleCopySummary}>Copy to Clipboard</p>
+          <p>Copy to Clipboard</p>
         </button>
       </div>
     </>

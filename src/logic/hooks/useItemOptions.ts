@@ -83,6 +83,8 @@ export default function useItemOptions(itemData: Post) {
   async function handleCopyPost() {
     const copyRes = await handleCopyText(itemData.summarizedText);
 
+    if (!copyRes.success) throw new Error(copyRes.error);
+
     if (copyRes.success) {
       setIsVisibleContext(false);
       setDashboardNotify("Copied to Clipboard!");

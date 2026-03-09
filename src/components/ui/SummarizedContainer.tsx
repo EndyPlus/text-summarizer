@@ -14,7 +14,7 @@ export default function SummarizedContainer() {
   );
 
   return (
-    <div className="shadow-input rounded-large border-border-secondary bg-white-secondary xs:p-5 flex h-full min-h-40 overflow-y-auto border p-2.5">
+    <div className="shadow-input rounded-large border-border-secondary bg-white-secondary xs:p-5 overflow-y-atuo flex h-full border p-2.5">
       {!summarizedText && !isSummaryLoading && (
         <div className="mx-auto my-auto flex flex-col items-center justify-center">
           <IconDocument size={60} />

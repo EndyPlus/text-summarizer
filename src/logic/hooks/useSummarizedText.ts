@@ -16,6 +16,8 @@ export default function useSummarizedText() {
   async function handleCopySummary() {
     const copyRes = await handleCopyText(summarizedText);
 
+    if (wordsCount === 0) return;
+
     if (copyRes.success) {
       console.log("COPIED!");
       setIsNotified(true);

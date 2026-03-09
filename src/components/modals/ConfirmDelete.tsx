@@ -14,7 +14,7 @@ export default function ConfirmDelete({ onClose, onDelete }: Props) {
 
   return (
     <ModalWrapper onClose={onClose}>
-      <div className="shadow-context border-border relative flex w-100 flex-col rounded-2xl bg-white p-6">
+      <div className="shadow-context border-border xs:w-100 relative flex w-[91vw] flex-col rounded-2xl bg-white p-6">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 cursor-pointer rounded-full bg-[rgba(10,15,41,0.04)] p-1.25"

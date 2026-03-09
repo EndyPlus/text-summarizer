@@ -6,6 +6,7 @@ export function IconHouse({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -25,6 +26,7 @@ export function IconClock({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -44,6 +46,7 @@ export function IconCalendar({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -63,6 +66,7 @@ export function IconArrowDown({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -82,6 +86,7 @@ export function IconArrowLeft({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -101,6 +106,7 @@ export function IconArrowRight({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -120,6 +126,7 @@ export function IconClipboard({ size = 20, ...props }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -138,6 +145,7 @@ export function IconClose({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -157,6 +165,7 @@ export function IconCopyDark({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -176,6 +185,7 @@ export function IconCopy({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -195,6 +205,7 @@ export function IconDelete({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -214,6 +225,7 @@ export function IconDocument({ size = 20, ...props }) {
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -233,6 +245,7 @@ export function IconDots({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -252,6 +265,7 @@ export function IconDoubleArrowRight({ size = 20, ...props }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -288,6 +302,7 @@ export function IconDoubleArrowLeft({ size = 20, ...props }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -324,6 +339,7 @@ export function IconEdit({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -343,6 +359,7 @@ export function IconError({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -361,6 +378,7 @@ export function IconEye({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -380,6 +398,7 @@ export function IconKeyboard({ size = 20, ...props }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -398,6 +417,7 @@ export function IconLetter({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -417,6 +437,7 @@ export function IconLogo({ size = 20, ...props }) {
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <rect
@@ -462,6 +483,7 @@ export function IconLogout({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <g clipPath="url(#clip0_4038_1866)">
@@ -488,6 +510,7 @@ export function IconPlus({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -506,6 +529,7 @@ export function IconSearch({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -525,6 +549,7 @@ export function IconSuccess({ size = 20, ...props }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path
@@ -543,6 +568,7 @@ export function IconText({ size = 20, ...props }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: "0" }}
       {...props}
     >
       <path

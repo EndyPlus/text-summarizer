@@ -72,7 +72,7 @@ export default function getRegisterErrors(data: ErrorsData) {
   }
 
   if (!confirmPassword) {
-    confirmPasswordErrors.push("Confirmation password is missing.");
+    confirmPasswordErrors.push("Password confirmation is missing.");
   }
 
   if (password !== confirmPassword) {

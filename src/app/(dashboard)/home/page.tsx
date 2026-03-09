@@ -10,9 +10,11 @@ export default function HomePage() {
         text="Summarize and manage texts with ease"
       />
 
-      <HomePageForm />
+      <div className="flex h-full flex-col overflow-y-auto">
+        <HomePageForm />
 
-      <SummarySection />
+        <SummarySection />
+      </div>
     </div>
   );
 }

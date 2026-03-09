@@ -10,7 +10,7 @@ export default function AuthNotifyWrapper({
 }: ModalProps) {
   const notifyLayout = (
     <div
-      className={`fixed top-9 left-1/2 z-999 flex -translate-x-1/2 items-start gap-3 border p-4 ${
+      className={`xs:w-auto fixed top-9 left-1/2 z-999 flex w-[85vw] -translate-x-1/2 items-start justify-center gap-3 border p-4 ${
         isSuccess
           ? "bg-success-main border-success-accent"
           : "bg-error-main border-error-accent"
@@ -23,7 +23,7 @@ export default function AuthNotifyWrapper({
           ERROR MESSAGE
         </p> */}
 
-        <ul className="gap-1 text-center">{children}</ul>
+        <ul className="gap-1 wrap-break-word">{children}</ul>
       </div>
       {!isSuccess && (
         <button className="cursor-pointer" onClick={onClose}>

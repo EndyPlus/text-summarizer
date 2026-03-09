@@ -21,7 +21,7 @@ export default function DashboardNotify({
 
   const notifyLayout = (
     <div
-      className={`absolute top-9 left-1/2 flex -translate-x-1/2 items-start gap-3 border p-4 ${
+      className={`xmd:top-9 xmd:bottom-auto absolute bottom-18 left-1/2 z-888 flex -translate-x-1/2 items-start gap-3 border p-4 ${
         isSuccess
           ? "bg-success-main border-success-accent"
           : "bg-error-main border-error-accent"
