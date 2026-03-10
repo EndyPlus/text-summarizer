@@ -44,9 +44,10 @@ export type ActionData<T> =
 // user data
 
 export interface UserInfoData {
+  id?: string;
   name: string;
   username: string;
-  pfp: string;
+  pfp?: string;
 }
 
 export interface UserCreateData {

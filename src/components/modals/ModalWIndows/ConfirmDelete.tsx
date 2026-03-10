@@ -1,4 +1,4 @@
-import { IconClose } from "../ui/Icons";
+import { IconClose } from "../../ui/Icons";
 import ModalWrapper from "./ModalWrapper";
 
 interface Props {
@@ -30,10 +30,7 @@ export default function ConfirmDelete({ onClose, onDelete }: Props) {
           </p>
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={onClose}
-            className="text-black-base tracking-base leading-base shadow-input rounded-large border-border w-full cursor-pointer border bg-white px-2.5 py-1.5 text-center text-sm font-medium"
-          >
+          <button onClick={onClose} className="close-button">
             Cancel
           </button>
           <button

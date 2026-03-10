@@ -31,7 +31,10 @@ export default function HistoryPaginationPanel() {
 
       {!isLoading && (
         <>
-          {pagesIterate.length === 0 && <div className="h-10"></div>}
+          {pagesIterate.length === 0 && (
+            // invisible box for space
+            <div className="xmd:h-10 h-12.5 w-full"></div>
+          )}
 
           {pagesIterate.length > 0 && (
             <>
@@ -65,7 +68,7 @@ export default function HistoryPaginationPanel() {
                     <li key={page}>
                       <button
                         onClick={() => handleSelectPage(page)}
-                        className={`pagination-btn pagination-btn-number ${currentPage === page ? "bg-[#0a0f290a]" : ""}`}
+                        className={`pagination-btn pagination-btn-number ${currentPage === page ? "bg-gray-300 md:bg-[#0a0f290a]" : ""}`}
                       >
                         {page}
                       </button>

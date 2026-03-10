@@ -8,7 +8,7 @@ import { IconClock, IconHouse } from "../ui/Icons";
 import useAsideBarNavigation from "@/src/logic/hooks/useAsideBarNavigation";
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function AsideBarNavigation({ onClick = () => {} }: Props) {
@@ -17,7 +17,7 @@ export default function AsideBarNavigation({ onClick = () => {} }: Props) {
   return (
     <nav>
       <ul className="mx-2.5 flex h-full flex-col gap-2 text-sm text-white">
-        <li onClick={onClick}>
+        <li onClick={onClick} className="xmd:w-auto w-35">
           <Link
             href="/home"
             className={`${pathname === "/home" ? "bg-[#ffffff14]" : ""} flex items-center rounded-2xl px-2 py-1.5`}
@@ -33,6 +33,7 @@ export default function AsideBarNavigation({ onClick = () => {} }: Props) {
             handleResetStates();
             onClick();
           }}
+          className="xmd:w-auto w-35"
         >
           <Link
             href="/history"

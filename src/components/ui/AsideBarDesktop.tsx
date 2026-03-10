@@ -1,6 +1,6 @@
 import SummarizeButton from "../buttons/SummarizeButton";
 import AsideBarNavigation from "../features/AsideBarNavigation";
-import UserInfo from "./UserInfo";
+import UserInfo from "../features/UserInfo";
 
 export default function AsideBarDesktop() {
   return (

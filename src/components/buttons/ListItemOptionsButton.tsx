@@ -1,6 +1,6 @@
 "use client";
 
-import ConfirmDelete from "../modals/ConfirmDelete";
+import ConfirmDelete from "../modals/ModalWIndows/ConfirmDelete";
 import useItemOptions from "@/src/logic/hooks/useItemOptions";
 import { IconCopy, IconDelete, IconDots, IconEdit } from "../ui/Icons";
 import { ItemDataProps } from "@/src/types/types";
