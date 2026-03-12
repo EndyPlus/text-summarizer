@@ -23,27 +23,25 @@ export default function UserInfo() {
           sessionData={sessionUserData}
         />
       )}
-      <div className="xmd:mb-4 flex items-center">
+
+      <div>
         {isLoading && <UserInfoSkeleton />}
 
         {!isLoading && (
-          <>
-            <div className="bg-pfp leading-base tracking-base mr-2 flex min-h-8 min-w-8 items-center justify-center rounded-full text-sm text-white select-none">
+          <div onClick={handleOpenInfo} className="xmd:mb-4 flex items-center">
+            <div className="bg-pfp leading-base tracking-base mr-2 flex min-h-8 min-w-8 cursor-pointer items-center justify-center rounded-full text-sm text-white select-none">
               {userData?.pfp}
             </div>
-            <button
-              onClick={handleOpenInfo}
-              className="mr-4 flex max-w-23 min-w-23 cursor-pointer flex-col items-start overflow-hidden"
-            >
+            <div className="mr-4 flex max-w-23 min-w-23 cursor-pointer flex-col items-start overflow-hidden">
               <h4 className="text-white-base leading-base tracking-base flex items-center justify-center truncate text-sm font-medium">
                 {userData?.name}
               </h4>
               <p className="text-white-accent text-small truncate leading-[133%]">
                 {userData?.username}
               </p>
-            </button>
+            </div>
             <LogoutButton />
-          </>
+          </div>
         )}
       </div>
     </>
