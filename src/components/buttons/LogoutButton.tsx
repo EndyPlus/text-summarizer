@@ -9,7 +9,10 @@ export default function LogoutButton() {
   }
 
   return (
-    <button onClick={handleSignOut} className="ml-auto min-w-5 cursor-pointer">
+    <button
+      onClick={handleSignOut}
+      className="base-transition ml-auto min-w-5 cursor-pointer hover:scale-105 active:scale-95"
+    >
       <IconLogout />
     </button>
   );

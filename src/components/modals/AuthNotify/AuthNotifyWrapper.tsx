@@ -26,7 +26,10 @@ export default function AuthNotifyWrapper({
         <ul className="gap-1 wrap-break-word">{children}</ul>
       </div>
       {!isSuccess && (
-        <button className="cursor-pointer" onClick={onClose}>
+        <button
+          className="cursor-pointer hover:scale-110 active:scale-90"
+          onClick={onClose}
+        >
           <IconClose />
         </button>
       )}

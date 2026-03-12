@@ -19,20 +19,6 @@ export default function DateSelectButton() {
 
   return (
     <div className="relative">
-      <button
-        className="border-border rounded-large shadow-input flex cursor-pointer items-center gap-1.5 border px-2.5 py-1.5"
-        type="button"
-        onClick={() => setContextVisible((prevState) => !prevState)}
-      >
-        <IconCalendar size={16} />
-
-        <p className="leading-base tracking-base text-black-base text-sm font-medium">
-          {currentDate}
-        </p>
-
-        <IconArrowDown size={16} />
-      </button>
-
       {contextVisible && (
         <ul className="shadow-filter absolute top-4/3 z-888 w-max rounded-lg border-[0.75] border-[#dbdbdb] bg-white">
           {Object.values(DATE_OPTIONS).map((btn) => {
@@ -44,7 +30,7 @@ export default function DateSelectButton() {
                     setContextVisible(false);
                   }}
                   type="button"
-                  className="w-full cursor-pointer border-b-[0.75] border-[#dbdbdb] px-3.75 py-2.25 text-start leading-[150%] text-[#131615]"
+                  className="hover:border-black-base base-transition hover:text-black-base active:text-black-accent w-full cursor-pointer border-b-[0.75] border-[#dbdbdb] px-3.75 py-2.25 text-start leading-[150%] text-[#131615]"
                 >
                   {btn}
                 </button>
@@ -53,6 +39,20 @@ export default function DateSelectButton() {
           })}
         </ul>
       )}
+
+      <button
+        className="border-border hover:border-black-base base-transition rounded-large shadow-input flex cursor-pointer items-center gap-1.5 border px-2.5 py-1.5"
+        type="button"
+        onClick={() => setContextVisible((prevState) => !prevState)}
+      >
+        <IconCalendar size={16} />
+
+        <p className="leading-base tracking-base text-black-base text-sm font-medium">
+          {currentDate}
+        </p>
+
+        <IconArrowDown size={16} />
+      </button>
     </div>
   );
 }

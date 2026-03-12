@@ -103,7 +103,7 @@ export default function HomePageForm() {
               <button
                 type="button"
                 onClick={handleResetText}
-                className="rounded-large shadow-input xs:px-2.5 xs:py-1.5 flex cursor-pointer items-center gap-x-2 border border-white px-2 py-1"
+                className="rounded-large base-transition hover:border-white-accent shadow-input xs:px-2.5 xs:py-1.5 flex cursor-pointer items-center gap-x-2 border border-white px-2 py-1 active:scale-95"
               >
                 <IconReset size={16} />
                 <p className="leading-base tracking-base text-sm font-medium text-white">

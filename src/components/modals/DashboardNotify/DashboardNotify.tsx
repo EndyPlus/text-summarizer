@@ -34,7 +34,10 @@ export default function DashboardNotify({
           {message}
         </p>
       </div>
-      <button className="cursor-pointer" onClick={onClose}>
+      <button
+        className="cursor-pointer hover:scale-110 active:scale-90"
+        onClick={onClose}
+      >
         <IconClose />
       </button>
     </div>

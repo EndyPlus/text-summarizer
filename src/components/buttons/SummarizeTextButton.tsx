@@ -14,7 +14,8 @@ export default function SummarizeTextButton({
   const disabledButtonStyles =
     "cursor-not-allowed text-gray-accent bg-black-base";
   const loadingButtonStyles = "cursor-not-allowed text-white bg-black-base";
-  const activeButtonStyles = "cursor-pointer text-black-secondary bg-white";
+  const activeButtonStyles =
+    "cursor-pointer text-black-secondary bg-white hover:bg-white-tertiary active:bg-white-tertiary active:scale-95";
 
   const buttonStyles =
     charactersCount === 0
@@ -26,7 +27,7 @@ export default function SummarizeTextButton({
   return (
     <button
       disabled={isDisabled}
-      className={`${buttonStyles} shadow-input rounded-large border-border-accent xs:px-2.5 xs:py-1.5 flex items-center gap-x-2 border px-2 py-1`}
+      className={`${buttonStyles} base-transition shadow-input rounded-large border-border-accent xs:px-2.5 xs:py-1.5 flex items-center gap-x-2 border px-2 py-1`}
     >
       {isSummaryLoading && <IconLoading size={16} />}
       <p className="leading-base tracking-base text-small xs:text-sm font-medium">

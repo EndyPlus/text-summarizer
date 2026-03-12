@@ -68,9 +68,25 @@
   }
 
   --animate-skeleton: skeleton-shimmer 2s linear infinite;
+
+  @keyframes cta-click {
+    0% {
+      scale: 0.8;
+    }
+
+    100% {
+      scale: 1;
+    }
+  }
+
+  --animate-cta-click: cta-click 0.6s ease-in-out;
 }
 
 @layer components {
+  .base-transition {
+    @apply transition-all duration-200 ease-out;
+  }
+
   .auth-page-container {
     @apply bg-main-light relative flex h-full flex-col items-center justify-center;
   }
@@ -92,7 +108,7 @@
   }
 
   .pagination-btn {
-    @apply xs:size-8 xs:p-2 xs:text-base flex size-6 cursor-pointer items-center justify-center rounded-lg p-1.5 text-sm sm:size-10 sm:rounded-xl sm:p-2.5;
+    @apply xs:size-8 xs:p-2 xs:text-base flex size-6 cursor-pointer items-center justify-center rounded-lg p-1.5 text-sm transition-all duration-200 ease-out hover:bg-gray-100 active:scale-85 sm:size-10 sm:rounded-xl sm:p-2.5;
   }
 
   .pagination-btn-number {
@@ -108,7 +124,7 @@
   }
 
   .close-button {
-    @apply text-black-base tracking-base leading-base shadow-input rounded-large border-border w-full cursor-pointer border bg-white px-2.5 py-1.5 text-center text-sm font-medium;
+    @apply text-black-base hover:bg-white-tertiary hover:text-black-accent active:bg-white-tertiary active:text-black-accent tracking-base leading-base shadow-input rounded-large border-border w-full cursor-pointer border bg-white px-2.5 py-1.5 text-center text-sm font-medium transition-all duration-200 ease-out active:scale-90;
   }
 }
 
