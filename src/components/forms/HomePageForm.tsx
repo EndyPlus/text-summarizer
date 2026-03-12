@@ -8,6 +8,8 @@ import {
   MINIMUM_WORDS_LIMIT,
 } from "@/src/utils/vars";
 import useHomePage from "@/src/logic/hooks/useHomePage";
+import SummarizeTextButton from "../buttons/SummarizeTextButton";
+import { IconReset } from "../ui/Icons";
 
 export default function HomePageForm() {
   const {
@@ -24,6 +26,7 @@ export default function HomePageForm() {
     submitError,
     handleResetError,
     handleUnfocus,
+    handleResetText,
     isTouchScreen,
   } = useHomePage();
 
@@ -75,7 +78,7 @@ export default function HomePageForm() {
           )}
         </div>
 
-        <div className="xs:flex-row xs:items-center mx-5 flex flex-col justify-between gap-y-2">
+        <div className="mx-5 flex flex-col justify-between gap-y-2 sm:flex-row sm:items-center">
           <ul className="xs:justify-stretch flex justify-around gap-2.75">
             <li className="leading-large flex gap-1.5 text-sm">
               <p className="text-gray-base">Words</p>
@@ -94,12 +97,25 @@ export default function HomePageForm() {
               </span>
             </li>
           </ul>
-          <button
-            disabled={isSummaryLoading}
-            className={`${isSummaryLoading ? "cursor-not-allowed" : "cursor-pointer"} bg-black-base leading-base tracking-base rounded-large border-border-accent text-gray-accent border px-2.5 py-1.5 text-sm font-medium`}
-          >
-            Summarize My Text
-          </button>
+
+          <div className="flex justify-around gap-x-2 sm:justify-stretch">
+            {charactersCount > 0 && !isSummaryLoading && (
+              <button
+                type="button"
+                onClick={handleResetText}
+                className="rounded-large shadow-input xs:px-2.5 xs:py-1.5 flex cursor-pointer items-center gap-x-2 border border-white px-2 py-1"
+              >
+                <IconReset size={16} />
+                <p className="leading-base tracking-base text-sm font-medium text-white">
+                  Reset
+                </p>
+              </button>
+            )}
+            <SummarizeTextButton
+              charactersCount={charactersCount}
+              isSummaryLoading={isSummaryLoading}
+            />
+          </div>
         </div>
       </form>
     </>

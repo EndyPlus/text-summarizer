@@ -18,9 +18,10 @@ export default function useHomePage() {
     handleFocus,
   } = useInputField();
 
-  const { isSummaryLoading, originalText } = useSummaryStorage(
+  const { isSummaryLoading, setOriginalText, originalText } = useSummaryStorage(
     useShallow((state) => ({
       isSummaryLoading: state.isSummaryLoading,
+      setOriginalText: state.setOriginalText,
       originalText: state.originalText,
     })),
   );
@@ -57,6 +58,15 @@ export default function useHomePage() {
     handleResetValues();
   }
 
+  function handleResetText() {
+    if (!inputRef.current) return;
+
+    handleResetValues();
+    inputRef.current.value = "";
+    setOriginalText("");
+    setIsActiveForm(false);
+  }
+
   return {
     isSummaryLoading,
     isActiveForm,
@@ -71,6 +81,7 @@ export default function useHomePage() {
     submitError,
     handleResetError,
     handleUnfocus,
+    handleResetText,
     isTouchScreen,
   };
 }

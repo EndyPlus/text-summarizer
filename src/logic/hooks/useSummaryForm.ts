@@ -72,7 +72,11 @@ export default function useSummaryForm({
 
     const data = Object.fromEntries(formData.entries());
 
-    const userText = (data.formTextarea as string).trim();
+    const textData = data.formTextarea as string;
+
+    if (!textData) return;
+
+    const userText = textData.trim();
 
     try {
       setSummaryLoading(true);
