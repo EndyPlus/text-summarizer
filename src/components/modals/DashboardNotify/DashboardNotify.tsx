@@ -30,7 +30,7 @@ export default function DashboardNotify({
       {isSuccess ? <IconSuccess /> : <IconError />}
 
       <div>
-        <p className="black-accent leading-base text-sm whitespace-pre-line">
+        <p className="xs:text-sm black-accent leading-base text-small whitespace-pre-line">
           {message}
         </p>
       </div>
