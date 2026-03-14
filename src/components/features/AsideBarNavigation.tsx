@@ -22,7 +22,7 @@ export default function AsideBarNavigation({ onClick = () => {} }: Props) {
             href="/home"
             className={`${pathname === "/home" ? "bg-[#ffffff14]" : "hover:text-white-accent active:text-white-accent"} base-transition flex items-center rounded-2xl px-2 py-1.5`}
           >
-            <IconHouse />
+            <IconHouse aria-hidden="true" />
             <p className="leading-base tracking-base ml-2 text-sm font-medium">
               Home
             </p>
@@ -39,7 +39,7 @@ export default function AsideBarNavigation({ onClick = () => {} }: Props) {
             href="/history"
             className={`${pathname === "/history" ? "bg-[#ffffff14]" : "hover:text-white-accent active:text-white-accent"} base-transition flex items-center rounded-2xl px-2 py-1.5`}
           >
-            <IconClock />
+            <IconClock aria-hidden="true" />
 
             <p className="leading-base tracking-base mx-2 text-sm font-medium">
               History

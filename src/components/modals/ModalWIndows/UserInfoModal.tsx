@@ -2,8 +2,7 @@
 
 import { UserInfoData } from "@/src/types/types";
 import ModalWrapper from "./ModalWrapper";
-import { useRef } from "react";
-import { animationModal } from "@/src/utils/animations";
+import useModal from "@/src/logic/hooks/useModal";
 
 interface Props {
   onClose: () => void;
@@ -11,25 +10,7 @@ interface Props {
 }
 
 export default function UserInfoModal({ onClose, sessionData }: Props) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  function handleClose() {
-    const animation = animationModal(
-      modalRef.current,
-      bgRef.current,
-      "disappear",
-    );
-
-    if (!animation) {
-      onClose();
-      return;
-    }
-
-    animation.onfinish = () => {
-      onClose();
-    };
-  }
+  const { modalRef, bgRef, handleClose } = useModal(onClose);
 
   return (
     <ModalWrapper bgRef={bgRef} childrenRef={modalRef} onClose={handleClose}>

@@ -56,6 +56,7 @@ export default function useHomePage() {
 
     setIsActiveForm(false);
     handleResetValues();
+    setOriginalText("");
   }
 
   function handleResetText() {

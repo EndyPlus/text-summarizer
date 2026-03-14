@@ -29,7 +29,11 @@ export default function UserInfo() {
 
         {!isLoading && (
           <div className="xmd:mb-4 flex items-center">
-            <div onClick={handleOpenInfo} className="flex items-center">
+            <button
+              onClick={handleOpenInfo}
+              className="flex items-center"
+              aria-label="Open user info button"
+            >
               <div className="bg-pfp leading-base base-transition tracking-base mr-2 flex min-h-8 min-w-8 cursor-pointer items-center justify-center rounded-full text-sm text-white select-none hover:scale-105 active:scale-95">
                 {userData?.pfp}
               </div>
@@ -41,7 +45,7 @@ export default function UserInfo() {
                   {userData?.username}
                 </p>
               </div>
-            </div>
+            </button>
             <LogoutButton />
           </div>
         )}

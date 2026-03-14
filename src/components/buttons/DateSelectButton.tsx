@@ -29,6 +29,7 @@ export default function DateSelectButton() {
                     setCurrentDate(btn);
                     setContextVisible(false);
                   }}
+                  aria-label={`Select date filter - ${btn}`}
                   type="button"
                   className="hover:border-black-base base-transition hover:text-black-base active:text-black-accent w-full cursor-pointer border-b-[0.75] border-[#dbdbdb] px-3.75 py-2.25 text-start leading-[150%] text-[#131615]"
                 >
@@ -44,14 +45,15 @@ export default function DateSelectButton() {
         className="border-border hover:border-black-base base-transition rounded-large shadow-input flex cursor-pointer items-center gap-1.5 border px-2.5 py-1.5"
         type="button"
         onClick={() => setContextVisible((prevState) => !prevState)}
+        aria-label="Date select button"
       >
-        <IconCalendar size={16} />
+        <IconCalendar aria-hidden="true" size={16} />
 
         <p className="leading-base tracking-base text-black-base text-sm font-medium">
           {currentDate}
         </p>
 
-        <IconArrowDown size={16} />
+        <IconArrowDown aria-hidden="true" size={16} />
       </button>
     </div>
   );

@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import { IconClose } from "../../ui/Icons";
 import ModalWrapper from "./ModalWrapper";
-import { animationModal } from "@/src/utils/animations";
+import useModal from "@/src/logic/hooks/useModal";
 
 interface Props {
   onClose: () => void;
@@ -11,31 +10,12 @@ interface Props {
 }
 
 export default function ConfirmDelete({ onClose, onDelete }: Props) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  function handleClose() {
-    const animation = animationModal(
-      modalRef.current,
-      bgRef.current,
-      "disappear",
-    );
-
-    if (!animation) {
-      onClose();
-
-      return;
-    }
-
-    animation.onfinish = () => {
-      onClose();
-    };
-  }
-
   async function handleDelete() {
     handleClose();
     await onDelete();
   }
+
+  const { modalRef, bgRef, handleClose } = useModal(onClose);
 
   return (
     <ModalWrapper childrenRef={modalRef} bgRef={bgRef} onClose={handleClose}>
@@ -46,8 +26,9 @@ export default function ConfirmDelete({ onClose, onDelete }: Props) {
         <button
           onClick={handleClose}
           className="hover:bg-white-tertiary active:bg-white-tertiary base-transition absolute top-4 right-4 cursor-pointer rounded-full bg-[rgba(10,15,41,0.04)] p-1.25 hover:scale-120 active:scale-90"
+          aria-label="Close modal button"
         >
-          <IconClose size={14} />
+          <IconClose aria-hidden="true" size={14} />
         </button>
         <div className="mb-6">
           <h4 className="leading-base tracking-base text-black-base text-lg font-medium">

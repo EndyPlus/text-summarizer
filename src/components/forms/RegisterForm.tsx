@@ -38,7 +38,7 @@ export default function RegisterForm() {
       >
         <div className="flex flex-col sm:flex-row sm:gap-x-4">
           <input
-            className={`${signInInputErrors?.includes("firstName") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm select-none`}
+            className={`${signInInputErrors?.includes("firstName") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
             name="firstName"
             type="text"
             placeholder="First name"
@@ -46,7 +46,7 @@ export default function RegisterForm() {
             onInput={handleBlockSpacePress}
           />
           <input
-            className={`${signInInputErrors?.includes("lastName") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm select-none`}
+            className={`${signInInputErrors?.includes("lastName") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
             name="lastName"
             type="text"
             placeholder="Last name"
@@ -55,7 +55,7 @@ export default function RegisterForm() {
           />
         </div>
         <input
-          className={`${signInInputErrors?.includes("username") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm select-none`}
+          className={`${signInInputErrors?.includes("username") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base rounded-xl border px-3 py-2.5 text-sm`}
           name="username"
           type="text"
           placeholder="Username"
@@ -64,7 +64,7 @@ export default function RegisterForm() {
         />
         <div className="relative">
           <input
-            className={`${signInInputErrors?.includes("password") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base w-full rounded-xl border py-2.5 pr-9 pl-3 text-sm select-none`}
+            className={`${signInInputErrors?.includes("password") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base w-full rounded-xl border py-2.5 pr-9 pl-3 text-sm`}
             name="password"
             type={passwordInputType}
             placeholder="Password"
@@ -75,12 +75,17 @@ export default function RegisterForm() {
             type="button"
             className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer hover:scale-110 active:scale-90"
             onClick={toggleShowPassword}
+            aria-label={
+              passwordInputType === "password"
+                ? "Show password"
+                : "Hide password"
+            }
           >
             <IconEye />
           </button>
         </div>
         <input
-          className={`${signInInputErrors?.includes("confirmPassword") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base w-full rounded-xl border py-2.5 pr-9 pl-3 text-sm select-none`}
+          className={`${signInInputErrors?.includes("confirmPassword") ? "border-red-500" : "border-border"} base-transition hover:border-black-base leading-base tracking-base placeholder:text-placeholder shadow-input text-black-base w-full rounded-xl border py-2.5 pr-9 pl-3 text-sm`}
           type="password"
           name="confirmPassword"
           placeholder="Confirm password"

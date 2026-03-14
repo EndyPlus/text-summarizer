@@ -50,8 +50,9 @@ export default function DashboardNotify({
       <button
         className="cursor-pointer hover:scale-110 active:scale-90"
         onClick={onClose}
+        aria-label="Close notify button"
       >
-        <IconClose />
+        <IconClose aria-hidden="true" />
       </button>
     </div>
   );

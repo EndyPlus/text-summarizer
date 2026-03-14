@@ -50,8 +50,9 @@ export default function HistoryPaginationPanel() {
                       <button
                         onClick={handleToBegin}
                         className="pagination-btn"
+                        aria-label="To the first list page"
                       >
-                        <IconDoubleArrowLeft />
+                        <IconDoubleArrowLeft aria-hidden="true" />
                       </button>
                     </li>
                   )}
@@ -59,8 +60,9 @@ export default function HistoryPaginationPanel() {
                     <button
                       onClick={handleDecrement}
                       className="pagination-btn"
+                      aria-label="To the previous list page"
                     >
-                      <IconArrowLeft />
+                      <IconArrowLeft aria-hidden="true" />
                     </button>
                   </li>
 
@@ -69,6 +71,7 @@ export default function HistoryPaginationPanel() {
                       <button
                         onClick={() => handleSelectPage(page)}
                         className={`pagination-btn pagination-btn-number ${currentPage === page ? "bg-gray-300 md:bg-[#0a0f290a]" : ""}`}
+                        aria-label={`Page: ${page}`}
                       >
                         {page}
                       </button>
@@ -78,14 +81,19 @@ export default function HistoryPaginationPanel() {
                     <button
                       onClick={handleIncrement}
                       className="pagination-btn"
+                      aria-label="To the next list page"
                     >
-                      <IconArrowRight />
+                      <IconArrowRight aria-hidden="true" />
                     </button>
                   </li>
                   {isDoubleArrowsVisible && (
                     <li>
-                      <button onClick={handleToEnd} className="pagination-btn">
-                        <IconDoubleArrowRight />
+                      <button
+                        onClick={handleToEnd}
+                        className="pagination-btn"
+                        aria-label="To the last list page"
+                      >
+                        <IconDoubleArrowRight aria-hidden="true" />
                       </button>
                     </li>
                   )}

@@ -38,7 +38,7 @@ export default function SummaryPanel() {
           onClick={handleCopySummary}
           className={`${charactersCount > 0 ? "hover:bg-white-tertiary hover:text-black-base active:bg-white-tertiary active:text-black-base active:scale-95" : ""} base-transition leading-base tracking-base rounded-large border-white-tertiary text-black-tertiary flex cursor-pointer gap-1.5 border bg-white px-2.5 py-1.5 text-sm font-medium`}
         >
-          <IconCopy size={16} />
+          <IconCopy aria-hidden="true" size={16} />
           <p>Copy to Clipboard</p>
         </button>
       </div>

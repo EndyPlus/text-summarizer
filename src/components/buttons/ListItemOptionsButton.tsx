@@ -30,8 +30,9 @@ export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
         <button
           onClick={handleSwitchContext}
           className="border-border base-transition active:border-black-accent hover:border-black-base shadow-input xs:rounded-large xs:h-8 xs:w-8 flex h-6 w-6 cursor-pointer items-center justify-center rounded-lg border bg-white p-2 hover:scale-105 active:scale-95"
+          aria-label="More options"
         >
-          <IconDots size={16} />
+          <IconDots aria-hidden="true" size={16} />
         </button>
 
         {isContextVisible && (
@@ -41,7 +42,7 @@ export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
                 onClick={handleCopyPost}
                 className="base-transition hover:bg-white-secondary active:bg-white-secondary flex w-full cursor-pointer items-center gap-x-2 rounded-lg px-2 py-1.5 active:scale-95"
               >
-                <IconCopy />
+                <IconCopy aria-hidden="true" />
                 <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
                   Copy to Clipboard
                 </p>
@@ -52,7 +53,7 @@ export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
                 onClick={handleEditPost}
                 className="base-transition hover:bg-white-secondary active:bg-white-secondary flex w-full cursor-pointer items-center gap-x-2 rounded-lg px-2 py-1.5 active:scale-95"
               >
-                <IconEdit />
+                <IconEdit aria-hidden="true" />
                 <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
                   Edit
                 </p>
@@ -63,7 +64,7 @@ export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
                 onClick={handleOpenConfirmModal}
                 className="base-transition hover:bg-white-secondary active:bg-white-secondary flex w-full cursor-pointer items-center gap-x-2 rounded-lg px-2 py-1.5 active:scale-95"
               >
-                <IconDelete />
+                <IconDelete aria-hidden="true" />
                 <p className="leading-base tracking-base text-black-base text-sm text-nowrap">
                   Delete
                 </p>
