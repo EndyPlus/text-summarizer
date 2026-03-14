@@ -73,7 +73,7 @@ export default function HomePageForm() {
               onBlur={handleUnfocus}
               defaultValue={originalText}
               name="formTextarea"
-              className="xs:px-5 xs:py-2.5 inline-block h-full w-full resize-none px-2.5 py-2 text-sm leading-[150%] text-[#131615] outline-none"
+              className="xs:px-5 xs:py-2.5 inline-block h-full w-full resize-none px-2.5 py-2 text-base leading-[150%] text-[#131615] outline-none"
             ></textarea>
           )}
         </div>

@@ -26,7 +26,7 @@ export default function HistoryPaginationPanel() {
   } = usePagination();
 
   return (
-    <div className="mb-4.5 flex flex-col items-center justify-between gap-y-2.5 sm:mt-4.5 sm:flex-row">
+    <div className="sm:max-h-auto mb-4.5 flex max-h-15 min-h-15 flex-col items-center justify-between gap-y-2.5 sm:mt-4.5 sm:min-h-auto sm:flex-row">
       {isLoading && <PaginationPanelSkeleton />}
 
       {!isLoading && (
