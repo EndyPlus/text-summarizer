@@ -2,7 +2,7 @@
 
 import DateSelectButton from "../buttons/DateSelectButton";
 
-import useSearchForm from "@/src/logic/hooks/useSearchForm";
+import useSearchForm from "@/src/logic/hooks/features-hooks/useSearchForm";
 import { IconSearch } from "../ui/Icons";
 
 export default function HistorySearchForm() {

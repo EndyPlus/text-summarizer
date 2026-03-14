@@ -1,4 +1,4 @@
-import getCounts from "@/src/utils/getCounts";
+import getCounts from "@/src/helpers/utils/getCounts";
 import { useEffect, useState } from "react";
 
 export default function useCharacterCounts(text: string) {

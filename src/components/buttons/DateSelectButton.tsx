@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { DATE_OPTIONS } from "@/src/utils/vars";
-import { useDateFilterStorage } from "@/src/store/dateFilterStore";
+import { DATE_OPTIONS } from "@/src/helpers/utils/vars";
+import { useDateFilterStorage } from "@/src/logic/store/dateFilterStore";
 import { IconArrowDown, IconCalendar } from "../ui/Icons";
 import { useShallow } from "zustand/shallow";
 

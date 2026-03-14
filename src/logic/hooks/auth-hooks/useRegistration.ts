@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useActionState } from "react";
 import { registerFormAction } from "@/src/services/serverActions/formsActions";
 import { useRouter } from "next/navigation";
+import { InputError, RegisterFormActionState } from "@/src/helpers/types/types";
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 import useAuthRedirect from "./useAuthRedirect";
-import { InputError, RegisterFormActionState } from "@/src/types/types";
-import getErrorMessage from "@/src/utils/getErrorMessage";
 
 export default function useRegistration() {
   const router = useRouter();

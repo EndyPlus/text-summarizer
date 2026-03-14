@@ -1,5 +1,5 @@
 import { PrismaClient, Prisma } from "@/generated/prisma/client";
-import { mockPosts } from "@/src/mock/mockDBPosts";
+import { mockPosts } from "@/src/helpers/mock/mockDBPosts";
 import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
 import "dotenv/config";

@@ -2,10 +2,10 @@
 
 import { createPortal } from "react-dom";
 import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
-import { ModalProps } from "@/src/types/types";
+import { ModalProps } from "@/src/helpers/types/types";
 import { useEffect, useRef } from "react";
-import { AUTH_ERROR_NOTIFY_TIME } from "@/src/utils/vars";
-import { animationAuthNotify } from "@/src/utils/animations";
+import { AUTH_ERROR_NOTIFY_TIME } from "@/src/helpers/utils/vars";
+import { animationAuthNotify } from "@/src/helpers/utils/animations";
 
 export default function AuthNotifyWrapper({
   onClose,

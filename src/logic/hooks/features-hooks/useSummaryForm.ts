@@ -11,16 +11,16 @@ import {
 
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
 
-import mockAiResponse from "@/src/mock/mockAiResponse";
+import mockAiResponse from "@/src/helpers/mock/mockAiResponse";
 
-import { useSummaryStorage } from "@/src/store/summaryStore";
-import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
-import { usePostsCountStorage } from "@/src/store/postsCountStore";
+import { useSummaryStorage } from "@/src/logic/store/summaryStore";
+import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
+import { usePostsCountStorage } from "@/src/logic/store/postsCountStore";
 import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
-} from "@/src/utils/vars";
-import getErrorMessage from "@/src/utils/getErrorMessage";
+} from "@/src/helpers/utils/vars";
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 import { useShallow } from "zustand/shallow";
 
 interface Counts {

@@ -1,9 +1,9 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
-import { useSummaryStorage } from "@/src/store/summaryStore";
+import { useSummaryStorage } from "@/src/logic/store/summaryStore";
 
-import useInputField from "@/src/logic/hooks/useInputField";
-import useSummaryForm from "@/src/logic/hooks/useSummaryForm";
+import useInputField from "@/src/logic/hooks/features-hooks/useInputField";
+import useSummaryForm from "@/src/logic/hooks/features-hooks/useSummaryForm";
 
 import { useShallow } from "zustand/shallow";
 

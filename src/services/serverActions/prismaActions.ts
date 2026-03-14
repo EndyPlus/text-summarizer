@@ -1,12 +1,16 @@
 "use server";
 
-import { ITEMS_PER_PAGE } from "@/src/utils/vars";
+import { ITEMS_PER_PAGE } from "@/src/helpers/utils/vars";
 
 import prisma from "../prismaClient/prisma";
 
-import getDateFilter from "@/src/utils/getDateFilter";
-import getErrorMessage from "@/src/utils/getErrorMessage";
-import { ActionData, PostData, UserCreateData } from "@/src/types/types";
+import getDateFilter from "@/src/helpers/utils/getDateFilter";
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
+import {
+  ActionData,
+  PostData,
+  UserCreateData,
+} from "@/src/helpers/types/types";
 import { SummarizedText, User } from "@/generated/prisma/client";
 
 export async function findUser(username: string): Promise<ActionData<User>> {

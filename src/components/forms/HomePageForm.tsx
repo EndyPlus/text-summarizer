@@ -6,8 +6,8 @@ import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
-} from "@/src/utils/vars";
-import useHomePage from "@/src/logic/hooks/useHomePage";
+} from "@/src/helpers/utils/vars";
+import useHomePage from "@/src/logic/hooks/features-hooks/useHomePage";
 import SummarizeTextButton from "../buttons/SummarizeTextButton";
 import { IconReset } from "../ui/Icons";
 

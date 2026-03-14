@@ -1,6 +1,6 @@
 "use client";
 
-import useSummarizedText from "@/src/logic/hooks/useSummarizedText";
+import useSummarizedText from "@/src/logic/hooks/features-hooks/useSummarizedText";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import { IconCopy } from "../ui/Icons";
 

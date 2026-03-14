@@ -2,7 +2,7 @@
 
 import { IconClose } from "../../ui/Icons";
 import ModalWrapper from "./ModalWrapper";
-import useModal from "@/src/logic/hooks/useModal";
+import useModal from "@/src/logic/hooks/ui-hooks/useModal";
 
 interface Props {
   onClose: () => void;

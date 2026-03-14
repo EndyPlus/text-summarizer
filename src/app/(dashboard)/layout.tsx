@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import AuthGuard from "@/src/components/features/AuthGuard";
 
-import { PropsLayout } from "@/src/types/types";
+import { PropsLayout } from "@/src/helpers/types/types";
 import AsideBarDesktop from "@/src/components/ui/AsideBarDesktop";
 import AsideBarTablet from "@/src/components/features/AsideBarTablet";
 

@@ -7,10 +7,10 @@ import {
 import {
   RegisterActionFormData,
   RegisterFormActionState,
-} from "@/src/types/types";
-import getFormattedCredentials from "@/src/utils/getFormattedCredentials";
+} from "@/src/helpers/types/types";
+import getFormattedCredentials from "@/src/helpers/utils/getFormattedCredentials";
 
-import getRegisterErrors from "@/src/utils/getRegisterErrors";
+import getRegisterErrors from "@/src/helpers/utils/getRegisterErrors";
 
 export async function registerFormAction(
   formState: RegisterFormActionState,

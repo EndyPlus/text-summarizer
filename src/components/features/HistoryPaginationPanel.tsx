@@ -1,6 +1,6 @@
 "use client";
 
-import usePagination from "@/src/logic/hooks/usePagination";
+import usePagination from "@/src/logic/hooks/features-hooks/usePagination";
 
 import PaginationPanelSkeleton from "../skeletons/PaginationPanelSkeleton";
 import {

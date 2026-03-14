@@ -1,6 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 import AuthNotifyWrapper from "./AuthNotifyWrapper";
-import { AuthErrorNotifyProps } from "@/src/types/types";
+import { AuthErrorNotifyProps } from "@/src/helpers/types/types";
 
 export default function AuthError({
   onClose,

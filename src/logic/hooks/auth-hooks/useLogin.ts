@@ -1,8 +1,8 @@
 import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
+import { InputError } from "@/src/helpers/types/types";
 import useAuthRedirect from "./useAuthRedirect";
-import getErrorMessage from "@/src/utils/getErrorMessage";
-import { InputError } from "@/src/types/types";
 
 export default function useLogin() {
   const [loginErrors, setLoginErrors] = useState<null | InputError[]>(null);

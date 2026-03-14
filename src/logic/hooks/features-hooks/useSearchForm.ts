@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef } from "react";
-import { useSearchStorage } from "@/src/store/searchTermStore";
+import { useSearchStorage } from "@/src/logic/store/searchTermStore";
 
 export default function useSearchForm() {
   const timeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);

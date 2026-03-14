@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SkeletonElement from "./SkeletonElement";
-import getRandomNumber from "@/src/utils/getRandomNumber";
+import getRandomNumber from "@/src/helpers/utils/getRandomNumber";
 
 function ListItemSkeleton() {
   const [textLength, setTextLength] = useState(100);

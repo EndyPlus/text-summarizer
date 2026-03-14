@@ -1,6 +1,6 @@
 "use client";
 
-import usePostsCount from "@/src/logic/hooks/usePostsCount";
+import usePostsCount from "@/src/logic/hooks/features-hooks/usePostsCount";
 
 export default function PostsCountInfo() {
   const postsCount = usePostsCount();

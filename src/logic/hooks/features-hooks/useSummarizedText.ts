@@ -1,6 +1,6 @@
-import { useSummaryStorage } from "@/src/store/summaryStore";
-import handleCopyText from "@/src/utils/handleCopyText";
-import useCharacterCounts from "./useCharacterCounts";
+import { useSummaryStorage } from "@/src/logic/store/summaryStore";
+import handleCopyText from "@/src/helpers/utils/handleCopyText";
+import useCharacterCounts from "../ui-hooks/useCharacterCounts";
 import { useState } from "react";
 
 export default function useSummarizedText() {

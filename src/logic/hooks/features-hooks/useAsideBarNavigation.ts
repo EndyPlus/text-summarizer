@@ -1,7 +1,7 @@
 import { usePathname } from "next/navigation";
 
-import { useSummaryStorage } from "@/src/store/summaryStore";
-import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
+import { useSummaryStorage } from "@/src/logic/store/summaryStore";
+import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
 
 export default function useAsideBarNavigation() {
   const pathname = usePathname();

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { deletePost } from "@/src/services/serverActions/prismaActions";
 
-import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
-import { useSummaryStorage } from "@/src/store/summaryStore";
+import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
+import { useSummaryStorage } from "@/src/logic/store/summaryStore";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import handleCopyText from "@/src/utils/handleCopyText";
-import { useDashboardNotifyStorage } from "@/src/store/dashboardNotifyStore";
-import { Post } from "@/src/types/types";
+import handleCopyText from "@/src/helpers/utils/handleCopyText";
+import { useDashboardNotifyStorage } from "@/src/logic/store/dashboardNotifyStore";
+import { Post } from "@/src/helpers/types/types";
 import { useShallow } from "zustand/shallow";
-import getErrorMessage from "@/src/utils/getErrorMessage";
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 
 export default function useItemOptions(itemData: Post) {
   const [isContextVisible, setIsVisibleContext] = useState(false);

@@ -5,11 +5,11 @@ import { useSession } from "next-auth/react";
 
 import { findPosts } from "@/src/services/serverActions/prismaActions";
 
-import { usePaginationStorage } from "@/src/store/paginationStore";
-import { useSearchStorage } from "@/src/store/searchTermStore";
-import { useDateFilterStorage } from "@/src/store/dateFilterStore";
-import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
-import { PostsData } from "@/src/types/types";
+import { usePaginationStorage } from "@/src/logic/store/paginationStore";
+import { useSearchStorage } from "@/src/logic/store/searchTermStore";
+import { useDateFilterStorage } from "@/src/logic/store/dateFilterStore";
+import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
+import { PostsData } from "@/src/helpers/types/types";
 import { useShallow } from "zustand/shallow";
 
 export default function usePostsList() {

@@ -1,6 +1,6 @@
 "use server";
 
-import getErrorMessage from "@/src/utils/getErrorMessage";
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 import { ai, getGenaiContent } from "../api/genaiApi";
 
 export async function getAiResponse(text: string) {

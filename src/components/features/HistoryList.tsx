@@ -2,8 +2,8 @@
 
 import HistoryListItem from "@/src/components/ui/HistoryListItem";
 
-import usePostsList from "@/src/logic/hooks/usePostsList";
-import { useDashboardNotifyStorage } from "@/src/store/dashboardNotifyStore";
+import usePostsList from "@/src/logic/hooks/features-hooks/usePostsList";
+import { useDashboardNotifyStorage } from "@/src/logic/store/dashboardNotifyStore";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import HistoryListSkeleton from "../skeletons/HistoryListSkeleton";
 

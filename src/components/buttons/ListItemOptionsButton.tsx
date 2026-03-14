@@ -1,9 +1,9 @@
 "use client";
 
 import ConfirmDelete from "../modals/ModalWIndows/ConfirmDelete";
-import useItemOptions from "@/src/logic/hooks/useItemOptions";
+import useItemOptions from "@/src/logic/hooks/features-hooks/useItemOptions";
 import { IconCopy, IconDelete, IconDots, IconEdit } from "../ui/Icons";
-import { ItemDataProps } from "@/src/types/types";
+import { ItemDataProps } from "@/src/helpers/types/types";
 
 export default function ListItemOptionsButton({ itemData }: ItemDataProps) {
   const {

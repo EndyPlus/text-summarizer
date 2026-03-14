@@ -1,5 +1,5 @@
+import { DATE_OPTIONS } from "@/src/helpers/utils/vars";
 import { create } from "zustand";
-import { DATE_OPTIONS } from "../utils/vars";
 
 interface DateFilterStore {
   currentDate: string;

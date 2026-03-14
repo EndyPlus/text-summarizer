@@ -1,8 +1,11 @@
 import { useMemo } from "react";
 
-import { ITEMS_PER_PAGE, PAGINATION_ITEMS_COUNT } from "@/src/utils/vars";
+import {
+  ITEMS_PER_PAGE,
+  PAGINATION_ITEMS_COUNT,
+} from "@/src/helpers/utils/vars";
 
-import { usePaginationStorage } from "@/src/store/paginationStore";
+import { usePaginationStorage } from "@/src/logic/store/paginationStore";
 
 import usePostsList from "./usePostsList";
 import { useShallow } from "zustand/shallow";

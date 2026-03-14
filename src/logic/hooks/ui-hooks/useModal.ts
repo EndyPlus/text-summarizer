@@ -1,4 +1,4 @@
-import { animationModal } from "@/src/utils/animations";
+import { animationModal } from "@/src/helpers/utils/animations";
 import { useCallback, useEffect, useRef } from "react";
 
 export default function useModal(onClose: () => void) {

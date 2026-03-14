@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import useCharacterCounts from "./useCharacterCounts";
-import { usePostInteractionStorage } from "@/src/store/interactedPostStore";
+import useCharacterCounts from "../ui-hooks/useCharacterCounts";
+import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
 
 export default function useInputField() {
   const inputRef = useRef<HTMLTextAreaElement>(null);

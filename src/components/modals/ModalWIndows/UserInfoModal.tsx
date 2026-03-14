@@ -1,8 +1,8 @@
 "use client";
 
-import { UserInfoData } from "@/src/types/types";
+import { UserInfoData } from "@/src/helpers/types/types";
 import ModalWrapper from "./ModalWrapper";
-import useModal from "@/src/logic/hooks/useModal";
+import useModal from "@/src/logic/hooks/ui-hooks/useModal";
 
 interface Props {
   onClose: () => void;

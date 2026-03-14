@@ -1,4 +1,4 @@
-import { UserInfoData } from "@/src/types/types";
+import { UserInfoData } from "@/src/helpers/types/types";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
