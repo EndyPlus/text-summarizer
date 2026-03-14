@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 
 // layout
 
@@ -87,7 +87,10 @@ export interface ModalProps {
   children: ReactNode;
 }
 
-export type ModalWrapperProps = Pick<ModalProps, "onClose" | "children">;
+export type ModalWrapperProps = Pick<ModalProps, "onClose" | "children"> & {
+  childrenRef: RefObject<HTMLElement | null>;
+  bgRef: RefObject<HTMLDivElement | null>;
+};
 
 export type DashboardNotifyProps = Omit<ModalProps, "heading" | "children"> & {
   message: string;

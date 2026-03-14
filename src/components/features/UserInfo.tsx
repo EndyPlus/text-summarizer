@@ -24,7 +24,7 @@ export default function UserInfo() {
         />
       )}
 
-      <div>
+      <div className="z-901">
         {isLoading && <UserInfoSkeleton />}
 
         {!isLoading && (

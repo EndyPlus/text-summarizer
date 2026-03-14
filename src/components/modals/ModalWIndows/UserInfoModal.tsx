@@ -1,5 +1,9 @@
+"use client";
+
 import { UserInfoData } from "@/src/types/types";
 import ModalWrapper from "./ModalWrapper";
+import { useRef } from "react";
+import { animationModal } from "@/src/utils/animations";
 
 interface Props {
   onClose: () => void;
@@ -7,9 +11,32 @@ interface Props {
 }
 
 export default function UserInfoModal({ onClose, sessionData }: Props) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  function handleClose() {
+    const animation = animationModal(
+      modalRef.current,
+      bgRef.current,
+      "disappear",
+    );
+
+    if (!animation) {
+      onClose();
+      return;
+    }
+
+    animation.onfinish = () => {
+      onClose();
+    };
+  }
+
   return (
-    <ModalWrapper onClose={onClose}>
-      <div className="xs:w-80 flex w-60 flex-col items-center justify-center gap-y-4 rounded-lg bg-white p-5">
+    <ModalWrapper bgRef={bgRef} childrenRef={modalRef} onClose={handleClose}>
+      <div
+        ref={modalRef}
+        className="xs:w-80 flex w-60 flex-col items-center justify-center gap-y-4 rounded-lg bg-white p-5"
+      >
         <h3 className="auth-heading uppercase">User Info</h3>
         {sessionData === null && (
           <p className="auth-text">Some error occurred...</p>
@@ -42,7 +69,7 @@ export default function UserInfoModal({ onClose, sessionData }: Props) {
             </li>
           </ul>
         )}
-        <button onClick={onClose} className="close-button xs:w-2/3 mt-4">
+        <button onClick={handleClose} className="close-button xs:w-2/3 mt-4">
           Close
         </button>
       </div>

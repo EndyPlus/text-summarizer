@@ -1,26 +1,39 @@
 import { createPortal } from "react-dom";
 import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
 import { DashboardNotifyProps } from "@/src/types/types";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { DASHBOARD_NOTIFY_TIME } from "@/src/utils/vars";
+import { animationDashboardNotify } from "@/src/utils/animations";
 
 export default function DashboardNotify({
   onClose,
   message,
   isSuccess = true,
 }: DashboardNotifyProps) {
+  const notifyRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    animationDashboardNotify(notifyRef.current, "appear");
+
     const notifyTimeout = setTimeout(() => {
-      onClose();
+      const animation = animationDashboardNotify(
+        notifyRef.current,
+        "disappear",
+      );
+
+      if (!animation) return;
+
+      animation.onfinish = () => {
+        onClose();
+      };
     }, DASHBOARD_NOTIFY_TIME);
 
-    return () => {
-      clearTimeout(notifyTimeout);
-    };
+    return () => clearTimeout(notifyTimeout);
   }, [onClose]);
 
   const notifyLayout = (
     <div
+      ref={notifyRef}
       className={`xmd:top-9 xmd:bottom-auto absolute bottom-18 left-1/2 z-888 flex -translate-x-1/2 items-start gap-3 border p-4 ${
         isSuccess
           ? "bg-success-main border-success-accent"

@@ -16,7 +16,7 @@ export default function BurgerButton({ onClick, isBurgerOpened }: Props) {
     <button
       onClick={onClick}
       aria-label={isBurgerOpened ? "Close burger menu" : "Open burger menu"}
-      className="relative flex cursor-pointer flex-col justify-center gap-y-0.5 self-center"
+      className="relative z-901 flex cursor-pointer flex-col justify-center gap-y-0.5 self-center"
     >
       <div className={`burger-element ${topBurgerElStyles}`}></div>
       <div className={`burger-element ${mediumBurgerElStyles}`}></div>

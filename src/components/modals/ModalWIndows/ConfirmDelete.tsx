@@ -1,5 +1,9 @@
+"use client";
+
+import { useRef } from "react";
 import { IconClose } from "../../ui/Icons";
 import ModalWrapper from "./ModalWrapper";
+import { animationModal } from "@/src/utils/animations";
 
 interface Props {
   onClose: () => void;
@@ -7,16 +11,40 @@ interface Props {
 }
 
 export default function ConfirmDelete({ onClose, onDelete }: Props) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  function handleClose() {
+    const animation = animationModal(
+      modalRef.current,
+      bgRef.current,
+      "disappear",
+    );
+
+    if (!animation) {
+      onClose();
+
+      return;
+    }
+
+    animation.onfinish = () => {
+      onClose();
+    };
+  }
+
   async function handleDelete() {
+    handleClose();
     await onDelete();
-    onClose();
   }
 
   return (
-    <ModalWrapper onClose={onClose}>
-      <div className="shadow-context border-border xs:w-100 relative flex w-[91vw] flex-col rounded-2xl bg-white p-6">
+    <ModalWrapper childrenRef={modalRef} bgRef={bgRef} onClose={handleClose}>
+      <div
+        ref={modalRef}
+        className="shadow-context border-border xs:w-100 relative flex w-[91vw] flex-col rounded-2xl bg-white p-6"
+      >
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="hover:bg-white-tertiary active:bg-white-tertiary base-transition absolute top-4 right-4 cursor-pointer rounded-full bg-[rgba(10,15,41,0.04)] p-1.25 hover:scale-120 active:scale-90"
         >
           <IconClose size={14} />
@@ -30,7 +58,7 @@ export default function ConfirmDelete({ onClose, onDelete }: Props) {
           </p>
         </div>
         <div className="flex gap-2">
-          <button onClick={onClose} className="close-button">
+          <button onClick={handleClose} className="close-button">
             Cancel
           </button>
           <button

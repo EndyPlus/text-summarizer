@@ -1,10 +1,24 @@
+"use client";
+
 import { ModalWrapperProps } from "@/src/types/types";
+import { animationModal } from "@/src/utils/animations";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-export default function ModalWrapper({ onClose, children }: ModalWrapperProps) {
+export default function ModalWrapper({
+  onClose,
+  childrenRef,
+  bgRef,
+  children,
+}: ModalWrapperProps) {
+  useEffect(() => {
+    animationModal(childrenRef.current, bgRef.current, "appear");
+  }, [childrenRef, bgRef]);
+
   const wrapperLayout = (
     <div className="absolute z-997 flex h-full w-full items-center justify-center">
       <div
+        ref={bgRef}
         onClick={onClose}
         className="absolute z-998 h-full w-full bg-black/30"
       ></div>
