@@ -1,7 +1,10 @@
-import { useSummaryStorage } from "@/src/logic/store/summaryStore";
-import handleCopyText from "@/src/helpers/utils/handleCopyText";
-import useCharacterCounts from "../ui-hooks/useCharacterCounts";
 import { useState } from "react";
+
+import { useSummaryStorage } from "@/src/logic/store/summaryStore";
+
+import useCharacterCounts from "./useCharacterCounts";
+
+import handleCopyText from "@/src/helpers/utils/handleCopyText";
 
 export default function useSummarizedText() {
   const summarizedText = useSummaryStorage((store) => store.summarizedText);
@@ -19,11 +22,7 @@ export default function useSummarizedText() {
     if (wordsCount === 0) return;
 
     if (copyRes.success) {
-      console.log("COPIED!");
       setIsNotified(true);
-    }
-    if (copyRes.error) {
-      console.log("ERROR");
     }
   }
 

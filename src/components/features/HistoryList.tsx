@@ -1,13 +1,13 @@
 "use client";
 
-import HistoryListItem from "@/src/components/ui/HistoryListItem";
+import { useShallow } from "zustand/shallow";
 
-import usePostsList from "@/src/logic/hooks/features-hooks/usePostsList";
 import { useDashboardNotifyStorage } from "@/src/logic/store/dashboardNotifyStore";
+import usePostsList from "@/src/logic/hooks/features-hooks/usePostsList";
+
+import HistoryListItem from "@/src/components/ui/HistoryListItem";
 import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import HistoryListSkeleton from "../skeletons/HistoryListSkeleton";
-
-import { useShallow } from "zustand/shallow";
 import HistoryEmptyList from "../ui/HistoryEmptyList";
 
 export default function HistoryList() {

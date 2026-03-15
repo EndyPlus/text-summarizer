@@ -1,11 +1,13 @@
 "use client";
 
-import { createPortal } from "react-dom";
-import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
-import { ModalProps } from "@/src/helpers/types/types";
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+
+import { ModalProps } from "@/src/helpers/types/types";
 import { AUTH_ERROR_NOTIFY_TIME } from "@/src/helpers/utils/vars";
 import { animationAuthNotify } from "@/src/helpers/utils/animations";
+
+import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
 
 export default function AuthNotifyWrapper({
   onClose,

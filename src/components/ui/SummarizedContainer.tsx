@@ -1,9 +1,11 @@
 "use client";
 
+import { useShallow } from "zustand/shallow";
+
 import { useSummaryStorage } from "@/src/logic/store/summaryStore";
+
 import SummarizedTextSkeleton from "../skeletons/SummarizedTextSkeleton";
 import { IconDocument } from "./Icons";
-import { useShallow } from "zustand/shallow";
 
 export default function SummarizedContainer() {
   const { summarizedText, isSummaryLoading } = useSummaryStorage(

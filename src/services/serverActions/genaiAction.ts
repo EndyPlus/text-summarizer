@@ -1,7 +1,8 @@
 "use server";
 
-import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 import { ai, getGenaiContent } from "../api/genaiApi";
+
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 
 export async function getAiResponse(text: string) {
   try {
@@ -11,14 +12,13 @@ export async function getAiResponse(text: string) {
 
     const response = await ai.models.generateContent(getGenaiContent(text));
 
-    console.log(response);
-
     const generatedText = response.text;
 
     if (!generatedText) {
       throw new Error("Text generation went wrong.");
     }
 
+    // spotting a special fallback code which was provided to AI in instructions.
     if (generatedText.includes("ERROR_INVALID_INPUT")) {
       throw new Error(
         "Invalid input. Please try to send a different text instead.",
@@ -28,10 +28,13 @@ export async function getAiResponse(text: string) {
     return { success: true, data: generatedText };
   } catch (err) {
     if (err instanceof Error) {
+      // parsing returned JSON from GenAI
       const genaiError = JSON.parse(err.message);
+      // getting an error code
+      const errorCode = genaiError.error.code;
 
       let errorMessage;
-      if (genaiError.error.code === 429) {
+      if (errorCode === 429) {
         errorMessage = "You have reached the limit for text generations.";
       } else {
         errorMessage = "Unknown error.";

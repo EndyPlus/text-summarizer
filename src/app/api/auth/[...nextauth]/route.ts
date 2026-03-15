@@ -1,7 +1,8 @@
-import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth, { AuthOptions } from "next-auth";
-import { findUser } from "@/src/services/serverActions/prismaActions";
+import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+
+import { findUser } from "@/src/services/serverActions/prismaActions";
 
 export const authOptions: AuthOptions = {
   providers: [

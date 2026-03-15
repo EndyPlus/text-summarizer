@@ -1,14 +1,14 @@
 import { useMemo } from "react";
+import { useShallow } from "zustand/shallow";
+
+import { usePaginationStorage } from "@/src/logic/store/paginationStore";
+
+import usePostsList from "./usePostsList";
 
 import {
   ITEMS_PER_PAGE,
   PAGINATION_ITEMS_COUNT,
 } from "@/src/helpers/utils/vars";
-
-import { usePaginationStorage } from "@/src/logic/store/paginationStore";
-
-import usePostsList from "./usePostsList";
-import { useShallow } from "zustand/shallow";
 
 export default function usePagination() {
   const { currentPage, setCurrentPage } = usePaginationStorage(

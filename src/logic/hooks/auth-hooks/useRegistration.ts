@@ -1,12 +1,13 @@
+import { useEffect, useState, useActionState } from "react";
 import { signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
-
-import { useActionState } from "react";
-import { registerFormAction } from "@/src/services/serverActions/formsActions";
 import { useRouter } from "next/navigation";
-import { InputError, RegisterFormActionState } from "@/src/helpers/types/types";
-import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
+
+import { registerFormAction } from "@/src/services/serverActions/formsActions";
+
 import useAuthRedirect from "./useAuthRedirect";
+
+import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
+import { InputError, RegisterFormActionState } from "@/src/helpers/types/types";
 
 export default function useRegistration() {
   const router = useRouter();

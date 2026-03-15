@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { IconCopy, IconError } from "./Icons";
 
 interface Props {

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import "./globals.css";
-import AuthProvider from "../components/features/AuthProvider";
+
 import { PropsLayout } from "../helpers/types/types";
+
+import AuthProvider from "../components/features/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],

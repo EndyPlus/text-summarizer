@@ -1,5 +1,6 @@
-import getCounts from "@/src/helpers/utils/getCounts";
 import { useEffect, useState } from "react";
+
+import getCounts from "@/src/helpers/utils/getCounts";
 
 export default function useCharacterCounts(text: string) {
   const [counts, setCounts] = useState({ wordsCount: 0, charactersCount: 0 });

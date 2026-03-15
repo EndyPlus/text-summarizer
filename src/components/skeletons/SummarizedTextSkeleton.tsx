@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SkeletonElement from "./SkeletonElement";
+
 import getRandomNumber from "@/src/helpers/utils/getRandomNumber";
+
+import SkeletonElement from "./SkeletonElement";
 
 function ListItemSkeleton() {
   const [textLength, setTextLength] = useState(100);

@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef } from "react";
+
 import { useSearchStorage } from "@/src/logic/store/searchTermStore";
 
 export default function useSearchForm() {
@@ -14,8 +15,6 @@ export default function useSearchForm() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     timeoutRef.current = setTimeout(() => {
-      // console.log(value);
-
       setCurrentSearchTerm(value);
 
       timeoutRef.current = null;

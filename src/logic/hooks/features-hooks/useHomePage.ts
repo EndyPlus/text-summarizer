@@ -1,11 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { useShallow } from "zustand/shallow";
 
 import { useSummaryStorage } from "@/src/logic/store/summaryStore";
 
 import useInputField from "@/src/logic/hooks/features-hooks/useInputField";
 import useSummaryForm from "@/src/logic/hooks/features-hooks/useSummaryForm";
-
-import { useShallow } from "zustand/shallow";
 
 export default function useHomePage() {
   const {

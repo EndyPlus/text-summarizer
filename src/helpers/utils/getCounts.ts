@@ -1,3 +1,6 @@
+/**
+ * @returns A words and characters counts.
+ */
 export default function getCounts(str: string) {
   const value = str.trim();
 

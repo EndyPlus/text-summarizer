@@ -1,8 +1,9 @@
-import ListItemOptionsButton from "../buttons/ListItemOptionsButton";
-
-import getCounts from "@/src/helpers/utils/getCounts";
 import getDateString from "@/src/helpers/utils/getDateString";
+import getCounts from "@/src/helpers/utils/getCounts";
+
+import ListItemOptionsButton from "../buttons/ListItemOptionsButton";
 import { IconCalendar, IconLetter, IconText } from "./Icons";
+
 import { ItemDataProps } from "@/src/helpers/types/types";
 
 export default function HistoryListItem({ itemData }: ItemDataProps) {

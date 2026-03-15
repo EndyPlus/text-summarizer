@@ -1,6 +1,7 @@
-import { UserInfoData } from "@/src/helpers/types/types";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+
+import { UserInfoData } from "@/src/helpers/types/types";
 
 export default function useUserInfo() {
   const [sessionUserData, setSessionUserData] = useState<null | UserInfoData>(

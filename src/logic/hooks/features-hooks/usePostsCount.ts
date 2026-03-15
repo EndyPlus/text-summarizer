@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+
 import { findPostsCount } from "@/src/services/serverActions/prismaActions";
+
 import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
 import { usePostsCountStorage } from "@/src/logic/store/postsCountStore";
 

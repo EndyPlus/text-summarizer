@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useShallow } from "zustand/shallow";
+
+import { useDateFilterStorage } from "@/src/logic/store/dateFilterStore";
 
 import { DATE_OPTIONS } from "@/src/helpers/utils/vars";
-import { useDateFilterStorage } from "@/src/logic/store/dateFilterStore";
+
 import { IconArrowDown, IconCalendar } from "../ui/Icons";
-import { useShallow } from "zustand/shallow";
 
 export default function DateSelectButton() {
   const [contextVisible, setContextVisible] = useState(false);

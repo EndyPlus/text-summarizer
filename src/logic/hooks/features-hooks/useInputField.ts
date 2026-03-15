@@ -1,5 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import useCharacterCounts from "../ui-hooks/useCharacterCounts";
+
+import useCharacterCounts from "./useCharacterCounts";
+
 import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
 
 export default function useInputField() {

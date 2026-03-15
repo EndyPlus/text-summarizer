@@ -1,9 +1,11 @@
 "use client";
 
-import { ModalWrapperProps } from "@/src/helpers/types/types";
-import { animationModal } from "@/src/helpers/utils/animations";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+
+import { animationModal } from "@/src/helpers/utils/animations";
+
+import { ModalWrapperProps } from "@/src/helpers/types/types";
 
 export default function ModalWrapper({
   onClose,

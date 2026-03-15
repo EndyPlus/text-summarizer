@@ -1,5 +1,6 @@
-import { Post } from "@/src/helpers/types/types";
 import { create } from "zustand";
+
+import { Post } from "@/src/helpers/types/types";
 
 interface PostInteractionStore {
   deletePostId: null | number;

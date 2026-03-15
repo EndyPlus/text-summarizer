@@ -7,9 +7,22 @@ type Credentials = {
   lastName: string;
 };
 
+// Capitalizing a string
 const formatName = (str: string) =>
   str[0].toUpperCase() + str.slice(1, str.length).toLowerCase();
 
+/**
+ * Handle credentials formatting
+ *
+ * @returns A Promise which if resolved return a formatted name, username and hashed password.
+ *
+ * @example
+ * resolvedPromise = {
+ * formattedUsername: "janedoe",
+ * hashedPassword: "$2b$10$6DhIalzvYRLABMNRAUlN0ec5csp1SV2V2kFMkn3xU8EuGVousfTu.",
+ * formattedName: "Jane Doe",
+ * }
+ */
 export default async function getFormattedCredentials({
   username,
   password,

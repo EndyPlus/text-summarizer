@@ -1,8 +1,10 @@
-import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
+import { signIn } from "next-auth/react";
+
+import useAuthRedirect from "./useAuthRedirect";
+
 import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 import { InputError } from "@/src/helpers/types/types";
-import useAuthRedirect from "./useAuthRedirect";
 
 export default function useLogin() {
   const [loginErrors, setLoginErrors] = useState<null | InputError[]>(null);
@@ -32,8 +34,6 @@ export default function useLogin() {
         password,
         redirect: false,
       });
-
-      console.log(signInResult);
 
       if (!signInResult?.ok) {
         if (signInResult?.status === 401) {

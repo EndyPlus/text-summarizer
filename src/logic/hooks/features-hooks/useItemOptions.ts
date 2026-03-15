@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useShallow } from "zustand/shallow";
+
 import { deletePost } from "@/src/services/serverActions/prismaActions";
 
 import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
+import { useDashboardNotifyStorage } from "@/src/logic/store/dashboardNotifyStore";
 import { useSummaryStorage } from "@/src/logic/store/summaryStore";
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import handleCopyText from "@/src/helpers/utils/handleCopyText";
-import { useDashboardNotifyStorage } from "@/src/logic/store/dashboardNotifyStore";
-import { Post } from "@/src/helpers/types/types";
-import { useShallow } from "zustand/shallow";
 import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
+
+import { Post } from "@/src/helpers/types/types";
 
 export default function useItemOptions(itemData: Post) {
   const [isContextVisible, setIsVisibleContext] = useState(false);
@@ -41,15 +43,11 @@ export default function useItemOptions(itemData: Post) {
     try {
       if (!userId) throw new Error("Please, Log In to interact with post.");
 
-      console.log("delete");
-
       const deletePostResponse = await deletePost(itemData.id);
 
       if (!deletePostResponse.success) {
         throw new Error(deletePostResponse.error);
       }
-
-      console.log(deletePostResponse.data);
 
       setDeletePost(itemData.id);
 

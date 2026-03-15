@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useShallow } from "zustand/shallow";
 
 import { findPosts } from "@/src/services/serverActions/prismaActions";
 
@@ -9,8 +10,8 @@ import { usePaginationStorage } from "@/src/logic/store/paginationStore";
 import { useSearchStorage } from "@/src/logic/store/searchTermStore";
 import { useDateFilterStorage } from "@/src/logic/store/dateFilterStore";
 import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
+
 import { PostsData } from "@/src/helpers/types/types";
-import { useShallow } from "zustand/shallow";
 
 export default function usePostsList() {
   const [postsData, setPostsData] = useState<null | PostsData>(null);
@@ -52,8 +53,6 @@ export default function usePostsList() {
         if (!postsResponse.success) {
           throw new Error(postsResponse.error);
         }
-
-        // console.log(postsResponse.data);
 
         if (!postsResponse.data.posts.length && currentPage > 1) {
           setCurrentPage(1);

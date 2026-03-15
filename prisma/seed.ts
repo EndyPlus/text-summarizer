@@ -1,8 +1,9 @@
-import { PrismaClient, Prisma } from "@/generated/prisma/client";
-import { mockPosts } from "@/src/helpers/mock/mockDBPosts";
-import { PrismaPg } from "@prisma/adapter-pg";
-import bcrypt from "bcryptjs";
 import "dotenv/config";
+import bcrypt from "bcryptjs";
+import { PrismaClient, Prisma } from "@/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+
+import { mockPosts } from "@/src/helpers/mock/mockDBPosts";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,

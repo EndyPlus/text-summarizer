@@ -1,5 +1,4 @@
 import LoginForm from "@/src/components/forms/LoginForm";
-
 import AuthSwitchButton from "@/src/components/buttons/AuthSwitchButton";
 import { IconLogo } from "@/src/components/ui/Icons";
 

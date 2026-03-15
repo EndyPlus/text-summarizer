@@ -1,16 +1,39 @@
 import { ErrorsData, InputError } from "../types/types";
 
+/**
+ * Handles inputs validation.
+ * 
+ * 
+ * @returns An array of objects, which contains inputName string and errosList array.
+ * 
+ * @example 
+ * errors = [
+ *  {
+      inputName: "lastName",
+      errorsList: ["Last name must be at least 3 characters long."],
+    },
+    {
+      inputName: "password",
+      errorsList: ["Password must be at least 8 characters long.", 
+      "Password must have at least 1 capital letter."],
+    }
+ * ]
+ *
+ */
 export default function getRegisterErrors(data: ErrorsData) {
   const { firstName, lastName, username, password, confirmPassword } = data;
 
+  // creating an empty errors array
   const errors: InputError[] = [];
 
+  // creating a separated errors arrays for different inputs
   const firstNameErrors = [];
   const lastNameErrors = [];
   const usernameErrors = [];
   const passwordErrors = [];
   const confirmPasswordErrors = [];
 
+  // if some error spotted, push it to this input's errors array.
   if (!firstName) {
     firstNameErrors.push("First name is missing.");
   } else {
@@ -80,6 +103,8 @@ export default function getRegisterErrors(data: ErrorsData) {
     confirmPasswordErrors.push("Passwords are not matching.");
   }
 
+  // if some input's array is not empty,
+  // push an object which contains input name and it's errors.
   if (firstNameErrors.length > 0) {
     errors.push({
       inputName: "firstName",

@@ -3,6 +3,8 @@
 import { ChangeEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 
+import { useShallow } from "zustand/shallow";
+
 import {
   addPost,
   findPostsCount,
@@ -10,18 +12,17 @@ import {
 } from "@/src/services/serverActions/prismaActions";
 
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
-
 import mockAiResponse from "@/src/helpers/mock/mockAiResponse";
 
 import { useSummaryStorage } from "@/src/logic/store/summaryStore";
 import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
 import { usePostsCountStorage } from "@/src/logic/store/postsCountStore";
+
 import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
 } from "@/src/helpers/utils/vars";
 import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
-import { useShallow } from "zustand/shallow";
 
 interface Counts {
   wordsCount: number;
@@ -61,8 +62,6 @@ export default function useSummaryForm({
 
   const toEditPost = usePostInteractionStorage((store) => store.toEditPost);
 
-  // console.log(toEditPost);
-
   async function handleHomePageFormSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -84,8 +83,6 @@ export default function useSummaryForm({
       if (!userId) {
         throw new Error("Log In to use Text Summarizer.");
       }
-
-      // console.log(userText);
 
       if (!userText.length) {
         throw new Error("Please enter a text to summarize it.");
@@ -121,8 +118,6 @@ export default function useSummaryForm({
         data: aiResponse,
       } = await mockAiResponse();
 
-      console.log(aiResponse);
-
       if (!isResponseSuccess || !aiResponse) {
         throw new Error(aiError || "Generation error.");
       }
@@ -136,25 +131,17 @@ export default function useSummaryForm({
       };
 
       if (toEditPost) {
-        console.log("UPDATE POST");
-
         const updatePostResponse = await updatePost(toEditPost.id, postData);
 
         if (!updatePostResponse.success) {
           throw new Error(updatePostResponse.error);
         }
-
-        console.log(updatePostResponse.data);
       } else {
-        console.log("ADD POST");
-
         const addPostResponse = await addPost(postData);
 
         if (!addPostResponse.success) {
           throw new Error(addPostResponse.error);
         }
-
-        console.log(addPostResponse.data);
 
         const postCountResponse = await findPostsCount(userId);
 
@@ -163,8 +150,6 @@ export default function useSummaryForm({
         }
       }
     } catch (err) {
-      // console.log(err);
-
       setSubmitError(getErrorMessage(err));
     } finally {
       setSummaryLoading(false);

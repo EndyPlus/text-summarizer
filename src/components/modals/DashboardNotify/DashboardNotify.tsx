@@ -1,9 +1,11 @@
-import { createPortal } from "react-dom";
-import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
-import { DashboardNotifyProps } from "@/src/helpers/types/types";
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+
+import { DashboardNotifyProps } from "@/src/helpers/types/types";
 import { DASHBOARD_NOTIFY_TIME } from "@/src/helpers/utils/vars";
 import { animationDashboardNotify } from "@/src/helpers/utils/animations";
+
+import { IconClose, IconError, IconSuccess } from "../../ui/Icons";
 
 export default function DashboardNotify({
   onClose,

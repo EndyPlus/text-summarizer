@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 
-import PostsCountInfo from "../ui/PostsCountInfo";
-
-import { IconClock, IconHouse } from "../ui/Icons";
 import useAsideBarNavigation from "@/src/logic/hooks/features-hooks/useAsideBarNavigation";
+
+import PostsCountInfo from "../ui/PostsCountInfo";
+import { IconClock, IconHouse } from "../ui/Icons";
 
 interface Props {
   onClick?: () => void;

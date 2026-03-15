@@ -1,10 +1,10 @@
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-
-import AuthGuard from "@/src/components/features/AuthGuard";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 import { PropsLayout } from "@/src/helpers/types/types";
+
+import AuthGuard from "@/src/components/features/AuthGuard";
 import AsideBarDesktop from "@/src/components/ui/AsideBarDesktop";
 import AsideBarTablet from "@/src/components/features/AsideBarTablet";
 

@@ -1,13 +1,14 @@
 "use client";
 
-import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
+import useHomePage from "@/src/logic/hooks/features-hooks/useHomePage";
 
-import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import {
   MAXIMUM_CHARACTERS_LIMIT,
   MINIMUM_WORDS_LIMIT,
 } from "@/src/helpers/utils/vars";
-import useHomePage from "@/src/logic/hooks/features-hooks/useHomePage";
+
+import HomeCtaButton from "@/src/components/buttons/HomeCtaButton";
+import DashboardNotify from "../modals/DashboardNotify/DashboardNotify";
 import SummarizeTextButton from "../buttons/SummarizeTextButton";
 import { IconReset } from "../ui/Icons";
 

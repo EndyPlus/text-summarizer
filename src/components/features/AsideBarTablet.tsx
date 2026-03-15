@@ -1,10 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
+
+import { animationMobileNav } from "@/src/helpers/utils/animations";
+
 import AsideBarNavigation from "./AsideBarNavigation";
 import BurgerButton from "../buttons/BurgerButton";
 import UserInfo from "./UserInfo";
-import { animationMobileNav } from "@/src/helpers/utils/animations";
 
 export default function AsideBarTablet() {
   const navRef = useRef<HTMLDivElement>(null);

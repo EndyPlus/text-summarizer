@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { IconLogo } from "../components/ui/Icons";
 
 export default function NotFound() {

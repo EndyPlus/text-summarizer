@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+
 import { IconLogout } from "../ui/Icons";
 
 export default function LogoutButton() {
