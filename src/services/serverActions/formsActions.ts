@@ -4,12 +4,13 @@ import {
   createUser,
   findUser,
 } from "@/src/services/serverActions/prismaActions";
+
 import {
   RegisterActionFormData,
   RegisterFormActionState,
 } from "@/src/helpers/types/types";
-import getFormattedCredentials from "@/src/helpers/utils/getFormattedCredentials";
 
+import getFormattedCredentials from "@/src/helpers/utils/getFormattedCredentials";
 import getRegisterErrors from "@/src/helpers/utils/getRegisterErrors";
 
 export async function registerFormAction(
@@ -22,6 +23,7 @@ export async function registerFormAction(
 
   const { firstName, lastName, username, password, confirmPassword } = userData;
 
+  // getting errors from inputs
   const errorsArray = getRegisterErrors(userData);
 
   // prevent spam submitting
@@ -39,8 +41,8 @@ export async function registerFormAction(
   }
 
   try {
+    // triggering a catch block if inputs errors
     if (errorsArray.length) {
-      console.log("FORM DATA ERRORS");
       throw new Error();
     }
 
@@ -54,6 +56,7 @@ export async function registerFormAction(
 
     const findUserResponse = await findUser(formattedUsername);
 
+    // if user exists - add an error to erros array and trigger catch block
     if (findUserResponse.success) {
       errorsArray.push({
         inputName: null,
@@ -62,6 +65,7 @@ export async function registerFormAction(
       throw new Error();
     }
 
+    // if user not found - creating a new one
     const registerResult = await createUser({
       name: formattedName,
       username: formattedUsername,
@@ -76,12 +80,20 @@ export async function registerFormAction(
       throw new Error();
     }
 
+    // if everything is ok, returning credentials to Log In
+    // also return all inputs because otherwise they will disappear before user enters account
     return {
       success: true,
       errors: null,
       credentials: { username, password },
+      firstName,
+      lastName,
+      username,
+      password,
+      confirmPassword,
     };
   } catch {
+    // if catch block was triggered also returning saved inputs
     return {
       success: false,
       errors: errorsArray,
