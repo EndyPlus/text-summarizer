@@ -62,7 +62,7 @@ export default function LoginForm() {
         <button
           disabled={isSuccess}
           onClick={handleResetError}
-          className="bg-black-base active:bg-black-accent base-transition shadow-input leading-base tracking-base cursor-pointer rounded-xl px-3 py-2.5 text-sm font-medium text-white hover:scale-105 active:scale-95"
+          className="bg-black-base tabulating-element active:bg-black-accent base-transition shadow-input leading-base tracking-base cursor-pointer rounded-xl px-3 py-2.5 text-sm font-medium text-white hover:scale-105 active:scale-95"
         >
           {isSuccess ? "Submitting..." : "Log in"}
         </button>

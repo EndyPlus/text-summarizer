@@ -126,6 +126,10 @@
   .close-button {
     @apply text-black-base hover:bg-white-tertiary hover:text-black-accent active:bg-white-tertiary active:text-black-accent tracking-base leading-base shadow-input rounded-large border-border w-full cursor-pointer border bg-white px-2.5 py-1.5 text-center text-sm font-medium transition-all duration-200 ease-out active:scale-90;
   }
+
+  .tabulating-element {
+    @apply focus-visible:ring-red-main outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
 }
 
 html,

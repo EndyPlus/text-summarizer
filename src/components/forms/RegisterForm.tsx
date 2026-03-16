@@ -98,7 +98,7 @@ export default function RegisterForm() {
         <button
           onClick={handleResetError}
           disabled={isPending || isSuccess}
-          className="bg-black-base shadow-input active:bg-black-accent base-transition leading-base tracking-base cursor-pointer rounded-xl px-3 py-2.5 text-sm font-medium text-white select-none hover:scale-105 active:scale-95"
+          className="bg-black-base shadow-input tabulating-element active:bg-black-accent base-transition leading-base tracking-base cursor-pointer rounded-xl px-3 py-2.5 text-sm font-medium text-white select-none hover:scale-105 active:scale-95"
         >
           {isPending || isSuccess ? "Submitting..." : "Registrate"}
         </button>

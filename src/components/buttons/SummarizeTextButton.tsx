@@ -27,7 +27,7 @@ export default function SummarizeTextButton({
   return (
     <button
       disabled={isDisabled}
-      className={`${buttonStyles} base-transition shadow-input rounded-large border-border-accent xs:px-2.5 xs:py-1.5 flex items-center gap-x-2 border px-2 py-1`}
+      className={`${buttonStyles} tabulating-element base-transition shadow-input rounded-large border-border-accent xs:px-2.5 xs:py-1.5 flex items-center gap-x-2 border px-2 py-1`}
     >
       {isSummaryLoading && <IconLoading aria-hidden="true" size={16} />}
       <p className="leading-base tracking-base text-small xs:text-sm font-medium">

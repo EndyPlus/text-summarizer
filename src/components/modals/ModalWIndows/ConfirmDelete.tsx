@@ -45,7 +45,7 @@ export default function ConfirmDelete({ onClose, onDelete }: Props) {
           </button>
           <button
             onClick={handleDelete}
-            className="tracking-base leading-base shadow-input rounded-large bg-red-main base-transition w-full cursor-pointer px-2.5 py-1.5 text-center text-sm font-medium text-white hover:bg-red-500 active:scale-90 active:bg-red-700"
+            className="tracking-base tabulating-element leading-base shadow-input rounded-large bg-red-main base-transition w-full cursor-pointer px-2.5 py-1.5 text-center text-sm font-medium text-white hover:bg-red-500 active:scale-90 active:bg-red-700"
           >
             Delete
           </button>
