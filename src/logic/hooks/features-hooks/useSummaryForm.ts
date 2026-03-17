@@ -12,7 +12,7 @@ import {
 } from "@/src/services/serverActions/prismaActions";
 
 import { getAiResponse } from "@/src/services/serverActions/genaiAction";
-import mockAiResponse from "@/src/helpers/mock/mockAiResponse";
+// import mockAiResponse from "@/src/helpers/mock/mockAiResponse";
 
 import { useSummaryStorage } from "@/src/logic/store/summaryStore";
 import { usePostInteractionStorage } from "@/src/logic/store/interactedPostStore";
@@ -105,18 +105,18 @@ export default function useSummaryForm({
       setSummarizedText("");
 
       // AI RESPONSE
-      // const {
-      //   success: isResponseSuccess,
-      //   error: aiError,
-      //   data: aiResponse,
-      // } = await getAiResponse(userText);
-
-      // MOCK RESPONSE
       const {
         success: isResponseSuccess,
         error: aiError,
         data: aiResponse,
-      } = await mockAiResponse();
+      } = await getAiResponse(userText);
+
+      // MOCK RESPONSE
+      // const {
+      //   success: isResponseSuccess,
+      //   error: aiError,
+      //   data: aiResponse,
+      // } = await mockAiResponse();
 
       if (!isResponseSuccess || !aiResponse) {
         throw new Error(aiError || "Generation error.");

@@ -27,6 +27,8 @@ export default function useModal(onClose: () => void) {
     const modal = modalRef.current;
     if (!modal) return;
 
+    // [tabindex]:not([tabindex="-1"]) - browser will skip tabindex -1, it would break a logic,
+    // so it should be not targetted.
     const focusableElements = modal.querySelectorAll<HTMLElement>(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
     );
@@ -47,14 +49,18 @@ export default function useModal(onClose: () => void) {
 
       if (e.key !== "Tab") return;
 
+      // without e.preventDefault() after el.focus() browser will skip 1 element,
+      //  so it will be double tab.
       if (e.shiftKey) {
         if (document.activeElement === firstElement) {
           lastElement.focus();
+
           e.preventDefault();
         }
       } else {
         if (document.activeElement === lastElement) {
           firstElement.focus();
+
           e.preventDefault();
         }
       }
