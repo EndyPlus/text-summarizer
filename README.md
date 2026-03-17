@@ -27,16 +27,45 @@ A simple text summarization application that uses AI to condense user text. All 
 
 The project structure follows the SoC (Separation of Concerns) pattern and has 4 main layers to ensure maintainability and scalability:
 
-1. `components/` — UI-Layer (React components).
-1. `logic/` — Business Logic Layer (custom React hooks and Zustand stores).
-1. `services/` — Data Access Layer (Server Actions, Prisma Client, API routes).
-1. `helpers/` — Support Layer (utility functions, TS types, and mock data).
+1. `components/` — **UI-Layer** (React components).
+1. `logic/` — **Business Logic Layer** (custom React hooks and Zustand stores).
+1. `services/` — **Data Access Layer** (Server Actions, Prisma Client, API routes).
+1. `helpers/` — **Support Layer** (utility functions, TS types, and mock data).
 
 ## Installation & Setup & Deploying 🛠️
 
-_🚧 Documenting in progress ⚠️._
+1. Clone the project:
 
-- npm install
-- prisma generate
-- .env variables
-- useSummaryForm switch ai to mock.
+```
+git clone https://github.com/EndyPlus/text-summarizer.git
+cd text-summarizer
+```
+
+2. Execute `npm install`. This will also automatically trigger `prisma generate` thanks to the `postinstall` script.
+
+- If for some reason Prisma client isn't generated, run `npx prisma generate` manually.
+
+3. If you don't have `.env` file, create it by yourself. You need to store there 5 variables which you will find in `.env.example` file.
+4. To not "burn" your Gemini API limit, move to `src/logic/hooks/features-hooks/useSummaryForm.ts`, and do this:
+
+```
+
+// 1. Comment out the real AI action
+// import { getAiResponse } from "@/src/services/serverActions/genaiAction";
+import mockAiResponse from "@/src/helpers/mock/mockAiResponse";
+
+// 2. In the hook body, use the mock instead of the real call
+// const { data: aiResponse, ... } = await getAiResponse(userText);
+
+const {
+success: isResponseSuccess,
+error: aiError,
+data: aiResponse,
+} = await mockAiResponse();
+
+```
+
+5. While deploying on Vercel:
+
+- Paste the raw values **without quotes**. Instead of `"postgresql://user:pass@host..."`, use `postgresql://user:pass@host...`. Adding quotes will cause connection strings to fail.
+- Don't forget to add `NEXTAUTH_URL` (your production domain) and `NEXTAUTH_SECRET`.
