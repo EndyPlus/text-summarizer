@@ -7,7 +7,7 @@ import getErrorMessage from "@/src/helpers/utils/getErrorMessage";
 export async function getAiResponse(text: string) {
   try {
     if (!text || typeof text !== "string") {
-      throw new Error("Text is invalid or missing.");
+      throw "Text is invalid or missing.";
     }
 
     const response = await ai.models.generateContent(getGenaiContent(text));
@@ -15,14 +15,12 @@ export async function getAiResponse(text: string) {
     const generatedText = response.text;
 
     if (!generatedText) {
-      throw new Error("Text generation went wrong.");
+      throw "Text generation went wrong.";
     }
 
     // spotting a special fallback code which was provided to AI in instructions.
     if (generatedText.includes("ERROR_INVALID_INPUT")) {
-      throw new Error(
-        "Invalid input. Please try to send a different text instead.",
-      );
+      throw "Invalid input. Please try to send a different text instead.";
     }
 
     return { success: true, data: generatedText };
