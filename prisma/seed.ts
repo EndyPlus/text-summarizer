@@ -13,18 +13,18 @@ const prisma = new PrismaClient({
   adapter,
 });
 
-const userData: Prisma.UserCreateInput[] = [
-  {
-    username: "admin",
-    password: await bcrypt.hash("admin", 10),
-    name: "John Doe",
-    posts: {
-      create: mockPosts,
-    },
-  },
-];
-
 export async function main() {
+  const userData: Prisma.UserCreateInput[] = [
+    {
+      username: "admin",
+      password: await bcrypt.hash("admin", 10),
+      name: "John Doe",
+      posts: {
+        create: mockPosts,
+      },
+    },
+  ];
+
   for (const u of userData) {
     await prisma.user.create({ data: u });
   }
